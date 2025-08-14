@@ -1,5 +1,6 @@
 [<img src="assets/0.png">]()
-[<img src="notemasterIcon.svg" style="height: 100px; margin-top: 5px">]()
+<br><br>
+[<img src="notemasterIcon.svg" style="height: 100px">]()
 
 # NoteMaster
 
