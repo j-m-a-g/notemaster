@@ -65,8 +65,8 @@
       </button>
       <button
         class="menu"
-        onmouseleave="document.getElementById('fileMenu').hidden = true"
-        onmouseover="document.getElementById('fileMenu').hidden = false"
+        onmouseleave="document.querySelector('#fileMenu').hidden = true"
+        onmouseover="document.querySelector('#fileMenu').hidden = false"
       >
         File
       </button>
@@ -211,8 +211,8 @@
       </div>
       <button
         class="menu"
-        onmouseleave="document.getElementById('insertMenu').hidden = true"
-        onmouseover="document.getElementById('insertMenu').hidden = false"
+        onmouseleave="document.querySelector('#insertMenu').hidden = true"
+        onmouseover="document.querySelector('#insertMenu').hidden = false"
       >
         Insert
       </button>
@@ -289,8 +289,8 @@
       </div>
       <button
         class="menu"
-        onmouseleave="document.getElementById('viewMenu').hidden = true"
-        onmouseover="document.getElementById('viewMenu').hidden = false"
+        onmouseleave="document.querySelector('#viewMenu').hidden = true"
+        onmouseover="document.querySelector('#viewMenu').hidden = false"
       >
         View
       </button>
@@ -388,8 +388,8 @@
       </div>
       <button
         class="menu"
-        onmouseleave="document.getElementById('settingsMenu').hidden = true"
-        onmouseover="document.getElementById('settingsMenu').hidden = false"
+        onmouseleave="document.querySelector('#settingsMenu').hidden = true"
+        onmouseover="document.querySelector('#settingsMenu').hidden = false"
       >
         Settings
       </button>
@@ -574,8 +574,8 @@
       </div>
       <button
         class="menu"
-        onmouseleave="document.getElementById('helpMenu').hidden = true"
-        onmouseover="document.getElementById('helpMenu').hidden = false"
+        onmouseleave="document.querySelector('#helpMenu').hidden = true"
+        onmouseover="document.querySelector('#helpMenu').hidden = false"
       >
         Help
       </button>
@@ -2530,7 +2530,7 @@
         </a>
         <button
           class="primaryButton"
-          onclick="document.getElementById('copyHistoryEditor').hidden = false; copyHistoryQuill.clipboard.dangerouslyPasteHTML(historyTableContainer.innerHTML)"
+          onclick="document.querySelector('#copyHistoryEditor').hidden = false; copyHistoryQuill.clipboard.dangerouslyPasteHTML(historyTableContainer.innerHTML)"
           style="width: 15%; margin-left: 5px"
         >
           <img
@@ -2693,7 +2693,7 @@
             <td>
               <button
                 class="primaryButton"
-                onclick="if (checkURLInput('URLToImageInput')) { toggleDialog(false, 'linkToImage', null); imageView.src = document.getElementById('URLToImageInput').value; toggleViewer(true, 'imageViewer'); tasksOnceFileOpen('imageView', null); addHistoryEntry('URLToImageInput') }"
+                onclick="if (checkURLInput('URLToImageInput')) { toggleDialog(false, 'linkToImage', null); imageView.src = document.querySelector('#URLToImageInput').value; toggleViewer(true, 'imageViewer'); tasksOnceFileOpen('imageView', null); addHistoryEntry('URLToImageInput') }"
               >
                 Open
               </button>

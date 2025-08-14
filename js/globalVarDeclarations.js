@@ -1,36 +1,36 @@
-const additionalVideoControls = document.getElementById(
-	"additionalVideoControls"
+const additionalVideoControls = document.querySelector(
+	"#additionalVideoControls"
 );
-const appSectionSizesContainer = document.getElementById(
-	"appSectionSizesContainer"
+const appSectionSizesContainer = document.querySelector(
+	"#appSectionSizesContainer"
 );
-const characterCountVisualMax = document.getElementById(
-	"characterCountVisualMax"
+const characterCountVisualMax = document.querySelector(
+	"#characterCountVisualMax"
 );
-const codeFileViewerStatusBar = document.getElementById(
-	"codeFileViewerStatusBar"
+const codeFileViewerStatusBar = document.querySelector(
+	"#codeFileViewerStatusBar"
 );
-const convertWordToNoteInput = document.getElementById(
-	"convertWordToNoteInput"
+const convertWordToNoteInput = document.querySelector(
+	"#convertWordToNoteInput"
 );
-const customStylesheetImport = document.getElementById(
-	"customStylesheetImport"
+const customStylesheetImport = document.querySelector(
+	"#customStylesheetImport"
 );
 const downloadNotePrefixAndSuffix = [
 	"<div style='word-wrap: break-word'>",
 	"</div><style>body { font-family: sans-serif } td { word-break: break-word } h1, h2, h3, h4, h5, h6 { font-weight: normal } .ql-font-serif { font-family: serif } .ql-font-monospace { font-family: monospace }</style>"
 ];
-const gettingStartedDarkMode = document.getElementById(
-	"gettingStartedDarkMode"
+const gettingStartedDarkMode = document.querySelector(
+	"#gettingStartedDarkMode"
 );
-const insertOnlineImageInput = document.getElementById(
-	"insertOnlineImageInput"
+const insertOnlineImageInput = document.querySelector(
+	"#insertOnlineImageInput"
 );
-const programmingLanguageMode = document.getElementById(
-	"programmingLanguageMode"
+const programmingLanguageMode = document.querySelector(
+	"#programmingLanguageMode"
 );
-const startFromScratchOptions = document.getElementById(
-	"startFromScratchOptions"
+const startFromScratchOptions = document.querySelector(
+	"#startFromScratchOptions"
 );
 const symbolList = [
 	["¡", "Inverted Exclamation Mark"],
@@ -146,139 +146,141 @@ const symbolList = [
 	["č", "Latin Lowercase C With Caron"],
 	["ď", "Latin Lowercase D With Caron"]
 ];
-const totalCharacterCountDisplay = document.getElementById(
-	"totalCharacterCountDisplay"
+const totalCharacterCountDisplay = document.querySelector(
+	"#totalCharacterCountDisplay"
 );
-const viewerStatusBarIndicator = document.getElementById(
-	"viewerStatusBarIndicator"
+const viewerStatusBarIndicator = document.querySelector(
+	"#viewerStatusBarIndicator"
 );
-const wordDocumentToNoteButton = document.getElementById(
-	"wordDocumentToNoteButton"
+const wordDocumentToNoteButton = document.querySelector(
+	"#wordDocumentToNoteButton"
 );
-const adjustAppSectionSizes = document.getElementById("adjustAppSectionSizes");
+const adjustAppSectionSizes = document.querySelector("#adjustAppSectionSizes");
 const adjustedHeight = `${window.innerHeight - 35}px`;
-const anotherNoteFileInput = document.getElementById("anotherNoteFileInput");
-const anotherNoteView = document.getElementById("anotherNoteView");
-const anotherNoteViewer = document.getElementById("anotherNoteViewer");
-const appLoad = document.getElementById("appLoad");
+const anotherNoteFileInput = document.querySelector("#anotherNoteFileInput");
+const anotherNoteView = document.querySelector("#anotherNoteView");
+const anotherNoteViewer = document.querySelector("#anotherNoteViewer");
+const appLoad = document.querySelector("#appLoad");
 const appName = "NoteMaster";
-const appSectionsTable = document.getElementById("appSectionsTable");
-const autoSave = document.getElementById("autoSave");
-const autoSaveCheck = document.getElementById("autoSaveCheck");
-const characterCount = document.getElementById("characterCount");
-const characterCountVisual = document.getElementById("characterCountVisual");
+const appSectionsTable = document.querySelector("#appSectionsTable");
+const autoSave = document.querySelector("#autoSave");
+const autoSaveCheck = document.querySelector("#autoSaveCheck");
+const characterCount = document.querySelector("#characterCount");
+const characterCountVisual = document.querySelector("#characterCountVisual");
 const checkedImageSource = "assets/images/check_000000.svg";
-const chooseViewer = document.getElementById("chooseViewer");
-const closeFile = document.getElementById("closeFile");
-const cloudFileView = document.getElementById("cloudFileView");
-const cloudFileViewer = document.getElementById("cloudFileViewer");
-const codeEditorTheme = document.getElementById("codeEditorTheme");
-const codeFileInput = document.getElementById("codeFileInput");
-const codeFileView = document.getElementById("codeFileView");
-const codeFileViewer = document.getElementById("codeFileViewer");
-const confirmSaveDialog = document.getElementById("confirmSaveDialog");
-const confirmViewerClose = document.getElementById("confirmViewerClose");
-const copiedToClipboard = document.getElementById("copiedToClipboard");
+const chooseViewer = document.querySelector("#chooseViewer");
+const closeFile = document.querySelector("#closeFile");
+const cloudFileView = document.querySelector("#cloudFileView");
+const cloudFileViewer = document.querySelector("#cloudFileViewer");
+const codeEditorTheme = document.querySelector("#codeEditorTheme");
+const codeFileInput = document.querySelector("#codeFileInput");
+const codeFileView = document.querySelector("#codeFileView");
+const codeFileViewer = document.querySelector("#codeFileViewer");
+const confirmSaveDialog = document.querySelector("#confirmSaveDialog");
+const confirmViewerClose = document.querySelector("#confirmViewerClose");
+const copiedToClipboard = document.querySelector("#copiedToClipboard");
 const copiedToClipboardString = "Copied to clipboard";
-const createdTable = document.getElementById("createdTable");
-const createOrOpenContainer = document.getElementById("createOrOpenContainer");
+const createdTable = document.querySelector("#createdTable");
+const createOrOpenContainer = document.querySelector("#createOrOpenContainer");
 const currentDate = new Date();
-const customEmbedViewer = document.getElementById("customEmbedViewer");
-const customStylesheet = document.getElementById("customStylesheet");
-const customTypingTarget = document.getElementById("customTypingTarget");
-const darkModeCheck = document.getElementById("darkModeCheck");
-const darkModeStylesheet = document.getElementById("darkModeStylesheet");
-const darkModeToggle = document.getElementById("darkModeToggle");
-const dialogFocusBackground = document.getElementById("dialogFocusBackground");
-const downloadConvertedNote = document.getElementById("downloadConvertedNote");
-const editorSize = document.getElementById("editorSize");
-const embeddedCode = document.getElementById("embeddedCode");
-const errorMessage = document.getElementById("errorMessage");
-const fileLastModified = document.getElementById("fileLastModified");
-const fileName = document.getElementById("fileName");
-const fileSize = document.getElementById("fileSize");
+const customEmbedViewer = document.querySelector("#customEmbedViewer");
+const customStylesheet = document.querySelector("#customStylesheet");
+const customTypingTarget = document.querySelector("#customTypingTarget");
+const darkModeCheck = document.querySelector("#darkModeCheck");
+const darkModeStylesheet = document.querySelector("#darkModeStylesheet");
+const darkModeToggle = document.querySelector("#darkModeToggle");
+const dialogFocusBackground = document.querySelector("#dialogFocusBackground");
+const downloadConvertedNote = document.querySelector("#downloadConvertedNote");
+const editorSize = document.querySelector("#editorSize");
+const embeddedCode = document.querySelector("#embeddedCode");
+const errorMessage = document.querySelector("#errorMessage");
+const fileLastModified = document.querySelector("#fileLastModified");
+const fileName = document.querySelector("#fileName");
+const fileSize = document.querySelector("#fileSize");
 const fileViewingHistoryNames = [];
 const fileViewingHistoryTimes = [];
-const hideEditorCheck = document.getElementById("hideEditorCheck");
-const hideViewingCheck = document.getElementById("hideViewingCheck");
-const historyTableContainer = document.getElementById("historyTableContainer");
+const hideEditorCheck = document.querySelector("#hideEditorCheck");
+const hideViewing = document.querySelector("#hideViewing");
+const hideViewingCheck = document.querySelector("#hideViewingCheck");
+const historyTableContainer = document.querySelector("#historyTableContainer");
 const iframes = document.getElementsByTagName("iframe");
-const imageFileInput = document.getElementById("imageFileInput");
-const imageView = document.getElementById("imageView");
-const imageViewer = document.getElementById("imageViewer");
-const importOwnStylesheet = document.getElementById("importOwnStylesheet");
-const insertCloudURLDialog = document.getElementById("insertCloudURLDialog");
-const insertOnlineImage = document.getElementById("insertOnlineImage");
-const insertSymbol = document.getElementById("insertSymbol");
-const insertTable = document.getElementById("insertTable");
+const imageFileInput = document.querySelector("#imageFileInput");
+const imageView = document.querySelector("#imageView");
+const imageViewer = document.querySelector("#imageViewer");
+const importOwnStylesheet = document.querySelector("#importOwnStylesheet");
+const insertCloudURLDialog = document.querySelector("#insertCloudURLDialog");
+const insertOnlineImage = document.querySelector("#insertOnlineImage");
+const insertSymbol = document.querySelector("#insertSymbol");
+const insertTable = document.querySelector("#insertTable");
 const lastViewedWebpages = [];
-const localDocuments = document.getElementById("localDocuments");
-const mainEditor = document.getElementById("mainEditor");
-const mainEditorZoom = document.getElementById("mainEditorZoom");
-const markdownFileInput = document.getElementById("markdownFileInput");
-const markdownFileView = document.getElementById("markdownFileView");
-const noFileSelected = document.getElementById("noFileSelected");
-const noteDownloadLink = document.getElementById("noteDownloadLink");
-const noteEditor = document.getElementById("noteEditor");
-const noteHTML = document.getElementById("noteHTML");
-const noteName = document.getElementById("noteName");
-const onedriveOrigin = document.getElementById("onedriveOrigin");
-const onlineDesignView = document.getElementById("onlineDesignView");
-const onlineDesignViewer = document.getElementById("onlineDesignViewer");
-const onlineDocuments = document.getElementById("onlineDocuments");
-const openNoteFileInput = document.getElementById("openNoteFileInput");
+const localDocuments = document.querySelector("#localDocuments");
+const mainEditor = document.querySelector("#mainEditor");
+const mainEditorZoom = document.querySelector("#mainEditorZoom");
+const markdownFileInput = document.querySelector("#markdownFileInput");
+const markdownFileView = document.querySelector("#markdownFileView");
+const noFileSelected = document.querySelector("#noFileSelected");
+const noteDownloadLink = document.querySelector("#noteDownloadLink");
+const noteEditor = document.querySelector("#noteEditor");
+const noteHTML = document.querySelector("#noteHTML");
+const noteName = document.querySelector("#noteName");
+const onedriveOrigin = document.querySelector("#onedriveOrigin");
+const onlineDesignView = document.querySelector("#onlineDesignView");
+const onlineDesignViewer = document.querySelector("#onlineDesignViewer");
+const onlineDocuments = document.querySelector("#onlineDocuments");
+const openNoteFileInput = document.querySelector("#openNoteFileInput");
 const originalDownloadSuffix = downloadNotePrefixAndSuffix[1];
-const pageBackgroundColor = document.getElementById("pageBackgroundColor");
-const pageSetupStyle = document.getElementById("pageSetupStyle");
-const pageTextColor = document.getElementById("pageTextColor");
-const pdfFileInput = document.getElementById("pdfFileInput");
-const pdfView = document.getElementById("pdfView");
-const pdfViewer = document.getElementById("pdfViewer");
-const resetTypingTarget = document.getElementById("resetTypingTarget");
-const revertToDefaultStyle = document.getElementById("revertToDefaultStyle");
-const savedForLater = document.getElementById("savedForLater");
-const savedForLaterDetails = document.getElementById("savedForLaterDetails");
-const setTypingTarget = document.getElementById("setTypingTarget");
-const shareCopyLink = document.getElementById("shareCopyLink");
-const snackbar = document.getElementById("snackbar");
-const snackbarMessage = document.getElementById("snackbarMessage");
-const symbolsDisplay = document.getElementById("symbolsDisplay");
-const tableColumns = document.getElementById("tableColumns");
-const tableRows = document.getElementById("tableRows");
-const textFileInput = document.getElementById("textFileInput");
-const textView = document.getElementById("textView");
-const textViewActions = document.getElementById("textViewActions");
-const textViewer = document.getElementById("textViewer");
-const textViewFont = document.getElementById("textViewFont");
-const totalWordCountDisplay = document.getElementById("totalWordCountDisplay");
-const tubeVideoView = document.getElementById("tubeVideoView");
-const tubeVideoViewer = document.getElementById("tubeVideoViewer");
-const typingTarget = document.getElementById("typingTarget");
-const uncheckedImageSource = "Assets/Images/menu_dropdown_placeholder.svg";
-const URLToCloudFile = document.getElementById("URLToCloudFile");
-const URLToOnlineDesign = document.getElementById("URLToOnlineDesign");
-const URLToPDFInput = document.getElementById("URLToPDFInput");
-const URLToTubeVideo = document.getElementById("URLToTubeVideo");
-const userGreeting = document.getElementById("userGreeting");
-const videoFileInput = document.getElementById("videoFileInput");
-const videoView = document.getElementById("videoView");
-const videoViewer = document.getElementById("videoViewer");
-const viewersContainer = document.getElementById("viewersContainer");
-const viewerStatusBar = document.getElementById("viewerStatusBar");
-const viewingHistoryTable = document.getElementById("viewingHistoryTable");
-const viewingSize = document.getElementById("viewingSize");
-const webpageURLBar = document.getElementById("webpageURLBar");
-const webpageView = document.getElementById("webpageView");
-const webpageViewer = document.getElementById("webpageViewer");
-const wordCount = document.getElementById("wordCount");
-const wordCountVisual = document.getElementById("wordCountVisual");
-const wordCountVisualMax = document.getElementById("wordCountVisualMax");
-const wordDocumentView = document.getElementById("wordDocumentView");
-const wordDocumentViewer = document.getElementById("wordDocumentViewer");
-const wordFileInput = document.getElementById("wordFileInput");
-const wordsOrCharacters = document.getElementById("wordsOrCharacters");
-const wordWrap = document.getElementById("wordWrap");
-const wordWrapCheck = document.getElementById("wordWrapCheck");
+const pageBackgroundColor = document.querySelector("#pageBackgroundColor");
+const pageSetupStyle = document.querySelector("#pageSetupStyle");
+const pageTextColor = document.querySelector("#pageTextColor");
+const pdfFileInput = document.querySelector("#pdfFileInput");
+const pdfView = document.querySelector("#pdfView");
+const pdfViewer = document.querySelector("#pdfViewer");
+const resetTypingTarget = document.querySelector("#resetTypingTarget");
+const revertToDefaultStyle = document.querySelector("#revertToDefaultStyle");
+const savedForLater = document.querySelector("#savedForLater");
+const savedForLaterDetails = document.querySelector("#savedForLaterDetails");
+const saveDocumentHeading = document.querySelector("#saveDocumentHeading");
+const setTypingTarget = document.querySelector("#setTypingTarget");
+const shareCopyLink = document.querySelector("#shareCopyLink");
+const snackbar = document.querySelector("#snackbar");
+const snackbarMessage = document.querySelector("#snackbarMessage");
+const symbolsDisplay = document.querySelector("#symbolsDisplay");
+const tableColumns = document.querySelector("#tableColumns");
+const tableRows = document.querySelector("#tableRows");
+const textFileInput = document.querySelector("#textFileInput");
+const textView = document.querySelector("#textView");
+const textViewActions = document.querySelector("#textViewActions");
+const textViewer = document.querySelector("#textViewer");
+const textViewFont = document.querySelector("#textViewFont");
+const totalWordCountDisplay = document.querySelector("#totalWordCountDisplay");
+const tubeVideoView = document.querySelector("#tubeVideoView");
+const tubeVideoViewer = document.querySelector("#tubeVideoViewer");
+const typingTarget = document.querySelector("#typingTarget");
+const uncheckedImageSource = "assets/images/menu_dropdown_placeholder.svg";
+const URLToCloudFile = document.querySelector("#URLToCloudFile");
+const URLToOnlineDesign = document.querySelector("#URLToOnlineDesign");
+const URLToPDFInput = document.querySelector("#URLToPDFInput");
+const URLToTubeVideo = document.querySelector("#URLToTubeVideo");
+const userGreeting = document.querySelector("#userGreeting");
+const videoFileInput = document.querySelector("#videoFileInput");
+const videoView = document.querySelector("#videoView");
+const videoViewer = document.querySelector("#videoViewer");
+const viewersContainer = document.querySelector("#viewersContainer");
+const viewerStatusBar = document.querySelector("#viewerStatusBar");
+const viewingHistoryTable = document.querySelector("#viewingHistoryTable");
+const viewingSize = document.querySelector("#viewingSize");
+const webpageURLBar = document.querySelector("#webpageURLBar");
+const webpageView = document.querySelector("#webpageView");
+const webpageViewer = document.querySelector("#webpageViewer");
+const wordCount = document.querySelector("#wordCount");
+const wordCountVisual = document.querySelector("#wordCountVisual");
+const wordCountVisualMax = document.querySelector("#wordCountVisualMax");
+const wordDocumentView = document.querySelector("#wordDocumentView");
+const wordDocumentViewer = document.querySelector("#wordDocumentViewer");
+const wordFileInput = document.querySelector("#wordFileInput");
+const wordsOrCharacters = document.querySelector("#wordsOrCharacters");
+const wordWrap = document.querySelector("#wordWrap");
+const wordWrapCheck = document.querySelector("#wordWrapCheck");
 const workingURLParameters = new URLSearchParams(window.location.search);
 let addedCharacterCount = 0;
 let addedCharacterCountArray = [];

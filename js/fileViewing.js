@@ -12,11 +12,11 @@ function tasksOnceFileOpen(unhiddenView, fileInputObject) {
   noFileSelected.hidden = true;
 
   // Displays the viewer for the corresponding file type
-  document.getElementById(unhiddenView).hidden = false;
+  document.querySelector(`#${unhiddenView}`).hidden = false;
 
-  if (document.getElementById(fileInputObject) !== null) {
+  if (document.querySelector(`#${fileInputObject}`) !== null) {
     fileName.innerHTML = document
-      .getElementById(fileInputObject)
+      .querySelector(`#${fileInputObject}`)
       .value.replace("C:\\fakepath\\", "");
 
     fileSize.innerHTML = `${(event.target.files[0].size / 1048576).toFixed(2)}MB`;
@@ -33,7 +33,7 @@ function tasksOnceFileOpen(unhiddenView, fileInputObject) {
   }
 
   fileViewingHistoryTimes.push(get12HourTime());
-  document.getElementById("hideViewing").disabled = false;
+  hideViewing.disabled = false;
 }
 
 function closeCurrentFile() {
@@ -109,7 +109,7 @@ function closeCurrentFile() {
   // TODO: Clear the objectURL of the viewed file so it can
   // be consecutively viewed
 
-  document.getElementById("hideViewing").disabled = true;
+  hideViewing.disabled = true;
 }
 
 function readTextFile() {
@@ -172,7 +172,7 @@ function viewCodeFile() {
 }
 
 function checkURLInput(URLInputObject) {
-  if (document.getElementById(URLInputObject).value === "") {
+  if (document.querySelector(`#${URLInputObject}`).value === "") {
     displaySnackbar("Please enter a valid URL");
     return false;
   } else {

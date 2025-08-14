@@ -30,11 +30,9 @@ function initiateNote(isOpen) {
 
 function confirmSave() {
   if (noteName.value !== "") {
-    document.getElementById("saveDocumentHeading").innerHTML =
-      `Save '${noteName.value}'?`;
+    saveDocumentHeading.innerHTML = `Save '${noteName.value}'?`;
   } else {
-    document.getElementById("saveDocumentHeading").innerHTML =
-      "Save 'Untitled'?";
+    saveDocumentHeading.innerHTML = "Save 'Untitled'?";
   }
 
   // Determines whether the note editor is empty or the user
@@ -52,11 +50,9 @@ function handleAnotherOpen() {
   if (quill.getLength() !== 1 || noteName.value !== "") {
     isOpeningAnotherNote = true;
     if (noteName.value !== "") {
-      document.getElementById("saveDocumentHeading").innerHTML =
-        `Save '${noteName.value}?'`;
+      saveDocumentHeading.innerHTML = `Save '${noteName.value}?'`;
     } else {
-      document.getElementById("saveDocumentHeading").innerHTML =
-        "Save 'Untitled'?";
+      saveDocumentHeading.innerHTML = "Save 'Untitled'?";
     }
 
     confirmSaveDialog.hidden = false;
@@ -82,7 +78,7 @@ function doNotSave() {
 
 function saveNoteProgress() {
   localStorage.setItem("noteProgress", quill.getSemanticHTML());
-  localStorage.setItem("noteTitle", document.getElementById("noteName").value);
+  localStorage.setItem("noteTitle", noteName.value);
   displaySnackbar("Saved note progress!");
 }
 
@@ -394,10 +390,10 @@ function applyPageSetup(resetToDefault) {
   if (resetToDefault) {
     // Headings
     for (let headingNumber = 0; headingNumber < 7; headingNumber++) {
-      const headingVariable = `heading${headingNumber}`;
+      const headingVariable = `#heading${headingNumber}`;
       let currentFontSize = 0;
 
-      document.getElementById(`${headingVariable}Family`).value = "sans-serif";
+      document.querySelector(`${headingVariable}Family`).value = "sans-serif";
       switch (headingNumber) {
         case 0:
           currentFontSize = 13;
@@ -422,11 +418,11 @@ function applyPageSetup(resetToDefault) {
           break;
       }
 
-      document.getElementById(`${headingVariable}Color`).value = "#000000";
-      document.getElementById(`${headingVariable}Size`).value = currentFontSize;
-      document.getElementById(`${headingVariable}Bold`).checked = false;
-      document.getElementById(`${headingVariable}Italics`).checked = false;
-      document.getElementById(`${headingVariable}Strike`).checked = false;
+      document.querySelector(`${headingVariable}Color`).value = "#000000";
+      document.querySelector(`${headingVariable}Size`).value = currentFontSize;
+      document.querySelector(`${headingVariable}Bold`).checked = false;
+      document.querySelector(`${headingVariable}Italics`).checked = false;
+      document.querySelector(`${headingVariable}Strike`).checked = false;
     }
 
     // Page Background and Text Color
@@ -438,7 +434,7 @@ function applyPageSetup(resetToDefault) {
   } else {
     // Headings
     for (let headingNumber = 0; headingNumber < 7; headingNumber++) {
-      const headingVariable = `heading${headingNumber}`;
+      const headingVariable = `#heading${headingNumber}`;
       let headingName = "";
 
       if (headingNumber === 0) {
@@ -447,13 +443,13 @@ function applyPageSetup(resetToDefault) {
         headingName = `h${headingNumber}`;
       }
 
-      pageSetupStyle.innerHTML += `#mainEditor ${headingName} { font-family: ${document.getElementById(`${headingVariable}Family`).value}; font-size: ${document.getElementById(`${headingVariable}Size`).value}px; color: ${document.getElementById(`${headingVariable}Color`).value} }`;
+      pageSetupStyle.innerHTML += `#mainEditor ${headingName} { font-family: ${document.querySelector(`${headingVariable}Family`).value}; font-size: ${document.querySelector(`${headingVariable}Size`).value}px; color: ${document.querySelector(`${headingVariable}Color`).value} }`;
       addDownloadNoteStyle(
         headingName,
-        `font-family: ${document.getElementById(`${headingVariable}Family`).value}; font-size: ${document.getElementById(`${headingVariable}Size`).value}px; color: ${document.getElementById(`${headingVariable}Color`).value}`
+        `font-family: ${document.querySelector(`${headingVariable}Family`).value}; font-size: ${document.querySelector(`${headingVariable}Size`).value}px; color: ${document.querySelector(`${headingVariable}Color`).value}`
       );
 
-      if (document.getElementById(`${headingVariable}Bold`).checked) {
+      if (document.querySelector(`${headingVariable}Bold`).checked) {
         pageSetupStyle.innerHTML += `#mainEditor ${headingName} { font-weight: bold } `;
         addDownloadNoteStyle(headingName, "font-weight: bold");
       } else {
@@ -461,7 +457,7 @@ function applyPageSetup(resetToDefault) {
         addDownloadNoteStyle(headingName, "font-weight: normal");
       }
 
-      if (document.getElementById(`${headingVariable}Italics`).checked) {
+      if (document.querySelector(`${headingVariable}Italics`).checked) {
         pageSetupStyle.innerHTML += `#mainEditor ${headingName} { font-style: italic } `;
         addDownloadNoteStyle(headingName, "font-style: italic");
       } else {
@@ -469,7 +465,7 @@ function applyPageSetup(resetToDefault) {
         addDownloadNoteStyle(headingName, "font-style: normal");
       }
 
-      if (document.getElementById(`${headingVariable}Strike`).checked) {
+      if (document.querySelector(`${headingVariable}Strike`).checked) {
         pageSetupStyle.innerHTML += `#mainEditor ${headingName} { text-decoration: line-through } `;
         addDownloadNoteStyle(headingName, "text-decoration-line: line-through");
       } else {

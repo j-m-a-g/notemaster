@@ -70,7 +70,7 @@ codeFileViewCodeEditor.session.setUseWrapMode(true);
 
 function shiftProgressValue(progressObject, currentValue, maxValue, stepValue) {
   if (currentValue < maxValue) {
-    document.getElementById(progressObject).value = currentValue;
+    document.querySelector(`#${progressObject}`).value = currentValue;
     currentValue += stepValue;
     setTimeout(
       shiftProgressValue,
@@ -98,8 +98,8 @@ function dynamicallySetHeight() {
 }
 
 function hideAndShow(hiddenContainer, shownContainer) {
-  document.getElementById(hiddenContainer).hidden = true;
-  document.getElementById(shownContainer).hidden = false;
+  document.querySelector(`#${hiddenContainer}`).hidden = true;
+  document.querySelector(`#${shownContainer}`).hidden = false;
 }
 
 function alterWindowTitle(isNoteClosed) {
@@ -118,48 +118,47 @@ function alterWindowTitle(isNoteClosed) {
 }
 
 function toggleViewer(isShown, currentViewer) {
-  document.getElementById(currentViewer).hidden = !isShown;
+  document.querySelector(`#${currentViewer}`).hidden = !isShown;
   viewersContainer.hidden = !isShown;
   chooseViewer.hidden = isShown;
 }
 
 function toggleDialog(isShown, currentDialog, focusedElement) {
   dialogFocusBackground.hidden = !isShown;
-  document.getElementById(currentDialog).hidden = !isShown;
+  document.querySelector(`#${currentDialog}`).hidden = !isShown;
 
   if (focusedElement !== null) {
-    document.getElementById(focusedElement).focus();
+    document.querySelector(`#${focusedElement}`).focus();
   }
 }
 
 function toggleMenuCheck(imageObject) {
   if (
-    document
-      .getElementById(imageObject)
-      .src.includes("Assets/Images/check_000000.svg")
+    document.querySelector(`#${imageObject}`).src.includes(checkedImageSource)
   ) {
-    document.getElementById(imageObject).src = uncheckedImageSource;
+    document.querySelector(`#${imageObject}`).src =
+      `../${uncheckedImageSource}`;
   } else {
-    document.getElementById(imageObject).src = checkedImageSource;
+    document.querySelector(`#${imageObject}`).src = `../${checkedImageSource}`;
   }
 }
 
 function alterMenuFunctions(isDisabled) {
-  document.getElementById("closeNote").disabled = isDisabled;
-  document.getElementById("downloadAsPlainText").disabled = isDisabled;
-  document.getElementById("downloadNote").disabled = isDisabled;
-  document.getElementById("hideEditor").disabled = isDisabled;
-  document.getElementById("insertDate").disabled = isDisabled;
-  document.getElementById("insertOnlineImageButton").disabled = isDisabled;
-  document.getElementById("insertSymbolButton").disabled = isDisabled;
-  document.getElementById("insertTableButton").disabled = isDisabled;
-  document.getElementById("insertTime").disabled = isDisabled;
-  document.getElementById("printNote").disabled = isDisabled;
-  document.getElementById("quillRedo").disabled = isDisabled;
-  document.getElementById("quillUndo").disabled = isDisabled;
-  document.getElementById("save").disabled = isDisabled;
-  document.getElementById("saveForLater").disabled = isDisabled;
-  document.getElementById("showHTMLEditor").disabled = isDisabled;
+  document.querySelector("#closeNote").disabled = isDisabled;
+  document.querySelector("#downloadAsPlainText").disabled = isDisabled;
+  document.querySelector("#downloadNote").disabled = isDisabled;
+  document.querySelector("#hideEditor").disabled = isDisabled;
+  document.querySelector("#insertDate").disabled = isDisabled;
+  document.querySelector("#insertOnlineImageButton").disabled = isDisabled;
+  document.querySelector("#insertSymbolButton").disabled = isDisabled;
+  document.querySelector("#insertTableButton").disabled = isDisabled;
+  document.querySelector("#insertTime").disabled = isDisabled;
+  document.querySelector("#printNote").disabled = isDisabled;
+  document.querySelector("#quillRedo").disabled = isDisabled;
+  document.querySelector("#quillUndo").disabled = isDisabled;
+  document.querySelector("#save").disabled = isDisabled;
+  document.querySelector("#saveForLater").disabled = isDisabled;
+  document.querySelector("#showHTMLEditor").disabled = isDisabled;
 }
 
 function applyPercentageSizes() {
@@ -183,7 +182,7 @@ function adjustViewingAndEditorSizes() {
 }
 
 function addHistoryEntry(valueObject) {
-  fileViewingHistoryNames.push(document.getElementById(valueObject).value);
+  fileViewingHistoryNames.push(document.querySelector(`#${valueObject}`).value);
   fileViewingHistoryTimes.push(get12HourTime());
 }
 
