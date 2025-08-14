@@ -405,15 +405,15 @@
         <button
           class="menuDropdown"
           id="autoSave"
-          onclick="toggleMenuCheck('autoSaveCheck'); if (autoSaveCheck.src.includes(checkedImageSource)) { localStorage.setItem('autoSaveEnabled', 'true'); mainEditor.oninput = () => { saveNoteProgress(); updateStatusBar() } } else { localStorage.setItem('autoSaveEnabled', 'false'); mainEditor.oninput = () => { updateStatusBar() } }"
+          onclick="toggleMenuCheck('autoSaveCheck'); if (autoSaveCheck.src.includes(checkedImageSource)) { localStorage.setItem('autoSaveEnabled', true); mainEditor.oninput = () => { saveNoteProgress(); updateStatusBar() } } else { localStorage.setItem('autoSaveEnabled', 'false'); mainEditor.oninput = () => { updateStatusBar() } }"
         >
           <img class="menu" id="autoSaveCheck" />
-          Save on Edit <span class="helperText menuDropdown">Auto-Save</span>
+          Save on Edit <span class="helperText menuDropdown">(Auto-Save)</span>
         </button>
         <button
           class="menuDropdown"
           id="wordWrap"
-          onclick="toggleMenuCheck('wordWrapCheck'); if (wordWrapCheck.src.includes(checkedImageSource)) { localStorage.setItem('wordWrapEnabled', 'true'); mainEditor.style.wordBreak = 'break-word' } else { localStorage.setItem('wordWrapEnabled', 'false'); mainEditor.style.wordBreak = 'normal' }"
+          onclick="toggleMenuCheck('wordWrapCheck'); if (wordWrapCheck.src.includes(checkedImageSource)) { localStorage.setItem('wordWrapEnabled', true); mainEditor.style.wordBreak = 'break-word' } else { localStorage.setItem('wordWrapEnabled', 'false'); mainEditor.style.wordBreak = 'normal' }"
           title="May cause layout issues"
         >
           <img
@@ -426,7 +426,7 @@
         <button
           id="darkModeToggle"
           class="menuDropdown"
-          onclick="toggleMenuCheck('darkModeCheck'); if (darkModeCheck.src.includes(checkedImageSource)) { localStorage.setItem('darkMode', 'true'); darkModeStylesheet.href = 'css/dark.css' } else { localStorage.setItem('darkMode', 'false'); darkModeStylesheet.removeAttribute('href') }"
+          onclick="toggleMenuCheck('darkModeCheck'); if (darkModeCheck.src.includes(checkedImageSource)) { localStorage.setItem('darkMode', true); darkModeStylesheet.href = 'css/dark.css' } else { localStorage.setItem('darkMode', 'false'); darkModeStylesheet.removeAttribute('href') }"
         >
           <img
             class="menu"
@@ -1619,7 +1619,7 @@
                     <td>
                       <button
                         class="navButton"
-                        onclick="if (webpageURLBar.value.includes('https://') === false || !webpageURLBar.value.includes('http://') === false) { webpageURLBar.value = 'https://' + webpageURLBar.value } webpageView.src = webpageURLBar.value; lastViewedWebpages.push(webpageURLBar.value); addHistoryEntry('webpageURLBar')"
+                        onclick="if (!webpageURLBar.value.includes('https://') && !webpageURLBar.value.includes('http://')) { webpageURLBar.value = 'https://' + webpageURLBar.value } webpageView.removeAttribute('srcdoc'); webpageView.src = webpageURLBar.value; lastViewedWebpages.push(webpageURLBar.value); addHistoryEntry('webpageURLBar')"
                         title="Search"
                       >
                         <img
@@ -1633,7 +1633,7 @@
               </nav>
               <iframe
                 id="webpageView"
-                src="pages/noWebpageNavigated.html"
+                srcdoc="<link href='css/index.css' rel='stylesheet' type='text/css' /><style>body { background-color: white; padding: 50px; } h1 { text-align: center; }</style><img class='reducedIntensity' src='../assets/images/select_window_off_000000.svg' style='margin-left: 45%' /><h1 class='helperText'>No webpage has been navigated to... Yet</h1>"
               ></iframe>
             </div>
             <div hidden id="onlineDesignViewer">
@@ -1947,7 +1947,7 @@
         </table>
         <h3 class="helperText">
           Select the number of rows and columns you'd like to have and then copy
-          the generated table. Note that this cannot be changed later for the
+          the generated table. Note that this can't be altered later for the
           same table
         </h3>
         <table style="width: 100%">
@@ -2018,53 +2018,224 @@
     <div hidden id="dialogFocusBackground">
       <!-- "Out-of-Box" Experience -->
       <div class="dialogOverlay" hidden id="gettingStarted">
-        <img src="assets/gettingStartedPreview.png" style="width: 100%" />
-        <table>
-          <tr>
-            <td>
-              <img src="notemasterIcon.svg" style="width: 48px" />
-            </td>
-            <td>
-              <h2 class="dialogOverlay">Get Started With NoteMaster</h2>
-            </td>
-          </tr>
-        </table>
-        <h3 class="helperText">
-          Take your note-taking to another level with NoteMaster - a lightweight
-          note-taking app for the web
-        </h3>
-        <table style="width: 100%">
-          <tr>
-            <td>
-              <div class="pretty p-default p-curve p-thick">
-                <input
-                  type="checkbox"
-                  oninput="darkModeToggle.click()"
-                  id="gettingStartedDarkMode"
-                />
-                <div class="state p-primary-o">
-                  <label>Enable Dark Mode</label>
+        <div id="getStartedWithNoteMaster">
+          <img class="gettingStartedDialog" src="assets/0.png" />
+          <table>
+            <tr>
+              <td>
+                <img src="notemasterIcon.svg" style="width: 48px" />
+              </td>
+              <td>
+                <h2 class="dialogOverlay">Get Started With NoteMaster</h2>
+              </td>
+            </tr>
+          </table>
+          <h3 class="helperText">
+            Take your note-taking to another level with NoteMaster - a
+            lightweight note-taking app for the web
+          </h3>
+          <table style="width: 100%">
+            <tr>
+              <td style="width: 33%">
+                <button
+                  class="dialogOverlay"
+                  onclick="toggleDialog(false, 'gettingStarted', null); localStorage.setItem('finishedGetStarted', true); launchExample()"
+                >
+                  Launch Example
+                </button>
+              </td>
+              <td></td>
+              <td style="width: 33%">
+                <button
+                  class="primaryButton"
+                  onclick="hideAndShow('getStartedWithNoteMaster', 'createAndOpenNotes')"
+                >
+                  Continue
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div hidden id="createAndOpenNotes">
+          <img class="gettingStartedDialog" src="assets/2.png" />
+          <h2 class="dialogOverlay">Create & Open</h2>
+          <h3 class="helperText">
+            Start from scratch and create a new note or open an existing one
+            from your device
+          </h3>
+          <table style="width: 100%">
+            <tr>
+              <td></td>
+              <td style="width: 25%">
+                <button
+                  class="primaryButton"
+                  onclick="hideAndShow('createAndOpenNotes', 'editSideBySide')"
+                >
+                  Next
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div hidden id="editSideBySide">
+          <img class="gettingStartedDialog" src="assets/3.png" />
+          <h2 class="dialogOverlay">Edit Side-By-Side</h2>
+          <h3 class="helperText">
+            Edit your note side-by-side with another type of document or online
+            resource of your choice, like a PDF, image, video, source code file,
+            webpage, and more
+          </h3>
+          <table style="width: 100%">
+            <tr>
+              <td></td>
+              <td style="width: 25%">
+                <button
+                  class="primaryButton"
+                  onclick="hideAndShow('editSideBySide', 'shareACopyOfNote')"
+                >
+                  Next
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div hidden id="shareACopyOfNote">
+          <img class="gettingStartedDialog" src="assets/4.png" />
+          <h2 class="dialogOverlay">Share a Copy</h2>
+          <h3 class="helperText">
+            Share a copy of your note to another person for free access online
+            in any browser
+          </h3>
+          <table style="width: 100%">
+            <tr>
+              <td></td>
+              <td style="width: 25%">
+                <button
+                  class="primaryButton"
+                  onclick="hideAndShow('shareACopyOfNote', 'saveInAppOrDownload')"
+                >
+                  Next
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div hidden id="saveInAppOrDownload">
+          <img class="gettingStartedDialog" src="assets/5.png" />
+          <h2 class="dialogOverlay">Save or Download For Later</h2>
+          <h3 class="helperText">
+            Save your note in-app or directly download it in HTML or plain text
+            format once you want to move on
+          </h3>
+          <table style="width: 100%">
+            <tr>
+              <td></td>
+              <td style="width: 25%">
+                <button
+                  class="primaryButton"
+                  onclick="hideAndShow('saveInAppOrDownload', 'adjustEditingAndViewingSpace')"
+                >
+                  Next
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div hidden id="adjustEditingAndViewingSpace">
+          <img class="gettingStartedDialog" src="assets/6.png" />
+          <h2 class="dialogOverlay">Adjust the Editing & Viewing Space</h2>
+          <h3 class="helperText">
+            Adjust the amount of space the editor and viewing area take up on
+            your screen
+          </h3>
+          <table style="width: 100%">
+            <tr>
+              <td></td>
+              <td style="width: 25%">
+                <button
+                  class="primaryButton"
+                  onclick="hideAndShow('adjustEditingAndViewingSpace', 'keepTrackOfDocuments')"
+                >
+                  Next
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div hidden id="keepTrackOfDocuments">
+          <img class="gettingStartedDialog" src="assets/7.png" />
+          <h2 class="dialogOverlay">Keep Track of Your Documents</h2>
+          <h3 class="helperText">
+            Keep track of the documents you open on the side with the
+            <b>Viewing History</b> feature
+          </h3>
+          <table style="width: 100%">
+            <tr>
+              <td></td>
+              <td style="width: 25%">
+                <button
+                  class="primaryButton"
+                  onclick="hideAndShow('keepTrackOfDocuments', 'seeNoteMarkup')"
+                >
+                  Next
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div hidden id="seeNoteMarkup">
+          <img class="gettingStartedDialog" src="assets/9.png" />
+          <h2 class="dialogOverlay">See Markup in Real-Time</h2>
+          <h3 class="helperText">
+            See the code-behind for when you format your note with bold,
+            italicized, underlined, strike-through, and colored text, block
+            quotes, lists, headings, highlights, and more
+          </h3>
+          <table style="width: 100%">
+            <tr>
+              <td></td>
+              <td style="width: 25%">
+                <button
+                  class="primaryButton"
+                  onclick="hideAndShow('seeNoteMarkup', 'switchToDarkMode')"
+                >
+                  Next
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div hidden id="switchToDarkMode">
+          <img class="gettingStartedDialog" src="assets/10.png" />
+          <h2 class="dialogOverlay">Note-Taking at Night?</h2>
+          <h3 class="helperText">
+            Use the available <b>Dark Mode</b> to relieve your eyes
+          </h3>
+          <table style="width: 100%">
+            <tr>
+              <td>
+                <div class="pretty p-default p-curve p-thick">
+                  <input
+                    type="checkbox"
+                    oninput="darkModeToggle.click()"
+                    id="gettingStartedDarkMode"
+                  />
+                  <div class="state p-primary-o">
+                    <label>Enable Dark Mode</label>
+                  </div>
                 </div>
-              </div>
-            </td>
-            <td style="width: 33%">
-              <button
-                class="dialogOverlay"
-                onclick="toggleDialog(false, 'gettingStarted', null); localStorage.setItem('finishedGetStarted', 'true'); launchExample()"
-              >
-                Launch Example
-              </button>
-            </td>
-            <td style="width: 33%">
-              <button
-                class="primaryButton"
-                onclick="toggleDialog(false, 'gettingStarted', null); localStorage.setItem('finishedGetStarted', 'true')"
-              >
-                Continue
-              </button>
-            </td>
-          </tr>
-        </table>
+              </td>
+              <td style="width: 25%">
+                <button
+                  class="primaryButton"
+                  onclick="toggleDialog(false, 'gettingStarted', null); localStorage.setItem('finishedGetStarted', true)"
+                >
+                  Finish
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
       <!-- Error -->
       <div
@@ -2516,7 +2687,7 @@
           </tr>
         </table>
         <h3 class="helperText">
-          View, manage, and add the documents you have viewed to your notes
+          View, manage, and add the documents you've viewed to your notes
         </h3>
         <div id="historyTableContainer" style="overflow-x: auto">
           <table id="viewingHistoryTable"></table>
@@ -2588,7 +2759,7 @@
             </td>
           </tr>
         </table>
-        <h3 class="helperText">Typing Target</h3>
+        <h3 class="helperText">Typing Target (Experimental)</h3>
         Set a goal for typing
         <select
           id="typingTarget"
@@ -2955,7 +3126,6 @@
             </td>
           </tr>
         </table>
-
         <h3 class="helperText">
           See your note as HTML markup to be used within other applications
         </h3>
@@ -2984,13 +3154,13 @@
         <img src="notemasterIcon.svg" style="width: 48px" />
         <h2>About</h2>
         <p style="line-height: 25px">
-          NoteMaster v25.7.4
+          NoteMaster v25.8.3
           <br />
           Designed and developed by
           <a href="https://github.com/j-m-a-g" target="_blank">J. Maghamez</a>
           <br />
           <br />
-          Built with open-source software
+          Built with open-source software:
         </p>
         <table style="width: 100%">
           <tr>

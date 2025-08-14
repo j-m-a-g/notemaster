@@ -26,7 +26,7 @@ const quill = new Quill("#mainEditor", {
   modules: {
     toolbar: toolbarOptions
   },
-  placeholder: "Start your note-taking here",
+  placeholder: "\"If you aren't taking notes, you aren't learning\"",
   theme: "snow"
 });
 
@@ -136,10 +136,9 @@ function toggleMenuCheck(imageObject) {
   if (
     document.querySelector(`#${imageObject}`).src.includes(checkedImageSource)
   ) {
-    document.querySelector(`#${imageObject}`).src =
-      `../${uncheckedImageSource}`;
+    document.querySelector(`#${imageObject}`).src = uncheckedImageSource;
   } else {
-    document.querySelector(`#${imageObject}`).src = `../${checkedImageSource}`;
+    document.querySelector(`#${imageObject}`).src = checkedImageSource;
   }
 }
 
