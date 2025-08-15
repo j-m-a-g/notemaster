@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+	<head>
+		<link href="../css/index.css" rel="stylesheet" />
+		<link href="../notemasterIcon.svg" rel="icon" />
+		<link href="css/index.css" rel="stylesheet" />
+		<meta charset="UTF-8" />
+		<meta content="ie=edge" http-equiv="X-UA-Compatible" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<title>Learn More | NoteMaster</title>
+	</head>
+
+	<body
+		onload="if (mobileDetect.phone() !== null) { document.querySelector('#secondaryAction').hidden = true; document.querySelector('#openInBrowser').hidden = true }"
+	>
+		<header>
+			<table style="width: 99%">
+				<tr>
+					<td style="width: 48px">
+						<img src="../notemasterIcon.svg" />
+					</td>
+					<td>NoteMaster</td>
+					<div id="navigateToNoteMaster">
+						<td style="width: 20%">
+							<button
+								id="secondaryAction"
+								class="navigateToNoteMaster primaryButton"
+								onclick="window.open('https://github.com/j-m-a-g/notemaster/issues', '_blank')"
+							>
+								Send Feedback
+							</button>
+						</td>
+						<td style="width: 20%">
+							<button
+								id="openInBrowser"
+								class="dialogOverlay"
+								onclick="window.location.href = '../'"
+							>
+								Open in Browser
+							</button>
+						</td>
+					</div>
+				</tr>
+			</table>
+		</header>
+
+		<div style="padding-top: 20px">
+			<div class="infoSection primarySection">
+				<img class="productScreenshot" src="assets/1.svg" />
+			</div>
+			<div class="infoSection secondarySection">
+				<h1>
+					Take your note-taking to another level<br />with <u>NoteMaster</u>
+				</h1>
+				<p>
+					Whether you're taking notes during a class or jotting down key points
+					from a report, NoteMaster helps you do this effortlessly, all within
+					the same app. You can edit your note side-by-side with another type of
+					document or online resource of your choice - like a PDF, image, video,
+					source code file, webpage, or online design - and adjust the amount of
+					space the editor and viewing area take up on your screen to maximize
+					your productivity. Once you want to share your ideas with the world,
+					NoteMaster allows you to send a copy of your work to another person
+					for quick access in their browser.
+				</p>
+				<br />
+				<img class="productScreenshot" src="assets/3.svg" />
+			</div>
+			<div class="infoSection primarySection">
+				<h1>See what you can do with NoteMaster</h1>
+				<div class="productScreenshot">
+					<div>
+						<img
+							class="reducedIntensity primaryButton featureIcon"
+							src="../assets/images/note_add_000000.svg"
+						/>
+						<h3>
+							Start from scratch and create a new note or open an existing one
+							from your device
+						</h3>
+					</div>
+					<img class="productScreenshot" src="assets/2.svg" />
+				</div>
+			</div>
+			<div class="infoSection secondarySection">
+				<div class="productScreenshot">
+					<img class="productScreenshot" src="assets/4.svg" />
+					<div>
+						<img
+							class="reducedIntensity featureIcon"
+							src="../assets/images/share_000000.svg"
+						/>
+						<h3>
+							Share a copy of your note to another person for online access in
+							any browser
+						</h3>
+					</div>
+				</div>
+			</div>
+			<div class="infoSection primarySection">
+				<div class="productScreenshot">
+					<div>
+						<img
+							class="reducedIntensity primaryButton featureIcon"
+							src="../assets/images/download_000000.svg"
+						/>
+						<h3>
+							Save your note in-app or directly download it in HTML or plain
+							text format once you want to move on
+						</h3>
+					</div>
+					<img class="productScreenshot" src="assets/5.svg" />
+				</div>
+			</div>
+			<div class="infoSection secondarySection">
+				<div class="productScreenshot">
+					<img class="productScreenshot" src="assets/6.svg" />
+					<div>
+						<img
+							class="reducedIntensity featureIcon"
+							src="../assets/images/fit_width_000000.svg"
+						/>
+						<h3>
+							Adjust the amount of space the editor and viewing area take up on
+							your screen
+						</h3>
+					</div>
+				</div>
+			</div>
+			<div class="infoSection primarySection">
+				<div class="productScreenshot">
+					<div>
+						<img
+							class="reducedIntensity primaryButton featureIcon"
+							src="../assets/images/more_time_000000.svg"
+						/>
+						<h3>
+							Keep track of the documents you open on the side with the,
+							"Viewing History" feature
+						</h3>
+					</div>
+					<img class="productScreenshot" src="assets/7.svg" />
+				</div>
+			</div>
+			<div class="infoSection secondarySection">
+				<div class="productScreenshot">
+					<img class="productScreenshot" src="assets/8.svg" />
+					<div>
+						<img
+							class="reducedIntensity featureIcon"
+							src="../assets/images/integration_instructions_000000.svg"
+						/>
+						<h3>
+							See the code-behind for when you format your note with bold,
+							italicized, underlined, strike-through, and colored text, block
+							quotes, lists, headings, highlights, and more
+						</h3>
+					</div>
+				</div>
+			</div>
+			<div class="infoSection primarySection">
+				<div class="productScreenshot">
+					<div>
+						<img
+							class="reducedIntensity primaryButton featureIcon"
+							src="../assets/images/check_000000.svg"
+						/>
+						<h3>
+							Note-taking at night? Use the available Dark Mode to relieve your
+							eyes
+						</h3>
+					</div>
+					<img class="productScreenshot" src="assets/9.svg" />
+				</div>
+			</div>
+			<div class="infoSection secondarySection">
+				<h1>And More</h1>
+				<ul>
+					<li>
+						Insert online images, tables, dates and times, and special
+						characters into your note
+					</li>
+					<li>
+						Want to make NoteMaster your own? Create and import your own CSS
+						style sheet to take effect across the app's UI
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<footer>
+			Check out other awesome projects at
+			<a href="https://maghamez.com" target="_blank">maghamez.com</a>
+		</footer>
+
+		<script src="../assets/mobile-detect.js/mobile-detect.min.js"></script>
+		<script src="../js/globalVarDeclarations-min.js"></script>
+	</body>
+</html>

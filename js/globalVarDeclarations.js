@@ -218,6 +218,7 @@ const mainEditor = document.querySelector("#mainEditor");
 const mainEditorZoom = document.querySelector("#mainEditorZoom");
 const markdownFileInput = document.querySelector("#markdownFileInput");
 const markdownFileView = document.querySelector("#markdownFileView");
+const mobileDetect = new MobileDetect(window.navigator.userAgent);
 const noFileSelected = document.querySelector("#noFileSelected");
 const noteDownloadLink = document.querySelector("#noteDownloadLink");
 const noteEditor = document.querySelector("#noteEditor");

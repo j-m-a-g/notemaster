@@ -303,6 +303,10 @@ function addUnicodeCharacters() {
 }
 
 function onLoadTasks() {
+  if (mobileDetect.phone() !== null) {
+    window.location.replace("learn-more");
+  }
+
   try {
     // Dark Mode
     if (localStorage.getItem("darkMode") === "true") {
