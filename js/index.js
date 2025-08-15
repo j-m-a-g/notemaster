@@ -26,7 +26,7 @@ const quill = new Quill("#mainEditor", {
   modules: {
     toolbar: toolbarOptions
   },
-  placeholder: "\"If you aren't taking notes, you aren't learning\"",
+  placeholder: '"Everything begins with an idea" - Earl Nightingale',
   theme: "snow"
 });
 
