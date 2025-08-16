@@ -88,6 +88,10 @@ img.featureIcon {
 
 /* Accommodates webpage for mobile devices */
 @media only screen and (max-width: 600px) {
+	div.infoSection {
+		padding: 25px;
+	}
+
 	div.productScreenshot {
 		display: block;
 	}

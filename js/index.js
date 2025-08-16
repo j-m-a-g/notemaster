@@ -1,26 +1,3 @@
-const toolbarOptions = [
-  ["bold", "italic", "underline", "strike"],
-  ["blockquote", "code-block"],
-  ["link", "image", "video"],
-
-  [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
-  [{ script: "sub" }, { script: "super" }],
-  [{ indent: "-1" }, { indent: "+1" }],
-
-  [{ header: [1, 2, 3, 4, false, 5, 6] }],
-
-  [{ color: [] }, { background: [] }],
-  [{ font: [] }],
-  [
-    { align: "" },
-    { align: "center" },
-    { align: "right" },
-    { align: "justify" }
-  ],
-
-  ["clean"]
-];
-
 // Note editor on the right side
 const quill = new Quill("#mainEditor", {
   modules: {
@@ -39,7 +16,8 @@ const anotherNoteViewQuill = new Quill("#anotherNoteView", {
   theme: "snow"
 });
 
-// Displays the user their Viewing History as a table to be copied
+// Displays the user their Viewing History as a table to
+// be copied
 const copyHistoryQuill = new Quill("#copyHistoryEditor", {
   readOnly: true,
   modules: {
@@ -57,14 +35,11 @@ const insertTableQuill = new Quill("#insertTableEditor", {
   theme: "snow"
 });
 
-const noteHTMLCodeEditor = ace.edit("noteHTML");
 noteHTMLCodeEditor.session.setMode("ace/mode/html");
 noteHTMLCodeEditor.setReadOnly(true);
 noteHTMLCodeEditor.session.setUseWrapMode(true);
 
-const codeFileViewCodeEditor = ace.edit("codeFileView");
 codeFileViewCodeEditor.session.setMode("ace/mode/plain_text");
-
 codeFileViewCodeEditor.setReadOnly(true);
 codeFileViewCodeEditor.session.setUseWrapMode(true);
 

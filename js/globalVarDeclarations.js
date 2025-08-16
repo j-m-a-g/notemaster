@@ -146,6 +146,28 @@ const symbolList = [
 	["č", "Latin Lowercase C With Caron"],
 	["ď", "Latin Lowercase D With Caron"]
 ];
+const toolbarOptions = [
+	["bold", "italic", "underline", "strike"],
+	["blockquote", "code-block"],
+	["link", "image", "video"],
+
+	[{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
+	[{ script: "sub" }, { script: "super" }],
+	[{ indent: "-1" }, { indent: "+1" }],
+
+	[{ header: [1, 2, 3, 4, false, 5, 6] }],
+
+	[{ color: [] }, { background: [] }],
+	[{ font: [] }],
+	[
+		{ align: "" },
+		{ align: "center" },
+		{ align: "right" },
+		{ align: "justify" }
+	],
+
+	["clean"]
+];
 const totalCharacterCountDisplay = document.querySelector(
 	"#totalCharacterCountDisplay"
 );
@@ -175,6 +197,7 @@ const cloudFileViewer = document.querySelector("#cloudFileViewer");
 const codeEditorTheme = document.querySelector("#codeEditorTheme");
 const codeFileInput = document.querySelector("#codeFileInput");
 const codeFileView = document.querySelector("#codeFileView");
+const codeFileViewCodeEditor = ace.edit("codeFileView");
 const codeFileViewer = document.querySelector("#codeFileViewer");
 const confirmSaveDialog = document.querySelector("#confirmSaveDialog");
 const confirmViewerClose = document.querySelector("#confirmViewerClose");
@@ -203,7 +226,7 @@ const hideEditorCheck = document.querySelector("#hideEditorCheck");
 const hideViewing = document.querySelector("#hideViewing");
 const hideViewingCheck = document.querySelector("#hideViewingCheck");
 const historyTableContainer = document.querySelector("#historyTableContainer");
-const iframes = document.getElementsByTagName("iframe");
+const iframes = document.querySelectorAll("iframe");
 const imageFileInput = document.querySelector("#imageFileInput");
 const imageView = document.querySelector("#imageView");
 const imageViewer = document.querySelector("#imageViewer");
@@ -223,6 +246,7 @@ const noFileSelected = document.querySelector("#noFileSelected");
 const noteDownloadLink = document.querySelector("#noteDownloadLink");
 const noteEditor = document.querySelector("#noteEditor");
 const noteHTML = document.querySelector("#noteHTML");
+const noteHTMLCodeEditor = ace.edit("noteHTML");
 const noteName = document.querySelector("#noteName");
 const onedriveOrigin = document.querySelector("#onedriveOrigin");
 const onlineDesignView = document.querySelector("#onlineDesignView");

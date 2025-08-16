@@ -1,8 +1,6 @@
 [<img src="assets/1.png">]()
-<br><br>
-[<img src="notemasterIcon.svg" style="height: 100px">]()
 
-# NoteMaster
+# [<img src="notemasterIcon.svg" style="height: 26px">]() NoteMaster
 
 Take your note-taking to another level with NoteMaster - a lightweight note-taking app for the web! Whether you are taking notes during a class or jotting down key points from a report, NoteMaster helps you do this effortlessly, all within the same app. You can edit your note side-by-side with another type of document or online resource of your choice - like a PDF, image, video, source code file, webpage, or online design - and adjust the amount of space the editor and viewing area take up on your screen to maximize your productivity. Once you want to share your ideas with the world, NoteMaster allows you to send a copy of your work to another person for quick access in their browser.
 
