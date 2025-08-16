@@ -26,6 +26,9 @@ const gettingStartedDarkMode = document.querySelector(
 const insertOnlineImageInput = document.querySelector(
 	"#insertOnlineImageInput"
 );
+const mammothJSOptions = {
+	styleMap: ["comment-reference => sup"]
+};
 const programmingLanguageMode = document.querySelector(
 	"#programmingLanguageMode"
 );

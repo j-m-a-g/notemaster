@@ -43,6 +43,16 @@ codeFileViewCodeEditor.session.setMode("ace/mode/plain_text");
 codeFileViewCodeEditor.setReadOnly(true);
 codeFileViewCodeEditor.session.setUseWrapMode(true);
 
+/**
+ * @method shiftProgressValue
+ * Lets <progress> elements be gradually shifted to a specified value
+ * within an, "animated fashion"
+ *
+ * @param {string} progressObject - The name of the HTML DOM <progress> element
+ * @param {number} currentValue - The value the <progress> element is at prior to the method's execution
+ * @param {number} maxValue - The value the element must reach by the end of the method's execution
+ * @param {number} stepValue - The number that the <progress> element must increment by until it reaches maxValue
+ */
 function shiftProgressValue(progressObject, currentValue, maxValue, stepValue) {
   if (currentValue < maxValue) {
     document.querySelector(`#${progressObject}`).value = currentValue;
@@ -58,8 +68,11 @@ function shiftProgressValue(progressObject, currentValue, maxValue, stepValue) {
   }
 }
 
-// Sets the height of certain elements dependent on the height
-// of a user's browser window
+/**
+ * @method dynamicallySetHeight
+ * Sets the height of certain elements dependent on the height
+ * of a user's browser window
+ */
 function dynamicallySetHeight() {
   appSectionsTable.style.height = adjustedHeight;
   anotherNoteView.style.height = adjustedHeight;

@@ -1,10 +1,13 @@
-const mammothJSOptions = {
-  styleMap: [
-    "table => table[class='wordDocumentTable']",
-    "comment-reference => sup"
-  ]
-};
-
+/**
+ * @method taskOnceFileOpen
+ * Executes crucial tasks once the user has opened a file
+ * of their choosing, such as displaying technical information regarding the
+ * specified document - like its name, size, and date modified - as
+ * well as appending it to their Viewing History
+ *
+ * @param {string} unhiddenView - The name of the viewer to be unconcealed after a corresponding file is selected by the user
+ * @param {string} fileInputObject - The name of the HTML DOM object which allowed them to select a specific file - i.e. an <input type="file"> element
+ */
 function tasksOnceFileOpen(unhiddenView, fileInputObject) {
   // Allows the user to have the option of closing the
   // viewed file and hides the "No File Selected" indication
@@ -13,7 +16,6 @@ function tasksOnceFileOpen(unhiddenView, fileInputObject) {
 
   // Displays the viewer for the corresponding file type
   document.querySelector(`#${unhiddenView}`).hidden = false;
-
   if (document.querySelector(`#${fileInputObject}`) !== null) {
     fileName.innerHTML = document
       .querySelector(`#${fileInputObject}`)
@@ -32,12 +34,18 @@ function tasksOnceFileOpen(unhiddenView, fileInputObject) {
     fileViewingHistoryNames.push(fileName.innerHTML);
   }
 
+  // Adds the time the current file was opened to Viewing History
   fileViewingHistoryTimes.push(get12HourTime());
   hideViewing.disabled = false;
 }
 
+/**
+ * @method closeCurrentFile
+ * Closes a file the user is viewing at-hand - independent of
+ * its type - resetting the state of all the file viewers
+ * and file information status bar
+ */
 function closeCurrentFile() {
-  // Resets the state of all the file viewers
   additionalVideoControls.hidden = true;
   anotherNoteView.hidden = true;
   anotherNoteViewer.hidden = true;
@@ -106,12 +114,18 @@ function closeCurrentFile() {
   fileSize.innerHTML = "---";
   fileLastModified.innerHTML = "---";
 
-  // TODO: Clear the objectURL of the viewed file so it can
-  // be consecutively viewed
+  /**
+   * @todo Clear the objectURL of the viewed file so it can be consecutively viewed
+   */
 
   hideViewing.disabled = true;
 }
 
+/**
+ * @method readMarkdownFile
+ * Allows the user to view a text file that they
+ * have selected from their device's local filesystem
+ */
 function readTextFile() {
   const fileReader = new FileReader();
   fileReader.onload = () => {
@@ -121,6 +135,11 @@ function readTextFile() {
   fileReader.readAsText(event.target.files[0]);
 }
 
+/**
+ * @method readWordDocument
+ * Allows the user to view a Word document that they
+ * have selected from their device's local filesystem
+ */
 function readWordDocument() {
   const fileReader = new FileReader();
   fileReader.onload = (event) => {
@@ -131,6 +150,8 @@ function readWordDocument() {
         displaySnackbar("Some formatting may not display correctly");
       })
       .catch(() => {
+        // Indicates that there was an issue in parsing the user's
+        // Word document to HTML
         throwAppError(
           "The file you are trying to view does not seem like a Word document. Ensure the file extension is correct and try again."
         );
@@ -141,6 +162,11 @@ function readWordDocument() {
   fileReader.readAsArrayBuffer(event.target.files[0]);
 }
 
+/**
+ * @method readMarkdownFile
+ * Allows the user to view a Markdown file that they
+ * have selected from their device's local filesystem
+ */
 function readMarkdownFile() {
   const fileReader = new FileReader();
   fileReader.onload = () => {
@@ -150,6 +176,11 @@ function readMarkdownFile() {
   fileReader.readAsText(event.target.files[0]);
 }
 
+/**
+ * @method readHTMLNote
+ * Allows the user to view another note - as an HTML
+ * file - that they have selected from their device's local filesystem
+ */
 function readHTMLNote() {
   const fileReader = new FileReader();
   fileReader.onload = () => {
@@ -160,6 +191,11 @@ function readHTMLNote() {
   tasksOnceFileOpen("anotherNoteView", "anotherNoteFileInput");
 }
 
+/**
+ * @method viewCodeFile
+ * Allows the user to view a source code file that
+ * they have selected from their device's local filesystem
+ */
 function viewCodeFile() {
   const fileReader = new FileReader();
   fileReader.onload = () => {
@@ -171,6 +207,15 @@ function viewCodeFile() {
   tasksOnceFileOpen("codeFileView", "codeFileInput");
 }
 
+/**
+ * @function checkURLInput
+ * Validates if the user has not left a URL input
+ * blank when, for example, attempting to view an online
+ * image
+ *
+ * @param {string} URLInputObject - The name of the URL input object to be validated
+ * @returns {boolean} - Indicates whether the input is not simply white-space, otherwise this value is false
+ */
 function checkURLInput(URLInputObject) {
   if (document.querySelector(`#${URLInputObject}`).value === "") {
     displaySnackbar("Please enter a valid URL");
@@ -180,13 +225,22 @@ function checkURLInput(URLInputObject) {
   }
 }
 
+/**
+ * @method parseCloudDocumentURL
+ * Retrieves a user's cloud document's ID - for both cloud storage
+ * providers - and composes a URL indicating that the file is
+ * being, "embedded" to be set as the cloudDocumentViewer's source
+ */
 function parseCloudDocumentURL() {
+  // Checks whether the inputted URL is correct
   if (checkURLInput("URLToCloudFile")) {
+    // Determines if the user wants to view a cloud document
+    // originating from OneDrive or Drive
     if (onedriveOrigin.checked) {
       const ODriveURLArray = URLToCloudFile.value.split("");
       let resultingURL = "";
 
-      // Removes the URL arguments that come after the path to
+      // Removes the URL parameters that come after the path to
       // the document (i.e. after "&action")
       for (let a = 0; a < ODriveURLArray.length; a++) {
         if (
@@ -214,6 +268,7 @@ function parseCloudDocumentURL() {
       }
 
       toggleDialog(false, "insertCloudURLDialog", null);
+
       cloudFileView.src = `${resultingURL}&action=embedview`;
     } else {
       const GDriveURLArray = URLToCloudFile.value
@@ -262,6 +317,11 @@ function parseCloudDocumentURL() {
   }
 }
 
+/**
+ * @method verifyiFrameInEmbed
+ * Ensures the user's custom embed code contains at least a
+ * single iFrame element to be displayed within the app
+ */
 function verifyIfiFrameInEmbed() {
   if (embeddedCode.value.includes("</iframe>")) {
     customEmbedViewer.innerHTML = embeddedCode.value;

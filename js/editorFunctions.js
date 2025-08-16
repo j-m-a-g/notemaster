@@ -123,7 +123,7 @@ function downloadNoteOperation(asPlainText) {
 function convertWordToNote() {
   const fileReader = new FileReader();
   fileReader.onload = async (event) => {
-    mammoth
+    mammothPlus
       .convertToHtml({ arrayBuffer: event.target.result }, mammothJSOptions)
       .then((result) => {
         convertedFileOutput = result.value;
