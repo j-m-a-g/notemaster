@@ -11,7 +11,7 @@
 	</head>
 
 	<body
-		onload="if (mobileDetect.phone() !== null) { document.querySelector('#secondaryAction').hidden = true; document.querySelector('#openInBrowser').hidden = true }"
+		onload="const mobileDetect = new MobileDetect(window.navigator.userAgent); if (mobileDetect.phone() !== null) { document.querySelector('#secondaryAction').hidden = true; document.querySelector('#openInBrowser').hidden = true }"
 	>
 		<header>
 			<table style="width: 99%">
@@ -47,6 +47,11 @@
 		<div style="padding-top: 45px">
 			<div class="infoSection primarySection">
 				<img class="productScreenshot" src="assets/1.svg" />
+				<br />
+				<br />
+				<h2 style="text-align: center">
+					Available on PC, Mac®, and tablet devices
+				</h2>
 			</div>
 			<div class="infoSection secondarySection">
 				<h1>
@@ -194,6 +199,5 @@
 		</footer>
 
 		<script src="../assets/mobile-detect.js/mobile-detect.min.js"></script>
-		<script src="../js/globalVarDeclarations-min.js"></script>
 	</body>
 </html>

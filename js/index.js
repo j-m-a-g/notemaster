@@ -80,37 +80,68 @@ function dynamicallySetHeight() {
   noteEditor.style.height = adjustedHeight;
   codeFileView.style.height = adjustedHeight;
 
+  // Applies the adjusted height to every iFrame on the page
   for (let iframe = 0; iframe < iframes.length; iframe++) {
     iframes[iframe].style.height = window.innerHeight + "px";
   }
 }
 
+/**
+ * @method hideAndShow
+ * Allows a view to be hidden from the user and
+ * another to be displayed instead
+ *
+ * @param {string} hiddenContainer - The name of the HTML DOM object to be hidden
+ * @param {string} shownContainer - The name of the HTML DOM object to be shown
+ */
 function hideAndShow(hiddenContainer, shownContainer) {
   document.querySelector(`#${hiddenContainer}`).hidden = true;
   document.querySelector(`#${shownContainer}`).hidden = false;
 }
 
+/**
+ * @method alterWindowTitle
+ * Updates the tab's title to include the name of a
+ * note a user is currently working on or indicate that
+ * they are on, "Home"
+ *
+ * @param {boolean} isNoteClosed - Indicates whether the user has a note open or not
+ */
 function alterWindowTitle(isNoteClosed) {
-  switch (isNoteClosed) {
-    case true:
-      document.title = `Home - ${appName}`;
-      break;
-    case false:
-      if (noteName.value === "") {
-        document.title = `Untitled - ${appName}`;
-      } else {
-        document.title = `${noteName.value} - ${appName}`;
-      }
-      break;
+  if (isNoteClosed) {
+    document.title = `Home - ${appName}`;
+  } else {
+    if (noteName.value === "") {
+      document.title = `Untitled - ${appName}`;
+    } else {
+      document.title = `${noteName.value} - ${appName}`;
+    }
   }
 }
 
+/**
+ * @method toggleViewer
+ * Enables the app to either show or hide a certain
+ * viewer to the user
+ *
+ * @param {boolean} isShown - Whether the viewer should be shown to the user
+ * @param {string} currentViewer - The name of the division to be displayed or hidden
+ */
 function toggleViewer(isShown, currentViewer) {
   document.querySelector(`#${currentViewer}`).hidden = !isShown;
   viewersContainer.hidden = !isShown;
   chooseViewer.hidden = isShown;
 }
 
+/**
+ * @method toggleDialog
+ * Enables the app to either show or hide a certain
+ * dialog to the user
+ *
+ * @param {boolean} isShown - Whether the dialog should be shown to the user
+ * @param {string} currentDialog - The name of the division to be displayed or hidden
+ * @param {string} focusedElement - The name of an HTML DOM object to be put into focus once the specified dialog has been shown
+ */
 function toggleDialog(isShown, currentDialog, focusedElement) {
   dialogFocusBackground.hidden = !isShown;
   document.querySelector(`#${currentDialog}`).hidden = !isShown;
@@ -168,6 +199,14 @@ function adjustViewingAndEditorSizes() {
   localStorage.setItem("viewingSizeValue", viewingSize.value);
 }
 
+/**
+ * @method addHistoryEntry
+ * Appends the name of a document as well as the
+ * time it was seen by the user to an array
+ * to be iterated through once they request their Viewing History
+ *
+ * @param {string} valueObject - The name of the <input type="file"> element to retrieve the file name from
+ */
 function addHistoryEntry(valueObject) {
   fileViewingHistoryNames.push(document.querySelector(`#${valueObject}`).value);
   fileViewingHistoryTimes.push(get12HourTime());
@@ -253,7 +292,6 @@ function createTable() {
     const currentRow = document.createElement("tr");
     for (let columns = 0; columns < tableColumns.value; columns++) {
       const currentColumn = document.createElement("td");
-
       // Accounts for the fact that the last cell must contain text to be copied
       if (columns === tableColumns.value - 1 && rows === tableRows.value - 1) {
         currentColumn.innerHTML = "ㅤ";
@@ -261,6 +299,7 @@ function createTable() {
 
       currentRow.appendChild(currentColumn);
     }
+
     createdTable.appendChild(currentRow);
   }
 
@@ -290,6 +329,13 @@ function addUnicodeCharacters() {
   }
 }
 
+/**
+ * @method onLoadTasks
+ * Checks whether the user is attempting to access NoteMaster from
+ * a mobile phone device - to otherwise redirect them to the
+ * app's product page instead - and, if not, loads their preferences
+ * as well as adjusts certain aspects of the page
+ */
 function onLoadTasks() {
   if (mobileDetect.phone() !== null) {
     window.location.replace("learn-more");
