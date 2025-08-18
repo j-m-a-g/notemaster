@@ -1,23 +1,23 @@
 :root {
-  --lightAccent000: #262626;
-  --lightAccent100: #262626;
-  --lightAccent200: #434343;
-  --lightAccent300: #555555;
-  --lightAccent400: #555555;
-
   --blueAccent50: #146dea;
   --blueAccent100: #0080ff;
   --blueAccent500: #008eff;
   --blueAccent600: #279fff;
   --blueAccent700: #56b0ff;
+
+  --lightAccent000: #262626;
+  --lightAccent100: #262626;
+  --lightAccent200: #434343;
+  --lightAccent300: #555555;
+  --lightAccent400: #555555;
 }
 
 ::selection {
   background-color: #146dea90;
 }
 
-.helperText,
 #snackbarMessage,
+.helperText,
 body,
 button.dialogOverlay,
 button.menu,
@@ -49,8 +49,8 @@ img.menu {
 }
 
 img.reducedIntensity {
-  opacity: 75%;
   filter: invert(100%);
+  opacity: 75%;
 }
 
 button.appSection:hover {
@@ -60,8 +60,8 @@ button.appSection:hover {
 }
 
 div.dialogOverlay {
-  box-shadow: 1px 1px 10px 1px var(--lightAccent200);
   border-color: var(--lightAccent200);
+  box-shadow: 1px 1px 10px 1px var(--lightAccent200);
 }
 
 #dialogFocusBackground {

@@ -5,7 +5,7 @@ function initiateNote(isOpen) {
   switch (isOpen) {
     case true:
       const fileReader = new FileReader();
-      fileReader.onload = () => {
+      fileReader.onload = function () {
         quill.clipboard.dangerouslyPasteHTML(fileReader.result);
       };
 
@@ -122,14 +122,14 @@ function downloadNoteOperation(asPlainText) {
 
 function convertWordToNote() {
   const fileReader = new FileReader();
-  fileReader.onload = async (event) => {
+  fileReader.onload = function (event) {
     mammothPlus
       .convertToHtml({ arrayBuffer: event.target.result }, mammothJSOptions)
-      .then((result) => {
+      .then(function (result) {
         convertedFileOutput = result.value;
         downloadConvertedNote.hidden = false;
       })
-      .catch(() => {
+      .catch(function () {
         throwAppError(
           "The file you are trying to view does not seem like a Word document. Ensure the file extension is correct and try again."
         );

@@ -1360,7 +1360,7 @@
                   class="primaryButton menu"
                   src="assets/images/home_000000.svg"
                 />
-                Return to Welcome
+                Return to Home
               </button>
             </div>
             <div hidden id="pdfViewer">
@@ -1667,27 +1667,15 @@
           You are continuing onto another task and your current work has not
           been saved
         </h3>
-        <table
-          onclick="confirmSaveDialog.hidden = true"
-          style="width: 100%; margin-bottom: 5px"
-        >
+        <table onclick="confirmSaveDialog.hidden = true" style="width: 100%">
           <tr>
             <td style="width: 33%">
-              <button class="dialogOverlay">
+              <button class="dialogOverlay" onclick="saveNoteForLater()">
                 <img
                   class="reducedIntensity menu"
-                  src="assets/images/edit_note_000000.svg"
+                  src="assets/images/more_time_000000.svg"
                 />
-                Continue Working
-              </button>
-            </td>
-            <td style="width: 33%">
-              <button class="primaryButton" onclick="doNotSave()">
-                <img
-                  class="primaryButton menu"
-                  src="assets/images/delete_000000.svg"
-                />
-                Don't Save
+                Save For Later
               </button>
             </td>
             <td style="width: 33%">
@@ -1702,15 +1690,28 @@
                 Download
               </button>
             </td>
+            <td style="width: 33%">
+              <button class="primaryButton" onclick="doNotSave()">
+                <img
+                  class="primaryButton menu"
+                  src="assets/images/delete_000000.svg"
+                />
+                Don't Save
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-top: 10px">
+              <a class="hyperlinkButton">
+                <img
+                  class="reducedIntensity menu"
+                  src="assets/images/edit_note_000000.svg"
+                />
+                Continue Working
+              </a>
+            </td>
           </tr>
         </table>
-        <a class="hyperlinkButton" onclick="saveNoteForLater()">
-          <img
-            class="reducedIntensity menu"
-            src="assets/images/more_time_000000.svg"
-          />
-          Save For Later
-        </a>
       </div>
     </div>
 
@@ -1774,25 +1775,38 @@
           <tr>
             <td style="width: 50%">
               <button class="primaryButton" onclick="closeCurrentFile()">
+                <img
+                  class="primaryButton menu"
+                  src="assets/images/check_000000.svg"
+                />
                 Yes
               </button>
             </td>
             <td style="width: 50%">
-              <button class="dialogOverlay">No</button>
+              <button class="dialogOverlay">
+                <img
+                  class="reducedIntensity menu"
+                  src="assets/images/close_000000.svg"
+                />
+                No
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-top: 10px">
+              <a
+                class="hyperlinkButton"
+                onclick="toggleDialog(true, 'viewingHistory', null); appendViewingHistory()"
+              >
+                <img
+                  class="reducedIntensity menu"
+                  src="assets/images/history_000000.svg"
+                />
+                See your Viewing History
+              </a>
             </td>
           </tr>
         </table>
-        <br />
-        <a
-          class="hyperlinkButton"
-          onclick="toggleDialog(true, 'viewingHistory', null); appendViewingHistory()"
-        >
-          <img
-            class="reducedIntensity menu"
-            src="assets/images/history_000000.svg"
-          />
-          See your Viewing History
-        </a>
       </div>
     </div>
 
@@ -1810,8 +1824,15 @@
                 class="reducedIntensity"
               />
             </td>
-            <td>
+            <td style="width: 90%">
               <h2 class="dialogOverlay">Adjust Panel Sizes</h2>
+            </td>
+            <td>
+              <a
+                class="hyperlinkButton"
+                onclick="adjustAppSectionSizes.hidden = true"
+                >Close</a
+              >
             </td>
           </tr>
         </table>
@@ -1872,19 +1893,17 @@
             </td>
           </tr>
         </table>
-        <a class="hyperlinkButton" onclick="adjustAppSectionSizes.hidden = true"
-          >Close</a
-        >
+
         <button
           class="primaryButton"
           onclick="viewingSize.value = 50; editorSize.value = 50; applyPercentageSizes(); localStorage.setItem('viewingSizeValue', viewingSize.value)"
-          style="width: 15%; margin-left: 5px; margin-top: 5px"
+          style="width: 25%; margin-left: 5px; margin-top: 5px"
         >
           <img
             class="primaryButton menu"
             src="assets/images/reset_settings_000000.svg"
           />
-          Reset
+          Reset Sizes
         </button>
       </div>
     </div>
@@ -1899,8 +1918,15 @@
                 class="reducedIntensity"
               />
             </td>
-            <td>
+            <td style="width: 90%">
               <h2 class="dialogOverlay">Insert an Online Image</h2>
+            </td>
+            <td>
+              <a
+                class="hyperlinkButton"
+                onclick="insertOnlineImage.hidden = true"
+                >Close</a
+              >
             </td>
           </tr>
         </table>
@@ -1924,9 +1950,6 @@
             </td>
           </tr>
         </table>
-        <a class="hyperlinkButton" onclick="insertOnlineImage.hidden = true"
-          >Close</a
-        >
       </div>
     </div>
     <div class="saveBeforeClosing" hidden id="insertTable">
@@ -1939,8 +1962,15 @@
                 class="reducedIntensity"
               />
             </td>
-            <td>
+            <td style="width: 90%">
               <h2 class="dialogOverlay">Insert a Table</h2>
+            </td>
+            <td>
+              <a
+                class="hyperlinkButton"
+                onclick="insertTable.hidden = true; insertTableQuill.setContents()"
+                >Close</a
+              >
             </td>
           </tr>
         </table>
@@ -1986,13 +2016,8 @@
         </table>
         <div
           id="insertTableEditor"
-          style="user-select: all; margin-top: 5px; margin-bottom: 5px"
+          style="user-select: all; margin-top: 5px"
         ></div>
-        <a
-          class="hyperlinkButton"
-          onclick="insertTable.hidden = true; insertTableQuill.setContents()"
-          >Close</a
-        >
         <div hidden id="tableSourceHTML">
           <table id="createdTable"></table>
         </div>
@@ -2000,16 +2025,30 @@
     </div>
 
     <div class="saveBeforeClosing" hidden id="insertSymbol">
-      <div class="dialogOverlay" style="margin-left: 50%">
-        <h2>Insert a Symbol</h2>
+      <div class="dialogOverlay" style="margin-left: 49%">
+        <table>
+          <tr>
+            <td>
+              <img
+                src="assets/images/emoji_symbols_000000.svg"
+                class="reducedIntensity"
+              />
+            </td>
+            <td style="width: 90%">
+              <h2 class="dialogOverlay">Insert a Symbol</h2>
+            </td>
+            <td>
+              <a class="hyperlinkButton" onclick="insertSymbol.hidden = true"
+                >Close</a
+              >
+            </td>
+          </tr>
+        </table>
         <h3 class="helperText">
           Select a special character to insert it in your note at your cursor's
           current position
         </h3>
         <div id="symbolsDisplay"></div>
-        <a class="hyperlinkButton" onclick="insertSymbol.hidden = true"
-          >Close</a
-        >
       </div>
     </div>
 
@@ -2036,7 +2075,10 @@
           <table style="width: 100%">
             <tr>
               <td>
-                <a class="hyperlinkButton" href="learn-more" target="_blank">
+                <a
+                  class="hyperlinkButton"
+                  onclick="window.open('learn-more', '_blank')"
+                >
                   Learn More
                 </a>
               </td>
@@ -2664,13 +2706,21 @@
           style="width: 15%"
           onclick="applyPageSetup(false)"
         >
+          <img
+            class="primaryButton menu"
+            src="assets/images/check_000000.svg"
+          />
           Apply
         </button>
         <button
           class="dialogOverlay"
-          style="width: 25%"
+          style="width: 30%"
           onclick="applyPageSetup(true)"
         >
+          <img
+            class="reducedIntensity menu"
+            src="assets/images/reset_settings_000000.svg"
+          />
           Reset to Default
         </button>
       </div>
@@ -2684,8 +2734,16 @@
                 class="reducedIntensity"
               />
             </td>
-            <td>
+            <td style="width: 90%">
               <h2 class="dialogOverlay">Viewing History</h2>
+            </td>
+            <td>
+              <a
+                class="hyperlinkButton"
+                onclick="toggleDialog(false, 'viewingHistory', null)"
+              >
+                Close
+              </a>
             </td>
           </tr>
         </table>
@@ -2696,22 +2754,16 @@
           <table id="viewingHistoryTable"></table>
         </div>
         <br />
-        <a
-          class="hyperlinkButton"
-          onclick="toggleDialog(false, 'viewingHistory', null)"
-        >
-          Close
-        </a>
         <button
           class="primaryButton"
           onclick="document.querySelector('#copyHistoryEditor').hidden = false; copyHistoryQuill.clipboard.dangerouslyPasteHTML(historyTableContainer.innerHTML)"
-          style="width: 15%; margin-left: 5px"
+          style="width: 25%"
         >
           <img
             class="primaryButton menu"
             src="assets/images/content_copy_000000.svg"
           />
-          Copy
+          Copy History
         </button>
         <br />
         <br />
@@ -2727,8 +2779,16 @@
                 class="reducedIntensity"
               />
             </td>
-            <td>
+            <td style="width: 90%">
               <h2 class="dialogOverlay">Writing Insights</h2>
+            </td>
+            <td>
+              <a
+                class="hyperlinkButton"
+                onclick="toggleDialog(false, 'writingInsights', null)"
+              >
+                Close
+              </a>
             </td>
           </tr>
         </table>
@@ -2795,7 +2855,11 @@
           style="width: fit-content"
           onclick="configureTypingGoal(false)"
         >
-          Set
+          <img
+            class="primaryButton menu"
+            src="assets/images/check_000000.svg"
+          />
+          Set Target
         </button>
         <button
           hidden
@@ -2804,22 +2868,32 @@
           style="width: fit-content"
           onclick="configureTypingGoal(true)"
         >
-          Reset
+          <img
+            class="reducedIntensity menu"
+            src="assets/images/reset_settings_000000.svg"
+          />
+          Reset Target
         </button>
-        <br />
-        <br />
-        <a
-          class="hyperlinkButton"
-          onclick="toggleDialog(false, 'writingInsights', null)"
-        >
-          Close
-        </a>
       </div>
       <!-- Link to PDF -->
       <div class="dialogOverlay" hidden id="linkToPDF">
         <img src="assets/images/picture_as_pdf_D16D6A.svg" />
         <img class="reducedIntensity" src="assets/images/link_000000.svg" />
-        <h1>Link to a PDF</h1>
+        <table>
+          <tr>
+            <td style="width: 90%">
+              <h1>Link to a PDF</h1>
+            </td>
+            <td>
+              <a
+                class="hyperlinkButton"
+                onclick="toggleDialog(false, 'linkToPDF', null)"
+              >
+                Close
+              </a>
+            </td>
+          </tr>
+        </table>
         <h3 class="helperText">Paste the URL to your PDF below</h3>
         <table style="width: 100%; margin-bottom: 10px">
           <tr>
@@ -2841,18 +2915,26 @@
             </td>
           </tr>
         </table>
-        <a
-          class="hyperlinkButton"
-          onclick="toggleDialog(false, 'linkToPDF', null)"
-        >
-          Close
-        </a>
       </div>
       <!-- Link to an Image -->
       <div class="dialogOverlay" hidden id="linkToImage">
         <img src="assets/images/image_80A4AE.svg" />
         <img class="reducedIntensity" src="assets/images/link_000000.svg" />
-        <h1>Link to an Image</h1>
+        <table>
+          <tr>
+            <td style="width: 90%">
+              <h1>Link to an Image</h1>
+            </td>
+            <td>
+              <a
+                class="hyperlinkButton"
+                onclick="toggleDialog(false, 'linkToImage', null)"
+              >
+                Close
+              </a>
+            </td>
+          </tr>
+        </table>
         <h3 class="helperText">Paste the URL to your image below</h3>
         <table style="width: 100%; margin-bottom: 10px">
           <tr>
@@ -2874,12 +2956,6 @@
             </td>
           </tr>
         </table>
-        <a
-          class="hyperlinkButton"
-          onclick="toggleDialog(false, 'linkToImage', null)"
-        >
-          Close
-        </a>
       </div>
       <!-- Cloud file -->
       <div class="dialogOverlay" hidden id="insertCloudURLDialog">
@@ -2887,7 +2963,21 @@
         <img src="assets/images/article_789DE5.svg" />
         <img src="assets/images/dataset_9DC384.svg" />
         <img src="assets/images/insert_chart_D08370.svg" />
-        <h1>File in the Cloud</h1>
+        <table>
+          <tr>
+            <td style="width: 90%">
+              <h1>File in the Cloud</h1>
+            </td>
+            <td>
+              <a
+                class="hyperlinkButton"
+                onclick="toggleDialog(false, 'insertCloudURLDialog', null)"
+              >
+                Close
+              </a>
+            </td>
+          </tr>
+        </table>
         <h3 class="helperText">
           Paste the URL to your cloud document below from your browser's address
           bar
@@ -2939,12 +3029,6 @@
             </td>
           </tr>
         </table>
-        <a
-          class="hyperlinkButton"
-          onclick="toggleDialog(false, 'insertCloudURLDialog', null)"
-        >
-          Close
-        </a>
       </div>
       <div class="dialogOverlay" hidden id="linkToOnlineDesign">
         <table>
@@ -2952,8 +3036,16 @@
             <td>
               <img src="assets/images/wall_art_80A4AE.svg" />
             </td>
-            <td>
+            <td style="width: 90%">
               <h2 class="dialogOverlay">Canva Design</h2>
+            </td>
+            <td>
+              <a
+                class="hyperlinkButton"
+                onclick="toggleDialog(false, 'linkToOnlineDesign', null)"
+              >
+                Close
+              </a>
             </td>
           </tr>
         </table>
@@ -2981,12 +3073,6 @@
             </td>
           </tr>
         </table>
-        <a
-          class="hyperlinkButton"
-          onclick="toggleDialog(false, 'linkToOnlineDesign', null)"
-        >
-          Close
-        </a>
       </div>
       <!-- Link to a Video -->
       <div class="dialogOverlay" hidden id="linkToTubeVideo">
@@ -2995,8 +3081,16 @@
             <td>
               <img src="assets/images/youtube_activity_BB271A.svg" />
             </td>
-            <td>
+            <td style="width: 90%">
               <h2 class="dialogOverlay">YouTube Video</h2>
+            </td>
+            <td>
+              <a
+                class="hyperlinkButton"
+                onclick="toggleDialog(false, 'linkToTubeVideo', null)"
+              >
+                Close
+              </a>
             </td>
           </tr>
         </table>
@@ -3021,12 +3115,6 @@
             </td>
           </tr>
         </table>
-        <a
-          class="hyperlinkButton"
-          onclick="toggleDialog(false, 'linkToTubeVideo', null)"
-        >
-          Close
-        </a>
       </div>
       <!-- Custom iFrame -->
       <div class="dialogOverlay" hidden id="customEmbed">
@@ -3038,8 +3126,16 @@
                 src="assets/images/frame_source_000000.svg"
               />
             </td>
-            <td>
+            <td style="width: 90%">
               <h2 class="dialogOverlay">Custom Embed</h2>
+            </td>
+            <td>
+              <a
+                class="hyperlinkButton"
+                onclick="toggleDialog(false, 'customEmbed', null)"
+              >
+                Close
+              </a>
             </td>
           </tr>
         </table>
@@ -3061,13 +3157,6 @@
             </td>
           </tr>
         </table>
-        <br />
-        <a
-          class="hyperlinkButton"
-          onclick="toggleDialog(false, 'customEmbed', null)"
-        >
-          Close
-        </a>
       </div>
       <div class="dialogOverlay" hidden id="shareCopyOfNote">
         <table>
@@ -3078,8 +3167,16 @@
                 src="assets/images/share_000000.svg"
               />
             </td>
-            <td>
+            <td style="width: 90%">
               <h2 class="dialogOverlay">Share a Copy</h2>
+            </td>
+            <td>
+              <a
+                class="hyperlinkButton"
+                onclick="toggleDialog(false, 'shareCopyOfNote', null)"
+              >
+                Close
+              </a>
             </td>
           </tr>
         </table>
@@ -3087,34 +3184,36 @@
           Send a <b>copy</b> of your note to another person for editing. If you
           have images from the web in your note, the link might not work
         </h3>
-        <input
-          id="shareCopyLink"
-          readonly
-          style="width: 95%; user-select: all"
-          type="url"
-        />
-        <br />
-        <br />
-        <a
-          class="hyperlinkButton"
-          onclick="toggleDialog(false, 'shareCopyOfNote', null)"
-        >
-          Close
-        </a>
-        <button
-          class="primaryButton"
-          onclick="navigator.clipboard.writeText(shareCopyLink.value); displaySnackbar('Link copied!')"
-          style="width: 20%; margin-left: 10px"
-        >
-          <img class="primaryButton menu" src="assets/images/link_000000.svg" />
-          Copy Link
-        </button>
+        <table style="width: 100%">
+          <tr>
+            <td style="width: 80%">
+              <input
+                id="shareCopyLink"
+                readonly
+                style="width: 95%; user-select: all"
+                type="url"
+              />
+            </td>
+            <td>
+              <button
+                class="primaryButton"
+                onclick="navigator.clipboard.writeText(shareCopyLink.value); displaySnackbar('Link copied!')"
+              >
+                <img
+                  class="primaryButton menu"
+                  src="assets/images/link_000000.svg"
+                />
+                Copy Link
+              </button>
+            </td>
+          </tr>
+        </table>
       </div>
       <div
         class="dialogOverlay"
         hidden
         id="noteAsHTML"
-        style="height: 90%; margin-top: 1%"
+        style="height: 85%; margin-top: 1%"
       >
         <table>
           <tr>
@@ -3124,8 +3223,16 @@
                 class="reducedIntensity"
               />
             </td>
-            <td>
+            <td style="width: 90%">
               <h2 class="dialogOverlay">Show Note as HTML Markup</h2>
+            </td>
+            <td>
+              <a
+                class="hyperlinkButton"
+                onclick="toggleDialog(false, 'noteAsHTML', null)"
+              >
+                Close
+              </a>
             </td>
           </tr>
         </table>
@@ -3133,31 +3240,38 @@
           See your note as HTML markup to be used within other applications
         </h3>
         <div id="noteHTML"></div>
-        <br />
-        <a
-          class="hyperlinkButton"
-          onclick="toggleDialog(false, 'noteAsHTML', null)"
-        >
-          Close
-        </a>
         <button
           class="primaryButton"
           onclick="navigator.clipboard.writeText(noteHTMLCodeEditor.getValue()); displaySnackbar(copiedToClipboardString)"
-          style="width: 15%; margin-left: 5px"
+          style="width: 25%"
         >
           <img
             class="primaryButton menu"
             src="assets/images/content_copy_000000.svg"
           />
-          Copy
+          Copy Markup
         </button>
       </div>
       <div class="dialogOverlay" hidden id="aboutDialog">
         <img class="reducedIntensity" src="assets/images/info_000000.svg" />
         <img src="notemasterIcon.svg" style="width: 48px" />
-        <h2>About</h2>
+        <table>
+          <tr>
+            <td style="width: 90%">
+              <h2>About</h2>
+            </td>
+            <td>
+              <a
+                class="hyperlinkButton"
+                onclick="toggleDialog(false, 'aboutDialog', null)"
+              >
+                Close
+              </a>
+            </td>
+          </tr>
+        </table>
         <p style="line-height: 25px">
-          NoteMaster v25.8.3
+          NoteMaster v25.8.4
           <br />
           Designed and developed by
           <a href="https://github.com/j-m-a-g" target="_blank">J. Maghamez</a>
@@ -3192,13 +3306,6 @@
             </td>
           </tr>
         </table>
-        <br />
-        <a
-          class="hyperlinkButton"
-          onclick="toggleDialog(false, 'aboutDialog', null)"
-        >
-          Close
-        </a>
       </div>
     </div>
 

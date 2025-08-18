@@ -128,7 +128,7 @@ function closeCurrentFile() {
  */
 function readTextFile() {
   const fileReader = new FileReader();
-  fileReader.onload = () => {
+  fileReader.onload = function () {
     textView.innerHTML = fileReader.result;
   };
 
@@ -142,14 +142,14 @@ function readTextFile() {
  */
 function readWordDocument() {
   const fileReader = new FileReader();
-  fileReader.onload = (event) => {
+  fileReader.onload = function (event) {
     mammothPlus
       .convertToHtml({ arrayBuffer: event.target.result }, mammothJSOptions)
-      .then((result) => {
+      .then(function (result) {
         wordDocumentView.innerHTML = result.value;
         displaySnackbar("Some formatting may not display correctly");
       })
-      .catch(() => {
+      .catch(function () {
         // Indicates that there was an issue in parsing the user's
         // Word document to HTML
         throwAppError(
@@ -169,7 +169,7 @@ function readWordDocument() {
  */
 function readMarkdownFile() {
   const fileReader = new FileReader();
-  fileReader.onload = () => {
+  fileReader.onload = function () {
     markdownFileView.innerHTML = marked.parse(fileReader.result);
   };
 
@@ -183,7 +183,7 @@ function readMarkdownFile() {
  */
 function readHTMLNote() {
   const fileReader = new FileReader();
-  fileReader.onload = () => {
+  fileReader.onload = function () {
     anotherNoteViewQuill.clipboard.dangerouslyPasteHTML(fileReader.result);
   };
 
@@ -198,7 +198,7 @@ function readHTMLNote() {
  */
 function viewCodeFile() {
   const fileReader = new FileReader();
-  fileReader.onload = () => {
+  fileReader.onload = function () {
     codeFileViewCodeEditor.session.setValue(fileReader.result);
   };
 

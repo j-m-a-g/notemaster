@@ -1,15 +1,15 @@
 :root {
-  --lightAccent000: #ffffff;
-  --lightAccent100: #fafafa;
-  --lightAccent200: #f5f5f5;
-  --lightAccent300: #f0f0f0;
-  --lightAccent400: #dedede;
-
   --blueAccent50: #e2f1ff;
   --blueAccent100: #b9dcff;
   --blueAccent500: #008eff;
   --blueAccent600: #0080ff;
   --blueAccent700: #146dea;
+
+  --lightAccent000: #ffffff;
+  --lightAccent100: #fafafa;
+  --lightAccent200: #f5f5f5;
+  --lightAccent300: #f0f0f0;
+  --lightAccent400: #dedede;
 }
 
 ::selection {
@@ -18,19 +18,19 @@
 
 html,
 body {
-  scroll-behavior: smooth;
-  user-select: none;
+  animation-duration: 1s;
+  animation-name: initialFadeIn;
+  background-color: var(--lightAccent100);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  background-color: var(--lightAccent100);
-  animation-name: initialFadeIn;
-  animation-duration: 1s;
+  scroll-behavior: smooth;
+  user-select: none;
 }
 
 h1 {
   font-size: 1.75em;
-  margin-top: 5px;
   font-weight: normal;
+  margin-top: 5px;
 }
 
 h2,
@@ -38,8 +38,8 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 5px;
   font-weight: normal;
+  margin-top: 5px;
 }
 
 a {
@@ -60,7 +60,7 @@ input[type="url"],
 input[type="number"] {
   background-color: var(--lightAccent000);
   border-color: var(--lightAccent400);
-  border-radius: 5px;
+  border-radius: 100px;
   border-style: solid;
   border-width: 1px;
   height: fit-content;
@@ -75,8 +75,8 @@ input[type="url"]:focus,
 input[type="url"]:hover,
 select:focus,
 select:hover {
-  outline-style: none;
   border-color: var(--blueAccent500);
+  outline-style: none;
 }
 
 input[type="text"]::placeholder,
@@ -86,12 +86,12 @@ input[type="number"]::placeholder {
 }
 
 summary {
-  padding: 10px;
-  border-radius: 5px;
-  border-style: solid;
   border-color: var(--lightAccent400);
+  border-radius: 100px;
+  border-style: solid;
   border-width: 1px;
   margin-bottom: 5px;
+  padding: 10px;
 }
 
 summary:hover {
@@ -103,15 +103,15 @@ summary:active {
 }
 
 select {
-  padding: 10px;
-  border-radius: 5px;
-  border-style: solid;
   border-color: var(--lightAccent400);
+  border-radius: 100px;
+  border-style: solid;
+  padding: 10px;
 }
 
 progress {
-  width: 100%;
   appearance: none;
+  width: 100%;
 }
 
 progress::-webkit-progress-bar {
@@ -127,49 +127,49 @@ textarea {
 }
 
 img.intermediateLoading {
-  animation-name: spinProgressIndicator;
-  animation-iteration-count: infinite;
   animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-name: spinProgressIndicator;
 }
 
 #snackbar {
-  animation-name: initialFadeIn;
   animation-duration: 0.5s;
-  display: none;
-  box-shadow: 1px 1px 10px 1px var(--lightAccent400);
-  border-radius: 5px;
-  padding: 10px;
+  animation-name: initialFadeIn;
   background-color: var(--blueAccent700);
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px 1px var(--lightAccent400);
   color: var(--lightAccent000);
-  z-index: 10;
-  position: fixed;
-  margin-top: 10px;
+  display: none;
   margin-left: 40%;
+  margin-top: 10px;
+  padding: 10px;
+  position: fixed;
+  z-index: 10;
 }
 
 #appMenu {
-  width: 100%;
-  position: fixed;
-  z-index: 1;
-  border-top-width: 0;
+  background-color: var(--lightAccent100);
+  border-bottom-width: 1px;
+  border-color: var(--lightAccent400);
   border-left-width: 0;
   border-right-width: 0;
-  border-bottom-width: 1px;
   border-style: solid;
-  border-color: var(--lightAccent400);
-  background-color: var(--lightAccent100);
+  border-top-width: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 }
 
 button.menu {
-  padding: 10px;
-  cursor: pointer;
   background-color: transparent;
-  border-style: solid;
-  border-left-width: 0;
-  border-right-width: 0;
-  border-top-width: 0;
   border-bottom-width: 1px;
   border-color: transparent;
+  border-left-width: 0;
+  border-right-width: 0;
+  border-style: solid;
+  border-top-width: 0;
+  cursor: pointer;
+  padding: 10px;
 }
 
 button.menu:hover {
@@ -179,19 +179,19 @@ button.menu:hover {
 
 button.menu:disabled,
 button.menu:disabled:hover {
-  opacity: 25%;
-  cursor: not-allowed;
   background-color: transparent;
   border-color: transparent;
+  cursor: not-allowed;
+  opacity: 25%;
 }
 
 div.menu {
-  border-style: solid;
-  border-color: var(--lightAccent400);
-  border-width: 1px;
-  width: 22%;
   background-color: var(--lightAccent000);
+  border-color: var(--lightAccent400);
+  border-style: solid;
+  border-width: 1px;
   position: fixed;
+  width: 22%;
   z-index: 1;
 }
 
@@ -201,17 +201,17 @@ img.menu {
 }
 
 button.menuDropdown {
-  padding: 10px;
-  cursor: pointer;
   background-color: transparent;
-  border-style: solid;
+  border-bottom-width: 1px;
   border-color: var(--lightAccent100);
-  border-top-width: 0;
   border-left-width: 0;
   border-right-width: 0;
-  border-bottom-width: 1px;
-  width: 100%;
+  border-style: solid;
+  border-top-width: 0;
+  cursor: pointer;
+  padding: 10px;
   text-align: left;
+  width: 100%;
 }
 
 button.menuDropdown:hover {
@@ -233,28 +233,28 @@ button.menuDropdown:disabled:hover {
 }
 
 hr.menuDropdown {
-  margin-top: 0;
-  margin-bottom: 0;
-  border-style: solid;
   border-color: var(--lightAccent400);
+  border-style: solid;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 span.menuDropdown {
-  margin-left: 1%;
   font-size: 10px;
+  margin-left: 1%;
 }
 
 button.navButton {
+  background-color: var(--lightAccent000);
+  border-color: var(--lightAccent400);
+  border-radius: 100px;
+  border-style: solid;
+  border-width: 1px;
+  height: fit-content;
   overflow: hidden;
   padding: 10px;
   text-overflow: ellipsis;
-  background-color: var(--lightAccent000);
-  border-radius: 5px;
-  border-style: solid;
-  height: fit-content;
   width: 37px;
-  border-width: 1px;
-  border-color: var(--lightAccent400);
 }
 
 button.navButton:hover {
@@ -270,23 +270,23 @@ button.navButton:active {
 }
 
 td.appSection {
-  padding: 10px;
   background-color: var(--lightAccent100);
   border-radius: 5px;
-  width: 50%;
   height: 100%;
+  padding: 10px;
+  width: 50%;
 }
 
 button.appSection {
-  text-align: left;
   background-color: transparent;
-  border-style: solid;
   border-color: var(--lightAccent400);
+  border-radius: 100px;
+  border-style: solid;
   border-width: 1px;
   margin-bottom: 5px;
   padding: 10px;
+  text-align: left;
   width: 100%;
-  border-radius: 5px;
 }
 
 button.appSection:hover {
@@ -303,31 +303,31 @@ button.appSection:active {
 }
 
 img.appSection {
+  filter: grayscale(100%);
   margin-right: 10px;
   width: 32px;
-  filter: grayscale(100%);
 }
 
 #nothingSavedIndicator {
-  margin-top: 5px;
   background-color: var(--lightAccent200);
-  padding: 10px;
-  border-radius: 5px;
   border-color: var(--lightAccent400);
+  border-radius: 10px;
   border-style: solid;
   border-width: 1px;
+  margin-top: 5px;
+  padding: 10px;
 }
 
 div.savedNote {
-  padding: 10px;
-  width: 95%;
-  display: flex;
-  margin-bottom: 5px;
   background-color: var(--lightAccent200);
   border-color: var(--lightAccent400);
+  border-radius: 10px;
   border-style: solid;
   border-width: 1px;
-  border-radius: 5px;
+  display: flex;
+  margin-bottom: 5px;
+  padding: 10px;
+  width: 95%;
 }
 
 div.savedNote:hover {
@@ -335,37 +335,37 @@ div.savedNote:hover {
 }
 
 span.savedNoteTitle {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: 500;
 }
 
 div.savedNoteTitle {
   display: block;
-  margin-top: auto;
   margin-bottom: auto;
   margin-left: 10px;
+  margin-top: auto;
 }
 
 div.savedNotePreview {
+  background-color: var(--lightAccent000);
+  border-color: var(--lightAccent400);
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  height: 100px;
+  margin-bottom: 10px;
   padding: 15px;
   width: 150px;
-  height: 100px;
-  background-color: var(--lightAccent000);
-  border-radius: 5px;
-  margin-bottom: 10px;
-  border-style: solid;
-  border-color: var(--lightAccent400);
-  border-width: 1px;
 }
 
 span.savedNotePreview {
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
@@ -376,8 +376,8 @@ span.buttonHeading {
 }
 
 .helperText {
-  padding-top: 7px;
   opacity: 50%;
+  padding-top: 7px;
 }
 
 h4.helperText {
@@ -389,24 +389,24 @@ img.reducedIntensity {
 }
 
 div.dialogOverlay {
-  box-shadow: 1px 1px 10px 1px var(--lightAccent400);
+  animation-duration: 0.25s;
+  animation-name: initialFadeIn;
+  background-color: var(--lightAccent000);
   border-color: var(--lightAccent400);
+  border-radius: 10px;
   border-style: solid;
   border-width: 1px;
-  padding: 15px;
-  position: fixed;
-  background-color: var(--lightAccent000);
-  z-index: 2;
-  overflow-x: hidden;
-  overflow-y: auto;
+  box-shadow: 1px 1px 10px 1px var(--lightAccent400);
+  height: fit-content;
   margin-left: 25%;
   margin-right: 25%;
   margin-top: 1%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 15px;
+  position: fixed;
   width: 50%;
-  height: fit-content;
-  border-radius: 5px;
-  animation-name: initialFadeIn;
-  animation-duration: 0.25s;
+  z-index: 2;
 }
 
 h2.dialogOverlay {
@@ -415,17 +415,17 @@ h2.dialogOverlay {
 }
 
 button.primaryButton {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-  height: fit-content;
-  padding: 10px;
-  border-radius: 5px;
+  background-color: var(--blueAccent500);
+  border-color: var(--blueAccent500);
+  border-radius: 100px;
   border-style: solid;
   border-width: 1px;
-  border-color: var(--blueAccent500);
-  background-color: var(--blueAccent500);
   color: var(--lightAccent000);
+  height: fit-content;
+  overflow: hidden;
+  padding: 10px;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 
 button.primaryButton:hover {
@@ -449,16 +449,16 @@ img.primaryButton {
 }
 
 button.dialogOverlay {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-  height: fit-content;
-  padding: 10px;
-  border-radius: 5px;
-  border-style: solid;
-  border-width: 1px;
   background-color: var(--lightAccent000);
   border-color: var(--lightAccent400);
+  border-radius: 100px;
+  border-style: solid;
+  border-width: 1px;
+  height: fit-content;
+  overflow: hidden;
+  padding: 10px;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 
 button.dialogOverlay:hover {
@@ -470,12 +470,10 @@ button.dialogOverlay:active {
 }
 
 a.hyperlinkButton {
-  padding-left: 3px;
-  padding-right: 3px;
-  padding-bottom: 3px;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 100px;
   color: var(--blueAccent500);
+  cursor: pointer;
+  padding: 8px;
 }
 
 a.hyperlinkButton:hover {
@@ -483,9 +481,15 @@ a.hyperlinkButton:hover {
   text-decoration: none;
 }
 
+a.hyperlinkButton:active {
+  border-color: var(--blueAccent500);
+  border-style: solid;
+  border-width: 1px;
+}
+
 span.copyOnClick:hover {
-  cursor: pointer;
   background-color: var(--blueAccent50);
+  cursor: pointer;
 }
 
 span.copyOnClick:active {
@@ -494,12 +498,10 @@ span.copyOnClick:active {
 
 #mainEditor {
   background-color: var(--lightAccent000);
+  border-color: var(--lightAccent400);
   height: 60%;
   overflow: auto;
   word-wrap: break-word;
-  border-color: var(--lightAccent400);
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
 }
 
 #mainEditor:active {
@@ -515,23 +517,23 @@ select.pageStyle {
 }
 
 nav.statusBar {
+  background-color: var(--lightAccent200);
+  border-color: var(--lightAccent400);
+  border-radius: 100px;
   border-style: solid;
   border-width: 1px;
   font-size: 12px;
-  border-color: var(--lightAccent400);
   margin-top: 5px;
-  border-radius: 5px;
-  background-color: var(--lightAccent200);
   padding: 5px;
 }
 
 div.saveBeforeClosing {
-  left: 0;
-  top: 0;
-  position: fixed;
-  z-index: 1;
-  width: 100%;
   height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 
 h1.saveBeforeClosing {
@@ -545,13 +547,13 @@ h3.saveBeforeClosing {
 }
 
 #dialogFocusBackground {
-  left: 0;
-  top: 0;
-  position: fixed;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
   background-color: rgba(255, 255, 255, 0.75);
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 
 #noteName:focus {
@@ -559,19 +561,19 @@ h3.saveBeforeClosing {
 }
 
 #noteHTML {
-  margin-bottom: 5px;
-  width: 100%;
   height: 55%;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 #viewingHistoryTable {
-  width: 100%;
   background-color: var(--lightAccent200);
   border-color: var(--lightAccent400);
-  border-style: solid;
-  border-width: 1px;
   border-radius: 5px;
   border-spacing: 10px;
+  border-style: solid;
+  border-width: 1px;
+  width: 100%;
 }
 
 button.warningBanner {
@@ -581,15 +583,15 @@ button.warningBanner {
 }
 
 div.symbolContainer {
-  width: 50px;
-  height: 50px;
-  border-width: 1px;
-  border-style: solid;
   background-color: var(--lightAccent000);
   border-color: var(--lightAccent300);
-  margin-right: 5px;
-  margin-bottom: 5px;
   border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  height: 50px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  width: 50px;
 }
 
 div.symbolContainer:hover {
@@ -598,11 +600,11 @@ div.symbolContainer:hover {
 }
 
 img.gettingStartedDialog {
-  width: 100%;
-  border-style: solid;
-  border-width: 1px;
   border-color: var(--lightAccent300);
   border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  width: 100%;
 }
 
 #mobileSizeIndication {
@@ -611,28 +613,28 @@ img.gettingStartedDialog {
 }
 
 #embeddedCode {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  width: 95%;
-  height: 100%;
-  padding: 5px;
+  border-color: var(--lightAccent400);
   border-radius: 5px;
   border-style: solid;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  height: 100%;
+  padding: 5px;
   resize: none;
+  width: 95%;
   word-wrap: normal;
-  border-color: var(--lightAccent400);
 }
 
 #embeddedCode:focus {
-  outline: none;
   border-color: var(--blueAccent500);
+  outline: none;
 }
 
 #symbolsDisplay {
-  height: 250px;
-  padding: 15px;
   display: flex;
   flex-wrap: wrap;
+  height: 250px;
   overflow-y: auto;
+  padding: 15px;
 }
 
 @media screen and (max-width: 601px) {

@@ -201,8 +201,8 @@ function adjustViewingAndEditorSizes() {
 
 /**
  * @method addHistoryEntry
- * Appends the name of a document as well as the
- * time it was seen by the user to an array
+ * Appends the name of a document - as well as the
+ * time it was seen by the user - to an array
  * to be iterated through once they request their Viewing History
  *
  * @param {string} valueObject - The name of the <input type="file"> element to retrieve the file name from
@@ -212,6 +212,11 @@ function addHistoryEntry(valueObject) {
   fileViewingHistoryTimes.push(get12HourTime());
 }
 
+/**
+ * @method appendViewingHistory
+ * Populates the user's Viewing History within a table every time
+ * they request it through the, "Viewing History" dialog
+ */
 function appendViewingHistory() {
   // Resets the table's state to prevent duplication
   viewingHistoryTable.innerHTML = "";
@@ -241,20 +246,46 @@ function appendViewingHistory() {
   }
 }
 
+/**
+ * @method throwAppError
+ * Prompts the user with a dialog indicating an error has
+ * occurred within the app - in the event one does - and
+ * indicates what they should do to try and resolve it
+ *
+ * @param {string} messageText - The message to be displayed in the error dialog
+ */
 function throwAppError(messageText) {
   toggleDialog(true, "applicationError", null);
   errorMessage.innerHTML = messageText;
 }
 
+/**
+ * @method displaySnackbar
+ * Presents the user with a banner towards the top of
+ * their screen, providing them with feedback whenever certain actions have
+ * been successfully completed
+ *
+ * @param {string} - The message to be displayed in the snack-bar
+ */
 function displaySnackbar(snackbarText) {
   // Shows the snack-bar from its, "display" style of "none"
   snackbar.style.display = "flex";
   snackbarMessage.innerHTML = snackbarText; // Applies the argument from the snackBarText parameter
 
   // Hides the snack-bar once again after a 7.5 second delay
-  setTimeout(() => (snackbar.style.display = "none"), 7500);
+  setTimeout(function () {
+    snackbar.style.display = "none";
+  }, 7500);
 }
 
+/**
+ * @function get12HourTime
+ * Lets the app present the user with times in 12-hour
+ * format as opposed to the default 24-hour format JavaScript uses
+ * in the Date object by default
+ *
+ * @returns {string} - A human-readable display of the current time in 12-hour format
+ */
 function get12HourTime() {
   let hour;
   let minute;
@@ -286,6 +317,12 @@ function get12HourTime() {
   return hour + ":" + minute + suffix;
 }
 
+/**
+ * @method createTable
+ * Enables the user to create a table within the, "Insert
+ * Table" dialog with an amount of rows and columns of
+ * their choosing
+ */
 function createTable() {
   createdTable.innerHTML = "";
   for (let rows = 0; rows < tableRows.value; rows++) {
@@ -306,6 +343,12 @@ function createTable() {
   insertTableQuill.clipboard.dangerouslyPasteHTML(tableSourceHTML.innerHTML);
 }
 
+/**
+ * @method addUnicodeCharacters
+ * Enables the app to populate the, "Symbols" dialog with
+ * Unicode characters and their descriptions based on elements of the
+ * symbolList array
+ */
 function addUnicodeCharacters() {
   for (let s = 0; s < symbolList.length; s++) {
     for (let t = 0; t < symbolList[s].length; t++) {
