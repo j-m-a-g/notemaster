@@ -1,3 +1,6 @@
+/** @author J. Maghamez */
+"use strict";
+
 /**
  * @method taskOnceFileOpen
  * Executes crucial tasks once the user has opened a file

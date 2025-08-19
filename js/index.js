@@ -1,3 +1,6 @@
+/** @author J. Maghamez */
+"use strict";
+
 // Note editor on the right side
 const quill = new Quill("#mainEditor", {
   modules: {
@@ -36,12 +39,12 @@ const insertTableQuill = new Quill("#insertTableEditor", {
 });
 
 noteHTMLCodeEditor.session.setMode("ace/mode/html");
-noteHTMLCodeEditor.setReadOnly(true);
 noteHTMLCodeEditor.session.setUseWrapMode(true);
+noteHTMLCodeEditor.setReadOnly(true);
 
 codeFileViewCodeEditor.session.setMode("ace/mode/plain_text");
-codeFileViewCodeEditor.setReadOnly(true);
 codeFileViewCodeEditor.session.setUseWrapMode(true);
+codeFileViewCodeEditor.setReadOnly(true);
 
 /**
  * @method shiftProgressValue

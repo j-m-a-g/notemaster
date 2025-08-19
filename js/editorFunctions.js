@@ -1,3 +1,6 @@
+/** @author J. Maghamez */
+"use strict";
+
 function initiateNote(isOpen) {
   hideAndShow("createOrOpenContainer", "noteEditor");
   alterMenuFunctions(false);

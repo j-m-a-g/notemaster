@@ -1,3 +1,6 @@
+/** @author J. Maghamez */
+"use strict";
+
 const additionalVideoControls = document.querySelector(
 	"#additionalVideoControls"
 );
