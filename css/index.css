@@ -10,6 +10,8 @@
   --lightAccent200: #f5f5f5;
   --lightAccent300: #f0f0f0;
   --lightAccent400: #dedede;
+
+  --defaultBorderRadius: 10px;
 }
 
 ::selection {
@@ -60,7 +62,7 @@ input[type="url"],
 input[type="number"] {
   background-color: var(--lightAccent000);
   border-color: var(--lightAccent400);
-  border-radius: 100px;
+  border-radius: var(--defaultBorderRadius);
   border-style: solid;
   border-width: 1px;
   height: fit-content;
@@ -87,7 +89,7 @@ input[type="number"]::placeholder {
 
 summary {
   border-color: var(--lightAccent400);
-  border-radius: 100px;
+  border-radius: 10px;
   border-style: solid;
   border-width: 1px;
   margin-bottom: 5px;
@@ -104,7 +106,7 @@ summary:active {
 
 select {
   border-color: var(--lightAccent400);
-  border-radius: 100px;
+  border-radius: var(--defaultBorderRadius);
   border-style: solid;
   padding: 10px;
 }
@@ -247,7 +249,7 @@ span.menuDropdown {
 button.navButton {
   background-color: var(--lightAccent000);
   border-color: var(--lightAccent400);
-  border-radius: 100px;
+  border-radius: var(--defaultBorderRadius);
   border-style: solid;
   border-width: 1px;
   height: fit-content;
@@ -280,7 +282,7 @@ td.appSection {
 button.appSection {
   background-color: transparent;
   border-color: var(--lightAccent400);
-  border-radius: 100px;
+  border-radius: var(--defaultBorderRadius);
   border-style: solid;
   border-width: 1px;
   margin-bottom: 5px;
@@ -417,7 +419,7 @@ h2.dialogOverlay {
 button.primaryButton {
   background-color: var(--blueAccent500);
   border-color: var(--blueAccent500);
-  border-radius: 100px;
+  border-radius: var(--defaultBorderRadius);
   border-style: solid;
   border-width: 1px;
   color: var(--lightAccent000);
@@ -451,7 +453,7 @@ img.primaryButton {
 button.dialogOverlay {
   background-color: var(--lightAccent000);
   border-color: var(--lightAccent400);
-  border-radius: 100px;
+  border-radius: var(--defaultBorderRadius);
   border-style: solid;
   border-width: 1px;
   height: fit-content;
@@ -470,10 +472,10 @@ button.dialogOverlay:active {
 }
 
 a.hyperlinkButton {
-  border-radius: 100px;
+  border-radius: var(--defaultBorderRadius);
   color: var(--blueAccent500);
   cursor: pointer;
-  padding: 8px;
+  padding: 7.5px;
 }
 
 a.hyperlinkButton:hover {
@@ -519,7 +521,7 @@ select.pageStyle {
 nav.statusBar {
   background-color: var(--lightAccent200);
   border-color: var(--lightAccent400);
-  border-radius: 100px;
+  border-radius: var(--defaultBorderRadius);
   border-style: solid;
   border-width: 1px;
   font-size: 12px;
@@ -601,7 +603,7 @@ div.symbolContainer:hover {
 
 img.gettingStartedDialog {
   border-color: var(--lightAccent300);
-  border-radius: 5px;
+  border-radius: 10px;
   border-style: solid;
   border-width: 1px;
   width: 100%;
