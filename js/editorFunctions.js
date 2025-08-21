@@ -82,7 +82,7 @@ function doNotSave() {
 function saveNoteProgress() {
   localStorage.setItem("noteProgress", quill.getSemanticHTML());
   localStorage.setItem("noteTitle", noteName.value);
-  displaySnackbar("Saved note progress!");
+  displaySnackbar("Saved note progress");
 }
 
 function printNoteOperation() {

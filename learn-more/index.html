@@ -8,10 +8,26 @@
 		<meta content="ie=edge" http-equiv="X-UA-Compatible" />
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 		<title>Learn More | NoteMaster</title>
+
+		<link
+			href="https://cdn.jsdelivr.net/npm/quill/dist/quill.snow.min.css"
+			rel="stylesheet"
+		/>
 	</head>
 
 	<body
-		onload="const mobileDetect = new MobileDetect(window.navigator.userAgent); if (mobileDetect.phone() !== null) { document.querySelector('#secondaryAction').hidden = true; document.querySelector('#openInBrowser').hidden = true }"
+		onload="
+			const mobileDetect = new MobileDetect(window.navigator.userAgent);
+			const urlSearchParams = new URLSearchParams(window.location.search);
+			const quill = new Quill('#sharedNoteView', { readOnly: true, modules: { toolbar: false }, theme: 'snow'});
+			if (mobileDetect.phone() !== null) { document.querySelector('#openInBrowser').hidden = true;
+				document.querySelector('#secondaryAction').classList = 'dialogOverlay' };
+			if (urlSearchParams.has('name') || urlSearchParams.has('markup')) { document.querySelector('#sharedNoteTitle').innerHTML = urlSearchParams.get('name');
+				quill.clipboard.dangerouslyPasteHTML(decodeURIComponent(urlSearchParams.get('markup')));
+				document.querySelector('#pasteSharedNoteLink').hidden = true;
+				document.querySelector('#sharedNoteView').hidden = false;
+				document.querySelector('#secondaryAction').click();
+				history.pushState(null, '', window.location.href.split('?')[0]); }"
 	>
 		<header>
 			<table style="width: 99%">
@@ -23,20 +39,20 @@
 					<div id="navigateToNoteMaster">
 						<td style="width: 20%">
 							<button
-								id="secondaryAction"
-								class="navigateToNoteMaster primaryButton"
-								onclick="window.open('https://github.com/j-m-a-g/notemaster/issues', '_blank')"
+								class="dialogOverlay"
+								id="openInBrowser"
+								onclick="window.location.href = '../'"
 							>
-								Send Feedback
+								Open in Browser
 							</button>
 						</td>
 						<td style="width: 20%">
 							<button
-								id="openInBrowser"
-								class="dialogOverlay"
-								onclick="window.location.href = '../'"
+								class="navigateToNoteMaster primaryButton"
+								id="secondaryAction"
+								onclick="toggleDialog(true, 'sharedNoteViewer', 'viewSharedNoteURL')"
 							>
-								Open in Browser
+								View a Shared Note
 							</button>
 						</td>
 					</div>
@@ -44,7 +60,69 @@
 			</table>
 		</header>
 
-		<div style="padding-top: 45px">
+		<div hidden id="dialogFocusBackground">
+			<div
+				class="dialogOverlay"
+				id="sharedNoteViewer"
+				style="height: 90%; width: 85%; margin-left: 6%"
+			>
+				<table style="width: 100%">
+					<tr>
+						<td>
+							<img
+								class="reducedIntensity"
+								src="../assets/images/share_000000.svg"
+							/>
+						</td>
+						<td style="width: 90%">
+							<h2 class="dialogOverlay" id="sharedNoteTitle">
+								View a Shared Note
+							</h2>
+						</td>
+						<td>
+							<a
+								class="hyperlinkButton"
+								onclick="toggleDialog(false, 'sharedNoteViewer', null)"
+							>
+								Close
+							</a>
+						</td>
+					</tr>
+				</table>
+				<div id="pasteSharedNoteLink">
+					<h3 class="helperText" style="font-weight: normal; text-align: left">
+						Paste the link to the shared note below to quickly see its contents
+					</h3>
+					<input
+						id="viewSharedNoteURL"
+						placeholder="Enter URL here"
+						style="width: 97%"
+						type="url"
+					/>
+					<br />
+					<br />
+					<button
+						class="primaryButton"
+						onclick="
+							try { if (checkURLInput('viewSharedNoteURL') && document.querySelector('#viewSharedNoteURL').value.includes('https://j-m-a-g.github.io/notemaster')) { document.querySelector('#viewSharedNoteURL').value = `${window.location.href}${document.querySelector('#viewSharedNoteURL').value.slice(37)}`;
+											window.location.replace(document.querySelector('#viewSharedNoteURL').value) } } catch { alert('Please enter a valid URL') }"
+					>
+						<img
+							class="primaryButton menu"
+							src="../assets/images/file_open_000000.svg"
+						/>
+						View Note
+					</button>
+				</div>
+				<div
+					hidden
+					id="sharedNoteView"
+					style="height: 85%; user-select: text"
+				></div>
+			</div>
+		</div>
+
+		<div style="padding-top: 15%">
 			<div class="infoSection primarySection">
 				<img class="productScreenshot" src="assets/1.svg" />
 				<br />
@@ -55,7 +133,8 @@
 			</div>
 			<div class="infoSection secondarySection">
 				<h1>
-					Take your note-taking to another level<br />with <u>NoteMaster</u>
+					Take your note-taking to another level<br />with
+					<u class="infoSection">NoteMaster</u>
 				</h1>
 				<p>
 					Whether you're taking notes during a class or jotting down key points
@@ -79,7 +158,7 @@
 							class="reducedIntensity primaryButton featureIcon"
 							src="../assets/images/note_add_000000.svg"
 						/>
-						<h3>
+						<h3 class="productScreenshot">
 							Start from scratch and create a new note or open an existing one
 							from your device
 						</h3>
@@ -95,7 +174,7 @@
 							class="reducedIntensity featureIcon"
 							src="../assets/images/share_000000.svg"
 						/>
-						<h3>
+						<h3 class="productScreenshot">
 							Share a copy of your note to another person for online access in
 							any browser
 						</h3>
@@ -109,7 +188,7 @@
 							class="reducedIntensity primaryButton featureIcon"
 							src="../assets/images/download_000000.svg"
 						/>
-						<h3>
+						<h3 class="productScreenshot">
 							Save your note in-app or directly download it in HTML or plain
 							text format once you want to move on
 						</h3>
@@ -125,7 +204,7 @@
 							class="reducedIntensity featureIcon"
 							src="../assets/images/fit_width_000000.svg"
 						/>
-						<h3>
+						<h3 class="productScreenshot">
 							Adjust the amount of space the editor and viewing area take up on
 							your screen
 						</h3>
@@ -139,7 +218,7 @@
 							class="reducedIntensity primaryButton featureIcon"
 							src="../assets/images/more_time_000000.svg"
 						/>
-						<h3>
+						<h3 class="productScreenshot">
 							Keep track of the documents you open on the side with the,
 							"Viewing History" feature
 						</h3>
@@ -155,7 +234,7 @@
 							class="reducedIntensity featureIcon"
 							src="../assets/images/integration_instructions_000000.svg"
 						/>
-						<h3>
+						<h3 class="productScreenshot">
 							See the code-behind for when you format your note with bold,
 							italicized, underlined, strike-through, and colored text, block
 							quotes, lists, headings, highlights, and more
@@ -170,7 +249,7 @@
 							class="reducedIntensity primaryButton featureIcon"
 							src="../assets/images/check_000000.svg"
 						/>
-						<h3>
+						<h3 class="productScreenshot">
 							Note-taking at night? Use the available Dark Mode to relieve your
 							eyes
 						</h3>
@@ -198,6 +277,10 @@
 			<a href="https://maghamez.com" target="_blank">maghamez.com</a>
 		</footer>
 
+		<script src="https://cdn.jsdelivr.net/npm/quill/dist/quill.min.js"></script>
+
 		<script src="../assets/mobile-detect.js/mobile-detect.min.js"></script>
+		<script src="../js/fileViewing-min.js"></script>
+		<script src="../js/index-min.js"></script>
 	</body>
 </html>

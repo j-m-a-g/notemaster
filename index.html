@@ -24,7 +24,9 @@
   </head>
 
   <body
-    onbeforeunload="if (quill.getLength() !== 1 || noteName.value !== '') { event.preventDefault(); event.returnValue = '' }"
+    onbeforeunload="
+      if (quill.getLength() !== 1 || noteName.value !== '') { event.preventDefault();
+        event.returnValue = '' }"
     onload="onLoadTasks()"
     onresize="dynamicallySetHeight()"
   >
@@ -252,7 +254,7 @@
           class="menuDropdown"
           disabled
           id="insertDate"
-          onclick="quill.insertText(quill.getSelection(focus), (currentDate.getMonth() + 1).toString() + '/' + currentDate.getDate().toString() + '/' + currentDate.getFullYear().toString())"
+          onclick="quill.insertText(quill.getSelection(focus), `${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()}`)"
         >
           <img
             class="reducedIntensity menu"
@@ -587,7 +589,11 @@
         onmouseover="this.hidden = false"
         style="margin-left: 303px"
       >
-        <button class="menuDropdown" onclick="launchExample()">
+        <button
+          id="launchExampleButton"
+          class="menuDropdown"
+          onclick="launchExample()"
+        >
           <img
             class="reducedIntensity menu"
             src="assets/images/play_lesson_000000.svg"
@@ -724,7 +730,9 @@
                         accept=".xml, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                         hidden
                         id="convertWordToNoteInput"
-                        onchange="convertWordToNote(); wordDocumentToNoteButton.disabled = true"
+                        onchange="
+                          convertWordToNote();
+                          wordDocumentToNoteButton.disabled = true"
                         type="file"
                       />
                       <span class="helperText"
@@ -776,18 +784,24 @@
               <nav style="margin-bottom: 5px">
                 <button
                   class="navButton navSeparation"
-                  onclick="toggleDialog(true, 'shareCopyOfNote', 'shareCopyLink'); prepareToShare()"
-                  style="width: 125px"
+                  onclick="
+                    toggleDialog(true, 'shareCopyOfNote', 'shareCopyLink');
+                    prepareToShare()"
+                  style="width: 100px"
+                  title="Share a Copy"
                 >
                   <img
                     class="reducedIntensity menu"
                     src="assets/images/share_000000.svg"
                   />
-                  Share a Copy
+                  Share
                 </button>
                 <button
                   class="navButton"
-                  onclick="mainEditorFontSize += 1; mainEditor.style.fontSize = mainEditorFontSize + 'px'; updateStatusBar()"
+                  onclick="
+                    mainEditorFontSize++;
+                    mainEditor.style.fontSize = `${mainEditorFontSize}px`;
+                    updateStatusBar()"
                   title="Zoom In"
                 >
                   <img
@@ -797,7 +811,10 @@
                 </button>
                 <button
                   class="navButton navSeparation"
-                  onclick="mainEditorFontSize -= 1; mainEditor.style.fontSize = mainEditorFontSize + 'px'; updateStatusBar()"
+                  onclick="
+                    mainEditorFontSize--;
+                    mainEditor.style.fontSize = `${mainEditorFontSize}px`;
+                    updateStatusBar()"
                   title="Zoom Out"
                 >
                   <img
@@ -807,7 +824,9 @@
                 </button>
                 <input
                   id="noteName"
-                  oninput="noteName.value = noteName.value.replaceAll('.', ''); alterWindowTitle(false)"
+                  oninput="
+                    noteName.value = noteName.value.replaceAll('.', '');
+                    alterWindowTitle(false)"
                   placeholder="Untitled"
                   type="text"
                 />
@@ -815,7 +834,9 @@
               </nav>
               <div
                 id="mainEditor"
-                oninput="updateStatusBar(); saveWritingCounts()"
+                oninput="
+                  updateStatusBar();
+                  saveWritingCounts()"
               ></div>
               <nav class="statusBar" id="editorStatusBar">
                 <table style="width: 100%">
@@ -833,7 +854,9 @@
                       <button
                         class="warningBanner"
                         title="Writing Insights"
-                        onclick="toggleDialog(true, 'writingInsights', null); displayWritingInsights()"
+                        onclick="
+                          toggleDialog(true, 'writingInsights', null);
+                          displayWritingInsights()"
                       >
                         <img
                           class="reducedIntensity menu"
@@ -866,7 +889,9 @@
                     <td>
                       <button
                         class="appSection"
-                        onclick="pdfFileInput.click(); toggleViewer(true, 'pdfViewer')"
+                        onclick="
+                          pdfFileInput.click();
+                          toggleViewer(true, 'pdfViewer')"
                       >
                         <table>
                           <tr>
@@ -882,7 +907,9 @@
                                 accept="application/pdf"
                                 hidden
                                 id="pdfFileInput"
-                                onchange="pdfView.src = window.URL.createObjectURL(this.files[0]); tasksOnceFileOpen('pdfView', 'pdfFileInput')"
+                                onchange="
+                                  pdfView.src = window.URL.createObjectURL(this.files[0]);
+                                  tasksOnceFileOpen('pdfView', 'pdfFileInput')"
                                 type="file"
                               />
                             </td>
@@ -893,7 +920,9 @@
                     <td>
                       <button
                         class="appSection"
-                        onclick="imageFileInput.click(); toggleViewer(true, 'imageViewer')"
+                        onclick="
+                          imageFileInput.click();
+                          toggleViewer(true, 'imageViewer')"
                       >
                         <table>
                           <tr>
@@ -909,7 +938,9 @@
                                 accept="image/*"
                                 hidden
                                 id="imageFileInput"
-                                onchange="imageView.src = window.URL.createObjectURL(this.files[0]); tasksOnceFileOpen('imageView', 'imageFileInput')"
+                                onchange="
+                                  imageView.src = window.URL.createObjectURL(this.files[0]);
+                                  tasksOnceFileOpen('imageView', 'imageFileInput')"
                                 type="file"
                               />
                             </td>
@@ -922,7 +953,9 @@
                     <td>
                       <button
                         class="appSection"
-                        onclick="textFileInput.click(); toggleViewer(true, 'textViewer')"
+                        onclick="
+                          textFileInput.click();
+                          toggleViewer(true, 'textViewer')"
                       >
                         <table>
                           <tr>
@@ -937,7 +970,11 @@
                               <input
                                 hidden
                                 id="textFileInput"
-                                onchange="readTextFile(); textViewActions.hidden = false; textView.hidden = false; tasksOnceFileOpen('textViewer', 'textFileInput')"
+                                onchange="
+                                  readTextFile();
+                                  textViewActions.hidden = false;
+                                  textView.hidden = false;
+                                  tasksOnceFileOpen('textViewer', 'textFileInput')"
                                 type="file"
                               />
                             </td>
@@ -948,7 +985,9 @@
                     <td>
                       <button
                         class="appSection"
-                        onclick="videoFileInput.click(); toggleViewer(true, 'videoViewer')"
+                        onclick="
+                          videoFileInput.click();
+                          toggleViewer(true, 'videoViewer')"
                       >
                         <table>
                           <tr>
@@ -964,7 +1003,10 @@
                                 accept="audio/*, video/*"
                                 hidden
                                 id="videoFileInput"
-                                onchange="videoView.src = window.URL.createObjectURL(this.files[0]); tasksOnceFileOpen('videoView', 'videoFileInput'); additionalVideoControls.hidden = false"
+                                onchange="
+                                  videoView.src = window.URL.createObjectURL(this.files[0]);
+                                  tasksOnceFileOpen('videoView', 'videoFileInput');
+                                  additionalVideoControls.hidden = false"
                                 type="file"
                               />
                             </td>
@@ -977,7 +1019,9 @@
                     <td>
                       <button
                         class="appSection"
-                        onclick="wordFileInput.click(); toggleViewer(true, 'wordDocumentViewer')"
+                        onclick="
+                          wordFileInput.click();
+                          toggleViewer(true, 'wordDocumentViewer')"
                       >
                         <table>
                           <tr>
@@ -993,7 +1037,9 @@
                                 accept=".xml, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                                 hidden
                                 id="wordFileInput"
-                                onchange="readWordDocument(); tasksOnceFileOpen('wordDocumentView', 'wordFileInput')"
+                                onchange="
+                                  readWordDocument();
+                                  tasksOnceFileOpen('wordDocumentView', 'wordFileInput')"
                                 type="file"
                               />
                             </td>
@@ -1004,7 +1050,9 @@
                     <td>
                       <button
                         class="appSection"
-                        onclick="markdownFileInput.click(); toggleViewer(true, 'markdownFileViewer')"
+                        onclick="
+                          markdownFileInput.click();
+                          toggleViewer(true, 'markdownFileViewer')"
                       >
                         <table>
                           <tr>
@@ -1019,7 +1067,9 @@
                               <input
                                 hidden
                                 id="markdownFileInput"
-                                onchange="readMarkdownFile(); tasksOnceFileOpen('markdownFileView', 'markdownFileInput')"
+                                onchange="
+                                  readMarkdownFile();
+                                  tasksOnceFileOpen('markdownFileView', 'markdownFileInput')"
                                 type="file"
                                 accept=".md"
                               />
@@ -1033,7 +1083,9 @@
                     <td>
                       <button
                         class="appSection"
-                        onclick="codeFileInput.click(); toggleViewer(true, 'codeFileViewer')"
+                        onclick="
+                          codeFileInput.click();
+                          toggleViewer(true, 'codeFileViewer')"
                       >
                         <table>
                           <tr>
@@ -1153,7 +1205,11 @@
                     <td>
                       <button
                         class="appSection"
-                        onclick="toggleViewer(true, 'webpageViewer'); tasksOnceFileOpen('webpageView', null); noFileSelected.hidden = true; webpageURLBar.focus()"
+                        onclick="
+                          toggleViewer(true, 'webpageViewer');
+                          tasksOnceFileOpen('webpageView', null);
+                          noFileSelected.hidden = true;
+                          webpageURLBar.focus()"
                       >
                         <table>
                           <tr>
@@ -1240,7 +1296,9 @@
             </details>
             <button
               class="appSection"
-              onclick="anotherNoteFileInput.click(); toggleViewer(true, 'anotherNoteViewer')"
+              onclick="
+                anotherNoteFileInput.click();
+                toggleViewer(true, 'anotherNoteViewer')"
             >
               <table>
                 <tr>
@@ -1275,7 +1333,9 @@
                   <button
                     class="warningBanner"
                     id="viewerStatusBarIndicator"
-                    onmouseover="this.hidden = true; viewerStatusBar.hidden = false"
+                    onmouseover="
+                      this.hidden = true;
+                      viewerStatusBar.hidden = false"
                   >
                     <img
                       class="reducedIntensity menu"
@@ -1286,7 +1346,9 @@
                 <td style="width: 100%">
                   <nav
                     onmouseover="this.hidden = false"
-                    onmouseleave="this.hidden = true; viewerStatusBarIndicator.hidden = false"
+                    onmouseleave="
+                      this.hidden = true;
+                      viewerStatusBarIndicator.hidden = false"
                     hidden
                     class="statusBar"
                     id="viewerStatusBar"
@@ -1297,7 +1359,9 @@
                         <td style="width: 5%">
                           <button
                             class="warningBanner"
-                            onclick="toggleDialog(true,  'viewingHistory', null); appendViewingHistory()"
+                            onclick="
+                              toggleDialog(true,  'viewingHistory', null);
+                              appendViewingHistory()"
                             title="Show viewing history"
                           >
                             <img
@@ -1311,7 +1375,9 @@
                           <span
                             class="copyOnClick"
                             id="fileName"
-                            onclick="navigator.clipboard.writeText(this.innerHTML); displaySnackbar(copiedToClipboardString)"
+                            onclick="
+                              navigator.clipboard.writeText(this.innerHTML);
+                              displaySnackbar(copiedToClipboardString)"
                             title="Copy the file's name"
                             >---</span
                           >
@@ -1321,7 +1387,9 @@
                           <span
                             class="copyOnClick"
                             id="fileSize"
-                            onclick="navigator.clipboard.writeText(this.innerHTML); displaySnackbar(copiedToClipboardString)"
+                            onclick="
+                              navigator.clipboard.writeText(this.innerHTML);
+                              displaySnackbar(copiedToClipboardString)"
                             title="Copy the file's size"
                             >---</span
                           >
@@ -1331,7 +1399,9 @@
                           <span
                             class="copyOnClick"
                             id="fileLastModified"
-                            onclick="navigator.clipboard.writeText(this.innerHTML); displaySnackbar('Copied to clipboard')"
+                            onclick="
+                              navigator.clipboard.writeText(this.innerHTML);
+                              displaySnackbar('Copied to clipboard')"
                             title="Copy the file's last modified date"
                             >---</span
                           >
@@ -1382,7 +1452,9 @@
                 </select>
                 <button
                   class="navButton"
-                  onclick="textViewFontSize += 1; textView.style.fontSize = textViewFontSize + 'px'"
+                  onclick="
+                    textViewFontSize++;
+                    textView.style.fontSize = `${textViewFontSize}px`"
                   title="Increase font size"
                 >
                   <img
@@ -1392,7 +1464,9 @@
                 </button>
                 <button
                   class="navButton"
-                  onclick="textViewFontSize -= 1; textView.style.fontSize = textViewFontSize + 'px'"
+                  onclick="
+                    textViewFontSize--;
+                    textView.style.fontSize = `${textViewFontSize}px`"
                   title="Decrease font size"
                 >
                   <img
@@ -1402,7 +1476,9 @@
                 </button>
                 <button
                   class="navButton"
-                  onclick="textView.style.fontSize = '14px'; textViewFontSize = 14"
+                  onclick="
+                    textView.style.fontSize = '14px';
+                    textViewFontSize = 14"
                   title="Reset font size"
                 >
                   <img
@@ -1439,7 +1515,7 @@
                 <select
                   class="navSeparation"
                   id="programmingLanguageMode"
-                  onchange="const editorMode = 'ace/mode/' + programmingLanguageMode.value; codeFileViewCodeEditor.session.setMode(editorMode);"
+                  onchange="codeFileViewCodeEditor.session.setMode(`ace/mode/${programmingLanguageMode.value}`);"
                 >
                   <option value="plain_text">None</option>
                   <optgroup label="A">
@@ -1557,7 +1633,9 @@
                 </select>
                 <button
                   class="navButton"
-                  onclick="codeFileViewFontSize += 1; codeFileView.style.fontSize = codeFileViewFontSize + 'px'"
+                  onclick="
+                    codeFileViewFontSize++;
+                    codeFileView.style.fontSize = `${codeFileViewFontSize}px`"
                   title="Increase font size"
                 >
                   <img
@@ -1567,7 +1645,9 @@
                 </button>
                 <button
                   class="navButton"
-                  onclick="codeFileViewFontSize -= 1; codeFileView.style.fontSize = codeFileViewFontSize + 'px'"
+                  onclick="
+                    codeFileViewFontSize--;
+                    codeFileView.style.fontSize = `${codeFileViewFontSize}px"
                   title="Decrease font size"
                 >
                   <img
@@ -1577,7 +1657,9 @@
                 </button>
                 <button
                   class="navButton"
-                  onclick="codeFileView.style.fontSize = '12px'; codeFileViewFontSize = 12"
+                  onclick="
+                    codeFileView.style.fontSize = '12px';
+                    codeFileViewFontSize = 12"
                   title="Reset font size"
                 >
                   <img
@@ -1598,7 +1680,9 @@
                     <td>
                       <button
                         class="navButton"
-                        onclick="if (lastViewedWebpages.length > 1) { webpageView.src = lastViewedWebpages[lastViewedWebpages.length - 2]; webpageURLBar.value = lastViewedWebpages[lastViewedWebpages.length - 2] }"
+                        onclick="
+                          if (lastViewedWebpages.length > 1) { webpageView.src = lastViewedWebpages[lastViewedWebpages.length - 2];
+                            webpageURLBar.value = lastViewedWebpages[lastViewedWebpages.length - 2] }"
                         title="Back"
                       >
                         <img
@@ -1618,7 +1702,11 @@
                     <td>
                       <button
                         class="navButton"
-                        onclick="if (!webpageURLBar.value.includes('https://') && !webpageURLBar.value.includes('http://')) { webpageURLBar.value = 'https://' + webpageURLBar.value } webpageView.removeAttribute('srcdoc'); webpageView.src = webpageURLBar.value; lastViewedWebpages.push(webpageURLBar.value); addHistoryEntry('webpageURLBar')"
+                        onclick="
+                          if (!webpageURLBar.value.includes('https://') && !webpageURLBar.value.includes('http://')) { webpageURLBar.value = `https://${webpageURLBar.value}` } webpageView.removeAttribute('srcdoc');
+                          webpageView.src = webpageURLBar.value;
+                          lastViewedWebpages.push(webpageURLBar.value);
+                          addHistoryEntry('webpageURLBar')"
                         title="Search"
                       >
                         <img
@@ -1796,7 +1884,9 @@
             <td style="padding-top: 10px">
               <a
                 class="hyperlinkButton"
-                onclick="toggleDialog(true, 'viewingHistory', null); appendViewingHistory()"
+                onclick="
+                  toggleDialog(true, 'viewingHistory', null);
+                  appendViewingHistory()"
               >
                 <img
                   class="reducedIntensity menu"
@@ -1864,13 +1954,17 @@
                   <td>
                     <a
                       class="hyperlinkButton"
-                      onclick="viewingSize.value = viewingSize.min; adjustViewingAndEditorSizes()"
+                      onclick="
+                        viewingSize.value = viewingSize.min;
+                        adjustViewingAndEditorSizes()"
                       >Min</a
                     >
                     or
                     <a
                       class="hyperlinkButton"
-                      onclick="viewingSize.value = viewingSize.max; adjustViewingAndEditorSizes()"
+                      onclick="
+                        viewingSize.value = viewingSize.max;
+                        adjustViewingAndEditorSizes()"
                       >Max</a
                     >
                   </td>
@@ -1882,9 +1976,9 @@
                 min="32"
                 oninput="adjustViewingAndEditorSizes()"
                 onkeydown="appSectionSizesContainer.style.opacity = '75%'"
-                onkeyup="setTimeout(() => { appSectionSizesContainer.style.opacity = '100%' }, 2000);"
+                onkeyup="setTimeout(function () { appSectionSizesContainer.style.opacity = '100%' }, 2000)"
                 onmousedown="appSectionSizesContainer.style.opacity = '75%'"
-                onmouseup="setTimeout(() => { appSectionSizesContainer.style.opacity = '100%' }, 2000);"
+                onmouseup="setTimeout(function () { appSectionSizesContainer.style.opacity = '100%' }, 2000)"
                 placeholder="50% (Default)"
                 style="width: 90%; margin-top: 5px"
                 type="number"
@@ -1896,7 +1990,11 @@
 
         <button
           class="primaryButton"
-          onclick="viewingSize.value = 50; editorSize.value = 50; applyPercentageSizes(); localStorage.setItem('viewingSizeValue', viewingSize.value)"
+          onclick="
+            viewingSize.value = 50;
+            editorSize.value = 50;
+            applyPercentageSizes();
+            localStorage.setItem('viewingSizeValue', viewingSize.value)"
           style="width: 25%; margin-left: 5px; margin-top: 5px"
         >
           <img
@@ -1943,7 +2041,9 @@
             <td>
               <button
                 class="primaryButton"
-                onclick="if (checkURLInput('insertOnlineImageInput')) { toggleDialog(false, 'insertOnlineImage', null); quill.clipboard.dangerouslyPasteHTML(quill.getSemanticHTML() + '<img src=\'' + insertOnlineImageInput.value + '\'>') }"
+                onclick="
+                  if (checkURLInput('insertOnlineImageInput')) { toggleDialog(false, 'insertOnlineImage', null);
+                    quill.clipboard.dangerouslyPasteHTML(`${quill.getSemanticHTML()}<img src='${insertOnlineImageInput.value}'>`) }"
               >
                 Insert
               </button>
@@ -1968,7 +2068,9 @@
             <td>
               <a
                 class="hyperlinkButton"
-                onclick="insertTable.hidden = true; insertTableQuill.setContents()"
+                onclick="
+                  insertTable.hidden = true;
+                  insertTableQuill.setContents()"
                 >Close</a
               >
             </td>
@@ -1986,7 +2088,7 @@
                 id="tableRows"
                 max="32"
                 min="1"
-                onchange="if (tableRows.value <= 9 && tableRows.value >= 1) { tableRows.value = '0' + tableRows.value } if (tableRows.value > tableRows.max) { tableRows.value = tableRows.max }"
+                onchange="if (tableRows.value <= 9 && tableRows.value >= 1) { tableRows.value = `0${tableRows.value}` } if (tableRows.value > tableRows.max) { tableRows.value = tableRows.max }"
                 placeholder="Rows"
                 style="width: 85%"
                 type="number"
@@ -1997,7 +2099,7 @@
                 id="tableColumns"
                 max="32"
                 min="1"
-                onchange="if (tableColumns.value <= 9 && tableColumns.value >= 1) { tableColumns.value = '0' + tableColumns.value } if (tableColumns.value > tableColumns.max) { tableColumns.value = tableColumns.max }"
+                onchange="if (tableColumns.value <= 9 && tableColumns.value >= 1) { tableColumns.value = `0${tableColumns.value}` } if (tableColumns.value > tableColumns.max) { tableColumns.value = tableColumns.max }"
                 placeholder="Columns"
                 style="width: 85%"
                 type="number"
@@ -2085,7 +2187,10 @@
               <td style="width: 33%">
                 <button
                   class="dialogOverlay"
-                  onclick="toggleDialog(false, 'gettingStarted', null); localStorage.setItem('finishedGetStarted', true); launchExample()"
+                  onclick="
+                    toggleDialog(false, 'gettingStarted', null);
+                    localStorage.setItem('finishedGetStarted', true);
+                    launchExample()"
                 >
                   Launch Example
                 </button>
@@ -2273,7 +2378,9 @@
               <td style="width: 25%">
                 <button
                   class="primaryButton"
-                  onclick="toggleDialog(false, 'gettingStarted', null); localStorage.setItem('finishedGetStarted', true)"
+                  onclick="
+                    toggleDialog(false, 'gettingStarted', null);
+                    localStorage.setItem('finishedGetStarted', true)"
                 >
                   Finish
                 </button>
@@ -2756,7 +2863,9 @@
         <br />
         <button
           class="primaryButton"
-          onclick="document.querySelector('#copyHistoryEditor').hidden = false; copyHistoryQuill.clipboard.dangerouslyPasteHTML(historyTableContainer.innerHTML)"
+          onclick="
+            document.querySelector('#copyHistoryEditor').hidden = false;
+            copyHistoryQuill.clipboard.dangerouslyPasteHTML(historyTableContainer.innerHTML)"
           style="width: 25%"
         >
           <img
@@ -2826,7 +2935,9 @@
         Set a goal for typing
         <select
           id="typingTarget"
-          onchange="if (this.value === 'custom') { this.hidden = true; customTypingTarget.hidden = false }"
+          onchange="
+            if (this.value === 'custom') { this.hidden = true;
+              customTypingTarget.hidden = false }"
         >
           <option value="1000">1,000</option>
           <option value="2000">2,000</option>
@@ -2908,7 +3019,12 @@
             <td>
               <button
                 class="primaryButton"
-                onclick="if (checkURLInput('URLToPDFInput')) { toggleDialog(false, 'linkToPDF', null); pdfView.src = URLToPDFInput.value; toggleViewer(true, 'pdfViewer'); tasksOnceFileOpen('pdfView', null); addHistoryEntry('URLToPDFInput') }"
+                onclick="
+                  if (checkURLInput('URLToPDFInput')) { toggleDialog(false, 'linkToPDF', null);
+                    pdfView.src = URLToPDFInput.value;
+                    toggleViewer(true, 'pdfViewer');
+                    tasksOnceFileOpen('pdfView', null);
+                    addHistoryEntry('URLToPDFInput') }"
               >
                 Open
               </button>
@@ -2949,7 +3065,12 @@
             <td>
               <button
                 class="primaryButton"
-                onclick="if (checkURLInput('URLToImageInput')) { toggleDialog(false, 'linkToImage', null); imageView.src = document.querySelector('#URLToImageInput').value; toggleViewer(true, 'imageViewer'); tasksOnceFileOpen('imageView', null); addHistoryEntry('URLToImageInput') }"
+                onclick="
+                  if (checkURLInput('URLToImageInput')) { toggleDialog(false, 'linkToImage', null);
+                    imageView.src = document.querySelector('#URLToImageInput').value;
+                    toggleViewer(true, 'imageViewer');
+                    tasksOnceFileOpen('imageView', null);
+                    addHistoryEntry('URLToImageInput') }"
               >
                 Open
               </button>
@@ -3066,7 +3187,12 @@
             <td>
               <button
                 class="primaryButton"
-                onclick="if (checkURLInput('URLToOnlineDesign')) { onlineDesignView.src = URLToOnlineDesign.value.replace('edit', 'view') + '?embed'; toggleDialog(false, 'linkToOnlineDesign', null); toggleViewer(true,  'onlineDesignViewer'); tasksOnceFileOpen('onlineDesignView', null); addHistoryEntry('URLToOnlineDesign') }"
+                onclick="
+                  if (checkURLInput('URLToOnlineDesign')) { onlineDesignView.src = `${URLToOnlineDesign.value.replace('edit', 'view')}?embed`;
+                    toggleDialog(false, 'linkToOnlineDesign', null);
+                    toggleViewer(true,  'onlineDesignViewer');
+                    tasksOnceFileOpen('onlineDesignView', null);
+                    addHistoryEntry('URLToOnlineDesign') }"
               >
                 Open
               </button>
@@ -3108,7 +3234,12 @@
             <td>
               <button
                 class="primaryButton"
-                onclick="if (checkURLInput('URLToTubeVideo')) { tubeVideoView.src = 'https://www.youtube.com/embed/' + (URLToTubeVideo.value.replaceAll('https://www.youtube.com/watch?v=', '')).replaceAll('https://youtu.be/', ''); toggleDialog(false, 'linkToTubeVideo', null); toggleViewer(true, 'tubeVideoViewer'); tasksOnceFileOpen('tubeVideoView', null); addHistoryEntry('URLToTubeVideo') }"
+                onclick="
+                  if (checkURLInput('URLToTubeVideo')) { tubeVideoView.src = `https://www.youtube.com/embed/${URLToTubeVideo.value.replaceAll('https://www.youtube.com/watch?v=', '').replaceAll('https://youtu.be/', '')}`;
+                    toggleDialog(false, 'linkToTubeVideo', null);
+                    toggleViewer(true, 'tubeVideoViewer');
+                    tasksOnceFileOpen('tubeVideoView', null);
+                    addHistoryEntry('URLToTubeVideo') }"
               >
                 Open
               </button>
@@ -3197,7 +3328,9 @@
             <td>
               <button
                 class="primaryButton"
-                onclick="navigator.clipboard.writeText(shareCopyLink.value); displaySnackbar('Link copied!')"
+                onclick="
+                  navigator.clipboard.writeText(shareCopyLink.value);
+                  displaySnackbar(copiedToClipboardString)"
               >
                 <img
                   class="primaryButton menu"
@@ -3242,7 +3375,9 @@
         <div id="noteHTML"></div>
         <button
           class="primaryButton"
-          onclick="navigator.clipboard.writeText(noteHTMLCodeEditor.getValue()); displaySnackbar(copiedToClipboardString)"
+          onclick="
+            navigator.clipboard.writeText(noteHTMLCodeEditor.getValue());
+            displaySnackbar(copiedToClipboardString)"
           style="width: 25%"
         >
           <img

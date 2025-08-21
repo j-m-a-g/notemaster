@@ -4,6 +4,13 @@
 const additionalVideoControls = document.querySelector(
 	"#additionalVideoControls"
 );
+const anotherNoteViewQuill = new Quill("#anotherNoteView", {
+	readOnly: true,
+	modules: {
+		toolbar: false
+	},
+	theme: "snow"
+});
 const appSectionSizesContainer = document.querySelector(
 	"#appSectionSizesContainer"
 );
@@ -16,6 +23,13 @@ const codeFileViewerStatusBar = document.querySelector(
 const convertWordToNoteInput = document.querySelector(
 	"#convertWordToNoteInput"
 );
+const copyHistoryQuill = new Quill("#copyHistoryEditor", {
+	readOnly: true,
+	modules: {
+		toolbar: false
+	},
+	theme: "snow"
+});
 const customStylesheetImport = document.querySelector(
 	"#customStylesheetImport"
 );
@@ -29,6 +43,14 @@ const gettingStartedDarkMode = document.querySelector(
 const insertOnlineImageInput = document.querySelector(
 	"#insertOnlineImageInput"
 );
+const insertTableQuill = new Quill("#insertTableEditor", {
+	readOnly: true,
+	modules: {
+		toolbar: false
+	},
+	placeholder: "You haven't created a table yet",
+	theme: "snow"
+});
 const mammothJSOptions = {
 	styleMap: ["comment-reference => sup"]
 };

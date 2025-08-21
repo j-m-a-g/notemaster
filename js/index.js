@@ -1,7 +1,6 @@
 /** @author J. Maghamez */
 "use strict";
 
-// Note editor on the right side
 const quill = new Quill("#mainEditor", {
   modules: {
     toolbar: toolbarOptions
@@ -9,42 +8,6 @@ const quill = new Quill("#mainEditor", {
   placeholder: '"Everything begins with an idea" - Earl Nightingale',
   theme: "snow"
 });
-
-// Editor on the right side for viewing notes
-const anotherNoteViewQuill = new Quill("#anotherNoteView", {
-  readOnly: true,
-  modules: {
-    toolbar: null
-  },
-  theme: "snow"
-});
-
-// Displays the user their Viewing History as a table to
-// be copied
-const copyHistoryQuill = new Quill("#copyHistoryEditor", {
-  readOnly: true,
-  modules: {
-    toolbar: null
-  },
-  theme: "snow"
-});
-
-const insertTableQuill = new Quill("#insertTableEditor", {
-  readOnly: true,
-  modules: {
-    toolbar: null
-  },
-  placeholder: "You haven't created a table yet",
-  theme: "snow"
-});
-
-noteHTMLCodeEditor.session.setMode("ace/mode/html");
-noteHTMLCodeEditor.session.setUseWrapMode(true);
-noteHTMLCodeEditor.setReadOnly(true);
-
-codeFileViewCodeEditor.session.setMode("ace/mode/plain_text");
-codeFileViewCodeEditor.session.setUseWrapMode(true);
-codeFileViewCodeEditor.setReadOnly(true);
 
 /**
  * @method shiftProgressValue
@@ -174,6 +137,7 @@ function alterMenuFunctions(isDisabled) {
   document.querySelector("#insertSymbolButton").disabled = isDisabled;
   document.querySelector("#insertTableButton").disabled = isDisabled;
   document.querySelector("#insertTime").disabled = isDisabled;
+  document.querySelector("#launchExampleButton").disabled = !isDisabled;
   document.querySelector("#printNote").disabled = isDisabled;
   document.querySelector("#quillRedo").disabled = isDisabled;
   document.querySelector("#quillUndo").disabled = isDisabled;
@@ -502,8 +466,17 @@ function onLoadTasks() {
       snackbar.style.display = "none";
     }
 
+    noteHTMLCodeEditor.session.setMode("ace/mode/html");
+    noteHTMLCodeEditor.session.setUseWrapMode(true);
+    noteHTMLCodeEditor.setReadOnly(true);
+
+    codeFileViewCodeEditor.session.setMode("ace/mode/plain_text");
+    codeFileViewCodeEditor.session.setUseWrapMode(true);
+    codeFileViewCodeEditor.setReadOnly(true);
+
     appLoad.hidden = true;
   } catch (error) {
     throwAppError(error);
+    console.log(error);
   }
 }
