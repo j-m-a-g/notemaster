@@ -33,10 +33,6 @@ const copyHistoryQuill = new Quill("#copyHistoryEditor", {
 const customStylesheetImport = document.querySelector(
 	"#customStylesheetImport"
 );
-const downloadNotePrefixAndSuffix = [
-	"<div style='word-wrap: break-word'>",
-	"</div><style>body { font-family: sans-serif } td { word-break: break-word } h1, h2, h3, h4, h5, h6 { font-weight: normal } .ql-font-serif { font-family: serif } .ql-font-monospace { font-family: monospace }</style>"
-];
 const gettingStartedDarkMode = document.querySelector(
 	"#gettingStartedDarkMode"
 );
@@ -60,120 +56,6 @@ const programmingLanguageMode = document.querySelector(
 const startFromScratchOptions = document.querySelector(
 	"#startFromScratchOptions"
 );
-const symbolList = [
-	["¡", "Inverted Exclamation Mark"],
-	["¢", "Cent"],
-	["£", "Pound"],
-	["¤", "Currency"],
-	["¥", "Yen"],
-	["¦", "Broken Bar"],
-	["§", "Section"],
-	["¨", "Diaeresis"],
-	["©", "Copyright"],
-	["«", "Left Double Angle Quotation Mark"],
-	["¬", "Not"],
-	["®", "Registered"],
-	["¯", "Macron"],
-	["°", "Degree"],
-	["±", "Plus-Minus"],
-	["²", "Squared"],
-	["³", "Cubed"],
-	["´", "Acute"],
-	["µ", "Micro"],
-	["¶", "Pilcrow"],
-	["·", "Middle Dot"],
-	["¸", "Cedilla"],
-	["¹", "Superscript One"],
-	["º", "Masculine Ordinal Indicator"],
-	["»", "Right Double Angle Quotation Mark"],
-	["¼", "One Quarter"],
-	["½", "One Half"],
-	["¾", "Three Quarters"],
-	["¿", "Inverted Question Mark"],
-	["À", "Latin Uppercase A With Grave"],
-	["Á", "Latin Uppercase A With Acute"],
-	["Â", "Latin Uppercase A With Circumflex"],
-	["Ã", "Latin Uppercase A With Tilde"],
-	["Ã", "Latin Uppercase A With Tilde"],
-	["Ã", "Latin Uppercase A With Diaeresis"],
-	["Å", "Latin Uppercase A With Ring"],
-	["Æ", "Latin Uppercase AE"],
-	["Ç", "Latin Uppercase C With Cedilla"],
-	["È", "Latin Uppercase E With Grave"],
-	["É", "Latin Uppercase E With Acute"],
-	["Ê", "Latin Uppercase E With Circumflex"],
-	["Ê", "Latin Uppercase E With Circumflex"],
-	["Ë", "Latin Uppercase E With Diaeresis"],
-	["Ì", "Latin Uppercase I With Grave"],
-	["Í", "Latin Uppercase I With Acute"],
-	["Í", "Latin Uppercase I With Acute"],
-	["Î", "Latin Uppercase I With Circumflex"],
-	["Î", "Latin Uppercase I With Circumflex"],
-	["Ï", "Latin Uppercase I With Diaeresis"],
-	["Ð", "Latin Uppercase Eth"],
-	["Ñ", "Latin Uppercase N With Tilde"],
-	["Ò", "Latin Uppercase O With Grave"],
-	["Ó", "Latin Uppercase O With Acute"],
-	["Ô", "Latin Uppercase O With Circumflex"],
-	["Õ", "Latin Uppercase O With Tilde"],
-	["Ö", "Latin Uppercase O With Diaeresis"],
-	["×", "Multiplication"],
-	["Ø", "Latin Uppercase O With Stroke"],
-	["Ù", "Latin Uppercase U With Grave"],
-	["Ú", "Latin Uppercase U With Acute"],
-	["Û", "Latin Uppercase U With Circumflex"],
-	["Ü", "Latin Uppercase U With Diaeresis"],
-	["Ý", "Latin Uppercase Y With Acute"],
-	["Þ", "Latin Uppercase Thom"],
-	["ß", "Latin Lowercase Sharp S"],
-	["à", "Latin Lowercase A With Grave"],
-	["á", "Latin Lowercase A With Acute"],
-	["â", "Latin Lowercase A With Circumflex"],
-	["ã", "Latin Lowercase A With Tilde"],
-	["ä", "Latin Lowercase A With Diaeresis"],
-	["å", "Latin Lowercase A With Ring"],
-	["æ", "Latin Lowercase AE"],
-	["ç", "Latin Lowercase C With Cedilla"],
-	["è", "Latin Lowercase E With Grave"],
-	["é", "Latin Lowercase E With Acute"],
-	["ê", "Latin Lowercase E With Circumflex"],
-	["ë", "Latin Lowercase E With Diaeresis"],
-	["ì", "Latin Lowercase I With Grave"],
-	["í", "Latin Lowercase I With Acute"],
-	["î", "Latin Lowercase I With Circumflex"],
-	["ï", "Latin Lowercase I With Diaeresis"],
-	["ð", "Latin Lowercase Eth"],
-	["ñ", "Latin Lowercase N With Tilde"],
-	["ò", "Latin Lowercase O With Grave"],
-	["ó", "Latin Lowercase O With Acute"],
-	["ô", "Latin Lowercase O With Circumflex"],
-	["õ", "Latin Lowercase O With Tilde"],
-	["ö", "Latin Lowercase O With Diaeresis"],
-	["÷", "Division"],
-	["ø", "Latin Lowercase O With Stroke"],
-	["ù", "Latin Lowercase U With Grave"],
-	["ú", "Latin Lowercase U With Acute"],
-	["û", "Latin Lowercase U With Circumflex"],
-	["ü", "Latin Lowercase U With Diaeresis"],
-	["ý", "Latin Lowercase Y With Acute"],
-	["þ", "Latin Lowercase Thom"],
-	["ÿ", "Latin Lowercase Y With Diaeresis"],
-	["Ā", "Latin Uppercase A With Macron"],
-	["ā", "Latin Lowercase A With Macron"],
-	["Ă", "Latin Uppercase A With Breve"],
-	["ă", "Latin Lowercase A With Breve"],
-	["Ą", "Latin Uppercase A With Ogonek"],
-	["ą", "Latin Lowercase A With Ogonek"],
-	["Ć", "Latin Uppercase C With Acute"],
-	["ć", "Latin Lowercase C With Acute"],
-	["Ĉ", "Latin Uppercase C With Circumflex"],
-	["ĉ", "Latin Lowercase C With Circumflex"],
-	["Ċ", "Latin Uppercase C With Dot"],
-	["ċ", "Latin Lowercase C With Dot"],
-	["Č", "Latin Uppercase C With Caron"],
-	["č", "Latin Lowercase C With Caron"],
-	["ď", "Latin Lowercase D With Caron"]
-];
 const toolbarOptions = [
 	["bold", "italic", "underline", "strike"],
 	["blockquote", "code-block"],
@@ -206,18 +88,15 @@ const wordDocumentToNoteButton = document.querySelector(
 	"#wordDocumentToNoteButton"
 );
 const adjustAppSectionSizes = document.querySelector("#adjustAppSectionSizes");
-const adjustedHeight = `${window.innerHeight - 35}px`;
 const anotherNoteFileInput = document.querySelector("#anotherNoteFileInput");
 const anotherNoteView = document.querySelector("#anotherNoteView");
 const anotherNoteViewer = document.querySelector("#anotherNoteViewer");
 const appLoad = document.querySelector("#appLoad");
-const appName = "NoteMaster";
 const appSectionsTable = document.querySelector("#appSectionsTable");
 const autoSave = document.querySelector("#autoSave");
 const autoSaveCheck = document.querySelector("#autoSaveCheck");
 const characterCount = document.querySelector("#characterCount");
 const characterCountVisual = document.querySelector("#characterCountVisual");
-const checkedImageSource = "assets/images/check_000000.svg";
 const chooseViewer = document.querySelector("#chooseViewer");
 const closeFile = document.querySelector("#closeFile");
 const cloudFileView = document.querySelector("#cloudFileView");
@@ -230,7 +109,6 @@ const codeFileViewer = document.querySelector("#codeFileViewer");
 const confirmSaveDialog = document.querySelector("#confirmSaveDialog");
 const confirmViewerClose = document.querySelector("#confirmViewerClose");
 const copiedToClipboard = document.querySelector("#copiedToClipboard");
-const copiedToClipboardString = "Copied to clipboard";
 const createdTable = document.querySelector("#createdTable");
 const createOrOpenContainer = document.querySelector("#createOrOpenContainer");
 const currentDate = new Date();
@@ -248,8 +126,6 @@ const errorMessage = document.querySelector("#errorMessage");
 const fileLastModified = document.querySelector("#fileLastModified");
 const fileName = document.querySelector("#fileName");
 const fileSize = document.querySelector("#fileSize");
-const fileViewingHistoryNames = [];
-const fileViewingHistoryTimes = [];
 const hideEditorCheck = document.querySelector("#hideEditorCheck");
 const hideViewing = document.querySelector("#hideViewing");
 const hideViewingCheck = document.querySelector("#hideViewingCheck");
@@ -281,7 +157,6 @@ const onlineDesignView = document.querySelector("#onlineDesignView");
 const onlineDesignViewer = document.querySelector("#onlineDesignViewer");
 const onlineDocuments = document.querySelector("#onlineDocuments");
 const openNoteFileInput = document.querySelector("#openNoteFileInput");
-const originalDownloadSuffix = downloadNotePrefixAndSuffix[1];
 const pageBackgroundColor = document.querySelector("#pageBackgroundColor");
 const pageSetupStyle = document.querySelector("#pageSetupStyle");
 const pageTextColor = document.querySelector("#pageTextColor");
@@ -309,7 +184,6 @@ const totalWordCountDisplay = document.querySelector("#totalWordCountDisplay");
 const tubeVideoView = document.querySelector("#tubeVideoView");
 const tubeVideoViewer = document.querySelector("#tubeVideoViewer");
 const typingTarget = document.querySelector("#typingTarget");
-const uncheckedImageSource = "assets/images/menu_dropdown_placeholder.svg";
 const URLToCloudFile = document.querySelector("#URLToCloudFile");
 const URLToOnlineDesign = document.querySelector("#URLToOnlineDesign");
 const URLToPDFInput = document.querySelector("#URLToPDFInput");

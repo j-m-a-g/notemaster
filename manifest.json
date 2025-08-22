@@ -1,18 +1,74 @@
 {
+  "categories": ["education", "productivity", "utilities"],
+  "description": "A lightweight note-taking app for the web",
+  "display": "standalone",
   "name": "NoteMaster",
   "short_name": "NoteMaster",
-  "description": "A lightweight note-taking app for the web",
+  "start_url": "./",
   "icons": [
     {
-      "src": "notemasterIcon.png",
       "sizes": "960x960",
+      "src": "notemasterIcon.png",
       "type": "image/png"
     }
   ],
-  "start_url": "/",
-  "display": "standalone",
-  "theme_color": "#fafafa",
   "note_taking": {
-    "new_note_url": "/index.html"
-  }
+    "new_note_url": "./"
+  },
+  "screenshots": [
+    {
+      "label": "Get started with NoteMaster",
+      "sizes": "1920x1080",
+      "src": "learn-more/assets/1.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "label": "Create and open notes",
+      "sizes": "1920x1080",
+      "src": "learn-more/assets/2.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "label": "Edit your note side-by-side with another document",
+      "sizes": "1920x1080",
+      "src": "learn-more/assets/3.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "label": "Share a copy of your note for access online",
+      "sizes": "1920x1080",
+      "src": "learn-more/assets/4.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "label": "Save your note in-app or download it for later",
+      "sizes": "1920x1080",
+      "src": "learn-more/assets/5.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "label": "Adjust the space the editor and viewing area occupy",
+      "sizes": "1920x1080",
+      "src": "learn-more/assets/6.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "label": "Keep track of the documents you view",
+      "sizes": "1920x1080",
+      "src": "learn-more/assets/7.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "label": "See the markup of your note in real-time",
+      "sizes": "1920x1080",
+      "src": "learn-more/assets/8.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "label": "Note-taking at night? Switch to dark mode",
+      "sizes": "1920x1080",
+      "src": "learn-more/assets/9.svg",
+      "type": "image/svg+xml"
+    }
+  ]
 }

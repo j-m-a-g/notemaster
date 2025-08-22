@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 	<head>
 		<link href="../css/index.css" rel="stylesheet" />
 		<link href="../notemasterIcon.svg" rel="icon" />
@@ -12,6 +12,10 @@
 		<link
 			href="https://cdn.jsdelivr.net/npm/quill/dist/quill.snow.min.css"
 			rel="stylesheet"
+		/>
+		<meta
+			name="description"
+			content="Learn more about NoteMaster - a lightweight note-taking app for the web - and be able to preview a note someone has shared with you through the app."
 		/>
 	</head>
 
@@ -36,26 +40,27 @@
 						<img src="../notemasterIcon.svg" />
 					</td>
 					<td>NoteMaster</td>
-					<div id="navigateToNoteMaster">
-						<td style="width: 20%">
-							<button
-								class="dialogOverlay"
-								id="openInBrowser"
-								onclick="window.location.href = '../'"
-							>
-								Open in Browser
-							</button>
-						</td>
-						<td style="width: 20%">
-							<button
-								class="navigateToNoteMaster primaryButton"
-								id="secondaryAction"
-								onclick="toggleDialog(true, 'sharedNoteViewer', 'viewSharedNoteURL')"
-							>
-								View a Shared Note
-							</button>
-						</td>
-					</div>
+					<td style="width: 20%">
+						<button
+							class="dialogOverlay"
+							id="openInBrowser"
+							onclick="window.location.href = '../'"
+						>
+							Open in Browser
+						</button>
+					</td>
+					<td style="width: 20%">
+						<button
+							class="navigateToNoteMaster primaryButton"
+							id="secondaryAction"
+							onclick="
+								document.querySelector('#dialogFocusBackground').hidden = false;
+								document.querySelector('#sharedNoteViewer').hidden = false;
+								document.querySelector('#viewSharedNoteURL').focus()"
+						>
+							View a Shared Note
+						</button>
+					</td>
 				</tr>
 			</table>
 		</header>
@@ -82,7 +87,9 @@
 						<td>
 							<a
 								class="hyperlinkButton"
-								onclick="toggleDialog(false, 'sharedNoteViewer', null)"
+								onclick="
+									document.querySelector('#dialogFocusBackground').hidden = true;
+									document.querySelector('#sharedNoteViewer').hidden = true"
 							>
 								Close
 							</a>
@@ -104,7 +111,7 @@
 					<button
 						class="primaryButton"
 						onclick="
-							try { if (checkURLInput('viewSharedNoteURL') && document.querySelector('#viewSharedNoteURL').value.includes('https://j-m-a-g.github.io/notemaster')) { document.querySelector('#viewSharedNoteURL').value = `${window.location.href}${document.querySelector('#viewSharedNoteURL').value.slice(37)}`;
+							try { if (FileViewing.checkURLInput('viewSharedNoteURL') && document.querySelector('#viewSharedNoteURL').value.includes('https://j-m-a-g.github.io/notemaster')) { document.querySelector('#viewSharedNoteURL').value = `${window.location.href}${document.querySelector('#viewSharedNoteURL').value.slice(37)}`;
 											window.location.replace(document.querySelector('#viewSharedNoteURL').value) } } catch { alert('Please enter a valid URL') }"
 					>
 						<img
@@ -280,7 +287,6 @@
 		<script src="https://cdn.jsdelivr.net/npm/quill/dist/quill.min.js"></script>
 
 		<script src="../assets/mobile-detect.js/mobile-detect.min.js"></script>
-		<script src="../js/fileViewing-min.js"></script>
-		<script src="../js/index-min.js"></script>
+		<script src="../js/FileViewing.js"></script>
 	</body>
 </html>
