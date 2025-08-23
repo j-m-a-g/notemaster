@@ -512,9 +512,11 @@ class NoteMaster {
         workingURLParameters.has("markup")
       ) {
         EditorFunctions.initiateNote(false);
-        noteName.value = workingURLParameters.get("name");
+        noteName.value = atob(
+          decodeURIComponent(workingURLParameters.get("name"))
+        );
         quill.clipboard.dangerouslyPasteHTML(
-          decodeURIComponent(workingURLParameters.get("markup"))
+          atob(decodeURIComponent(workingURLParameters.get("markup")))
         );
 
         // Removes the parameters from being displayed in a user's address

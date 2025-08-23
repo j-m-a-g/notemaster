@@ -201,10 +201,7 @@ class EditorFunctions {
   }
 
   static prepareToShare() {
-    const linkParameters = new URLSearchParams(
-      `name=${noteName.value}&markup=${quill.getSemanticHTML()}`
-    );
-    shareCopyLink.value = `${window.location.href}?${linkParameters.toString().replaceAll("&", "%26").replace("%26", "&").replace("=", "paramEqual").replace("=", "paramEqual").replaceAll("=", "").replaceAll("paramEqual", "=")}`;
+    shareCopyLink.value = `${window.location.href}?name=${encodeURIComponent(btoa(noteName.value))}&markup=${encodeURIComponent(btoa(quill.getSemanticHTML()))}`;
   }
 
   static saveNoteForLater() {

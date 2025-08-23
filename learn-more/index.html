@@ -14,8 +14,8 @@
 			rel="stylesheet"
 		/>
 		<meta
-			name="description"
 			content="Learn more about NoteMaster - a lightweight note-taking app for the web - and be able to preview a note someone has shared with you through the app."
+			name="description"
 		/>
 	</head>
 
@@ -26,8 +26,8 @@
 			const quill = new Quill('#sharedNoteView', { readOnly: true, modules: { toolbar: false }, theme: 'snow'});
 			if (mobileDetect.phone() !== null) { document.querySelector('#openInBrowser').hidden = true;
 				document.querySelector('#secondaryAction').classList = 'dialogOverlay' };
-			if (urlSearchParams.has('name') || urlSearchParams.has('markup')) { document.querySelector('#sharedNoteTitle').innerHTML = urlSearchParams.get('name');
-				quill.clipboard.dangerouslyPasteHTML(decodeURIComponent(urlSearchParams.get('markup')));
+			if (urlSearchParams.has('name') || urlSearchParams.has('markup')) { document.querySelector('#sharedNoteTitle').innerHTML = atob(decodeURIComponent(urlSearchParams.get('name')));
+				quill.clipboard.dangerouslyPasteHTML(atob(decodeURIComponent(urlSearchParams.get('markup'))));
 				document.querySelector('#pasteSharedNoteLink').hidden = true;
 				document.querySelector('#sharedNoteView').hidden = false;
 				document.querySelector('#secondaryAction').click();
