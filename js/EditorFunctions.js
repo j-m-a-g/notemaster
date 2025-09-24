@@ -185,16 +185,16 @@ class EditorFunctions {
   static updateStatusBar() {
     if (quill.getLength() === 1) {
       characterCount.innerHTML =
-        "<span class='helperText'>Characters (Including spaces) </span> <span class='copyOnClick' onclick='navigator.clipboard.writeText(this.innerHTML); displaySnackbar(EditorFunctions.copiedToClipboardString)'>0</span>";
+        "<span class='helperText'>Characters (Including spaces) </span> <span class='copyOnClick' onclick='navigator.clipboard.writeText(this.innerHTML); NoteMaster.displaySnackbar(EditorFunctions.copiedToClipboardString)'>0</span>";
     } else {
-      characterCount.innerHTML = `<span class='helperText'>Characters (Including spaces) </span> <span class='copyOnClick' onclick='navigator.clipboard.writeText(this.innerHTML); displaySnackbar(EditorFunctions.copiedToClipboardString)'>${quill.getLength()}</span>`;
+      characterCount.innerHTML = `<span class='helperText'>Characters (Including spaces) </span> <span class='copyOnClick' onclick='navigator.clipboard.writeText(this.innerHTML); NoteMaster.displaySnackbar(EditorFunctions.copiedToClipboardString)'>${quill.getLength()}</span>`;
     }
 
     if (quill.getText() === "\n") {
       wordCount.innerHTML =
-        "<span class='helperText'>Words </span> <span class='copyOnClick' onclick='navigator.clipboard.writeText(this.innerHTML); displaySnackbar(EditorFunctions.copiedToClipboardString)'>0</span>";
+        "<span class='helperText'>Words </span> <span class='copyOnClick' onclick='navigator.clipboard.writeText(this.innerHTML); NoteMaster.displaySnackbar(EditorFunctions.copiedToClipboardString)'>0</span>";
     } else {
-      wordCount.innerHTML = `<span class='helperText'>Words </span> <span class='copyOnClick' onclick='navigator.clipboard.writeText(this.innerHTML); displaySnackbar(EditorFunctions.copiedToClipboardString)'>${quill.getText().split(/\s+/).length - 1}</span>`;
+      wordCount.innerHTML = `<span class='helperText'>Words </span> <span class='copyOnClick' onclick='navigator.clipboard.writeText(this.innerHTML); NoteMaster.displaySnackbar(EditorFunctions.copiedToClipboardString)'>${quill.getText().split(/\s+/).length - 1}</span>`;
     }
 
     mainEditorZoom.innerHTML = `<span class='helperText'>Zoom </span>${Math.floor((mainEditorFontSize / 13) * 100)}%`;

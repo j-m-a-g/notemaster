@@ -2102,6 +2102,10 @@
                   if (FileViewing.checkURLInput('insertOnlineImageInput')) { NoteMaster.toggleDialog(false, 'insertOnlineImage', null);
                     quill.clipboard.dangerouslyPasteHTML(`${quill.getSemanticHTML()}<img src='${insertOnlineImageInput.value}'>`) }"
               >
+                <img
+                  class="primaryButton menu"
+                  src="assets/images/add_000000.svg"
+                />
                 Insert
               </button>
             </td>
@@ -2168,6 +2172,10 @@
                 onclick="EditorFunctions.createTable()"
                 style="width: 100%"
               >
+                <img
+                  class="primaryButton menu"
+                  src="assets/images/add_000000.svg"
+                />
                 Create
               </button>
             </td>
@@ -2222,8 +2230,17 @@
               <td>
                 <img src="notemasterIcon.svg" style="width: 48px" />
               </td>
-              <td>
+              <td style="width: 90%">
                 <h2 class="dialogOverlay">Get Started With NoteMaster</h2>
+              </td>
+              <td>
+                <a
+                  class="hyperlinkButton"
+                  onclick="
+                    NoteMaster.toggleDialog(false, 'gettingStarted', null);
+                    localStorage.setItem('finishedGetStarted', true)"
+                  >Close</a
+                >
               </td>
             </tr>
           </table>
