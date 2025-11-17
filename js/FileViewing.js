@@ -39,7 +39,7 @@ class FileViewing {
     }
 
     // Adds the time the current file was opened to Viewing History
-    fileViewingHistoryTimes.push(NoteMaster.get12HourTime());
+    NoteMaster.fileViewingHistoryTimes.push(NoteMaster.get12HourTime());
     hideViewing.disabled = false;
   }
 

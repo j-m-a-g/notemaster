@@ -230,7 +230,7 @@ class EditorFunctions {
     noteTitle.title = noteTitle.innerHTML;
 
     noteTitleDate.className = "helperText";
-    noteTitleDate.innerHTML = `Saved ${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()} at ${get12HourTime()}`;
+    noteTitleDate.innerHTML = `Saved ${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()} at ${NoteMaster.get12HourTime()}`;
 
     deleteSaved.className = "hyperlinkButton";
     deleteSaved.innerHTML = "Delete";
