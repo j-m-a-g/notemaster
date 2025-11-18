@@ -205,13 +205,14 @@ class EditorFunctions {
   }
 
   static saveNoteForLater() {
-    const savedNoteContainer = document.createElement("div");
-    const notePreviewContainer = document.createElement("div");
-    const notePreview = document.createElement("span");
-    const noteTitleContainer = document.createElement("div");
-    const noteTitle = document.createElement("span");
-    const noteTitleDate = document.createElement("span");
+    const currentDate = new Date();
     const deleteSaved = document.createElement("a");
+    const notePreview = document.createElement("span");
+    const notePreviewContainer = document.createElement("div");
+    const noteTitle = document.createElement("span");
+    const noteTitleContainer = document.createElement("div");
+    const noteTitleDate = document.createElement("span");
+    const savedNoteContainer = document.createElement("div");
 
     savedNoteContainer.className = "savedNote";
 

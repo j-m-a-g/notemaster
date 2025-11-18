@@ -111,7 +111,6 @@ const confirmViewerClose = document.querySelector("#confirmViewerClose");
 const copiedToClipboard = document.querySelector("#copiedToClipboard");
 const createdTable = document.querySelector("#createdTable");
 const createOrOpenContainer = document.querySelector("#createOrOpenContainer");
-const currentDate = new Date();
 const customEmbedViewer = document.querySelector("#customEmbedViewer");
 const customStylesheet = document.querySelector("#customStylesheet");
 const customTypingTarget = document.querySelector("#customTypingTarget");

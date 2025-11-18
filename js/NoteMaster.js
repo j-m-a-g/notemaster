@@ -381,6 +381,7 @@ class NoteMaster {
    * @returns {string} - A human-readable display of the current time in 12-hour format
    */
   static get12HourTime() {
+    const currentDate = new Date();
     let hour;
     let minute;
     let suffix;
