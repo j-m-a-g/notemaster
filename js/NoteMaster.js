@@ -449,6 +449,8 @@ class NoteMaster {
    * as well as adjusts certain aspects of the page
    */
   static onLoadTasks() {
+    const currentDate = new Date();
+
     if (mobileDetect.phone() !== null) {
       window.location.replace("learn-more");
     }
