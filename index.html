@@ -258,7 +258,7 @@
           class="menuDropdown"
           disabled
           id="insertDate"
-          onclick="quill.insertText(quill.getSelection(focus), `${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()}`)"
+          onclick="const currentDate = new Date(); quill.insertText(quill.getSelection(focus), `${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()}`)"
         >
           <img
             class="reducedIntensity menu"
