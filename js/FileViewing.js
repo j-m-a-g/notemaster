@@ -35,7 +35,7 @@ class FileViewing {
 
     // Adds the current file to Viewing History
     if (fileName.innerHTML !== "---") {
-      fileViewingHistoryNames.push(fileName.innerHTML);
+      NoteMaster.fileViewingHistoryNames.push(fileName.innerHTML);
     }
 
     // Adds the time the current file was opened to Viewing History
