@@ -12,7 +12,6 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <style id="pageSetupStyle"></style>
     <title>Home - NoteMaster</title>
-
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/ace-builds/css/ace.min.css"
@@ -30,6 +29,10 @@
       name="description"
     />
     <meta
+      name="description"
+      content="Take your note-taking to another level with NoteMaster."
+    />
+    <meta
       name="google-site-verification"
       content="v3cXB66ONCCtQ0oGBcX_WARilHQ1Kupwny6FCkwbQaw"
     />
@@ -37,8 +40,11 @@
 
   <body
     onbeforeunload="
-      if (quill.getLength() !== 1 || noteName.value !== '') { event.preventDefault();
-        event.returnValue = '' }"
+      if (quill.getLength() !== 1 || noteName.value !== '') {
+        event.preventDefault();
+        event.returnValue = '';
+      }
+    "
     onload="NoteMaster.onLoadTasks()"
     onresize="NoteMaster.dynamicallySetHeight()"
   >
@@ -95,7 +101,13 @@
         <button
           accesskey="n"
           class="menuDropdown"
-          onclick="if (noteEditor.hidden) { EditorFunctions.initiateNote(false) } else { EditorFunctions.confirmSave() }"
+          onclick="
+            if (noteEditor.hidden) {
+              EditorFunctions.initiateNote(false);
+            } else {
+              EditorFunctions.confirmSave();
+            }
+          "
         >
           <img
             class="reducedIntensity menu"
@@ -266,7 +278,13 @@
           class="menuDropdown"
           disabled
           id="insertDate"
-          onclick="const currentDate = new Date(); quill.insertText(quill.getSelection(focus), `${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()}`)"
+          onclick="
+            const currentDate = new Date();
+            quill.insertText(
+              quill.getSelection(focus),
+              `${currentDate.getMonth() + 1}/${currentDate.getDate()}/${currentDate.getFullYear()}`
+            );
+          "
         >
           <img
             class="reducedIntensity menu"
@@ -279,7 +297,12 @@
           class="menuDropdown"
           disabled
           id="insertTime"
-          onclick="quill.insertText(quill.getSelection(focus), NoteMaster.get12HourTime())"
+          onclick="
+            quill.insertText(
+              quill.getSelection(focus),
+              NoteMaster.get12HourTime()
+            )
+          "
         >
           <img
             class="reducedIntensity menu"
@@ -341,9 +364,14 @@
           class="menuDropdown"
           onclick="
             NoteMaster.toggleMenuCheck('hideEditorCheck');
-            if (hideEditorCheck.src.includes(NoteMaster.checkedImageSource)) { noteEditor.hidden = true;
-              viewersContainer.style.width = '100%' } else { noteEditor.hidden = false;
-              NoteMaster.applyPercentageSizes() }"
+            if (hideEditorCheck.src.includes(NoteMaster.checkedImageSource)) {
+              noteEditor.hidden = true;
+              viewersContainer.style.width = '100%';
+            } else {
+              noteEditor.hidden = false;
+              NoteMaster.applyPercentageSizes();
+            }
+          "
         >
           <img
             id="hideEditorCheck"
@@ -358,9 +386,14 @@
           class="menuDropdown"
           onclick="
             NoteMaster.toggleMenuCheck('hideViewingCheck');
-            if (hideViewingCheck.src.includes(NoteMaster.checkedImageSource)) { viewersContainer.hidden = true;
-              noteEditor.style.width = '100%' } else { viewersContainer.hidden = false;
-              NoteMaster.applyPercentageSizes() }"
+            if (hideViewingCheck.src.includes(NoteMaster.checkedImageSource)) {
+              viewersContainer.hidden = true;
+              noteEditor.style.width = '100%';
+            } else {
+              viewersContainer.hidden = false;
+              NoteMaster.applyPercentageSizes();
+            }
+          "
         >
           <img
             id="hideViewingCheck"
@@ -376,7 +409,8 @@
           id="showHTMLEditor"
           onclick="
             NoteMaster.toggleDialog(true, 'noteAsHTML', null);
-            noteHTMLCodeEditor.session.setValue(quill.getSemanticHTML())"
+            noteHTMLCodeEditor.session.setValue(quill.getSemanticHTML());
+          "
         >
           <img
             class="reducedIntensity menu"
@@ -389,7 +423,8 @@
           class="menuDropdown"
           onclick="
             NoteMaster.toggleDialog(true, 'writingInsights', null);
-            EditorFunctions.displayWritingInsights()"
+            EditorFunctions.displayWritingInsights();
+          "
         >
           <img
             class="reducedIntensity menu"
@@ -403,7 +438,8 @@
           class="menuDropdown"
           onclick="
             NoteMaster.toggleDialog(true, 'viewingHistory', null);
-            NoteMaster.appendViewingHistory()"
+            NoteMaster.appendViewingHistory();
+          "
         >
           <img
             class="reducedIntensity menu"
@@ -434,10 +470,19 @@
           id="autoSave"
           onclick="
             NoteMaster.toggleMenuCheck('autoSaveCheck');
-            if (autoSaveCheck.src.includes(NoteMaster.checkedImageSource)) { localStorage.setItem('autoSaveEnabled', true);
-              mainEditor.oninput = function () { EditorFunctions.saveNoteProgress();
-                EditorFunctions.updateStatusBar() } } else { localStorage.setItem('autoSaveEnabled', false);
-              mainEditor.oninput = function () { EditorFunctions.updateStatusBar() } }"
+            if (autoSaveCheck.src.includes(NoteMaster.checkedImageSource)) {
+              localStorage.setItem('autoSaveEnabled', true);
+              mainEditor.oninput = function () {
+                EditorFunctions.saveNoteProgress();
+                EditorFunctions.updateStatusBar();
+              };
+            } else {
+              localStorage.setItem('autoSaveEnabled', false);
+              mainEditor.oninput = function () {
+                EditorFunctions.updateStatusBar();
+              };
+            }
+          "
         >
           <img class="menu" id="autoSaveCheck" />
           Save on Edit <span class="helperText menuDropdown">(Auto-Save)</span>
@@ -447,9 +492,14 @@
           id="wordWrap"
           onclick="
             NoteMaster.toggleMenuCheck('wordWrapCheck');
-            if (wordWrapCheck.src.includes(NoteMaster.checkedImageSource)) { localStorage.setItem('wordWrapEnabled', true);
-              mainEditor.style.wordBreak = 'break-word' } else { localStorage.setItem('wordWrapEnabled', false);
-              mainEditor.style.wordBreak = 'normal' }"
+            if (wordWrapCheck.src.includes(NoteMaster.checkedImageSource)) {
+              localStorage.setItem('wordWrapEnabled', true);
+              mainEditor.style.wordBreak = 'break-word';
+            } else {
+              localStorage.setItem('wordWrapEnabled', false);
+              mainEditor.style.wordBreak = 'normal';
+            }
+          "
           title="May cause layout issues"
         >
           <img
@@ -464,9 +514,14 @@
           class="menuDropdown"
           onclick="
             NoteMaster.toggleMenuCheck('darkModeCheck');
-            if (darkModeCheck.src.includes(NoteMaster.checkedImageSource)) { localStorage.setItem('darkMode', true);
-              darkModeStylesheet.href = 'css/dark.css' } else { localStorage.setItem('darkMode', 'false');
-              darkModeStylesheet.removeAttribute('href') }"
+            if (darkModeCheck.src.includes(NoteMaster.checkedImageSource)) {
+              localStorage.setItem('darkMode', true);
+              darkModeStylesheet.href = 'css/dark.css';
+            } else {
+              localStorage.setItem('darkMode', 'false');
+              darkModeStylesheet.removeAttribute('href');
+            }
+          "
         >
           <img
             class="menu"
@@ -482,8 +537,14 @@
             style="margin-left: 5px; width: 100%"
             onchange="
               noteHTMLCodeEditor.setTheme(`ace/theme/${codeEditorTheme.value}`);
-              codeFileViewCodeEditor.setTheme(`ace/theme/${codeEditorTheme.value}`);
-              localStorage.setItem('selectedCodeEditorTheme', codeEditorTheme.value)"
+              codeFileViewCodeEditor.setTheme(
+                `ace/theme/${codeEditorTheme.value}`
+              );
+              localStorage.setItem(
+                'selectedCodeEditorTheme',
+                codeEditorTheme.value
+              );
+            "
           >
             <optgroup label="A">
               <option value="ambiance">Ambiance</option>
@@ -590,7 +651,8 @@
               customStylesheet.href = window.URL.createObjectURL(this.files[0]);
               importOwnStylesheet.disabled = true;
               revertToDefaultStyle.disabled = false;
-              darkModeCheck.src = NoteMaster.uncheckedImageSource"
+              darkModeCheck.src = NoteMaster.uncheckedImageSource;
+            "
           />
         </button>
         <button
@@ -600,7 +662,8 @@
           onclick="
             customStylesheet.removeAttribute('href');
             importOwnStylesheet.disabled = false;
-            this.disabled = true"
+            this.disabled = true;
+          "
         >
           <img
             class="reducedIntensity menu"
@@ -612,7 +675,8 @@
           class="menuDropdown"
           onclick="
             localStorage.clear();
-            window.location.reload()"
+            window.location.reload();
+          "
         >
           <img
             class="reducedIntensity menu"
@@ -663,7 +727,12 @@
         </button>
         <button
           class="menuDropdown"
-          onclick="window.open('https://github.com/j-m-a-g/NoteMaster/issues', '_blank')"
+          onclick="
+            window.open(
+              'https://github.com/j-m-a-g/NoteMaster/issues',
+              '_blank'
+            )
+          "
         >
           <img
             class="reducedIntensity menu"
@@ -786,7 +855,8 @@
                         id="convertWordToNoteInput"
                         onchange="
                           EditorFunctions.convertWordToNote();
-                          wordDocumentToNoteButton.disabled = true"
+                          wordDocumentToNoteButton.disabled = true;
+                        "
                         type="file"
                       />
                       <span class="helperText"
@@ -839,8 +909,13 @@
                 <button
                   class="navButton navSeparation"
                   onclick="
-                    NoteMaster.toggleDialog(true, 'shareCopyOfNote', 'shareCopyLink');
-                    EditorFunctions.prepareToShare()"
+                    NoteMaster.toggleDialog(
+                      true,
+                      'shareCopyOfNote',
+                      'shareCopyLink'
+                    );
+                    EditorFunctions.prepareToShare();
+                  "
                   style="width: 100px"
                   title="Share a Copy"
                 >
@@ -855,7 +930,8 @@
                   onclick="
                     mainEditorFontSize++;
                     mainEditor.style.fontSize = `${mainEditorFontSize}px`;
-                    EditorFunctions.updateStatusBar()"
+                    EditorFunctions.updateStatusBar();
+                  "
                   title="Zoom In"
                 >
                   <img
@@ -868,7 +944,8 @@
                   onclick="
                     mainEditorFontSize--;
                     mainEditor.style.fontSize = `${mainEditorFontSize}px`;
-                    EditorFunctions.updateStatusBar()"
+                    EditorFunctions.updateStatusBar();
+                  "
                   title="Zoom Out"
                 >
                   <img
@@ -880,7 +957,8 @@
                   id="noteName"
                   oninput="
                     noteName.value = noteName.value.replaceAll('.', '');
-                    NoteMaster.alterWindowTitle(false)"
+                    NoteMaster.alterWindowTitle(false);
+                  "
                   placeholder="Untitled"
                   type="text"
                 />
@@ -890,7 +968,8 @@
                 id="mainEditor"
                 oninput="
                   EditorFunctions.updateStatusBar();
-                  EditorFunctions.saveWritingCounts()"
+                  EditorFunctions.saveWritingCounts();
+                "
               ></div>
               <nav class="statusBar" id="editorStatusBar">
                 <table style="width: 100%">
@@ -909,8 +988,13 @@
                         class="warningBanner"
                         title="Writing Insights"
                         onclick="
-                          NoteMaster.toggleDialog(true, 'writingInsights', null);
-                          EditorFunctions.displayWritingInsights()"
+                          NoteMaster.toggleDialog(
+                            true,
+                            'writingInsights',
+                            null
+                          );
+                          EditorFunctions.displayWritingInsights();
+                        "
                       >
                         <img
                           class="reducedIntensity menu"
@@ -945,7 +1029,8 @@
                         class="appSection"
                         onclick="
                           pdfFileInput.click();
-                          NoteMaster.toggleViewer(true, 'pdfViewer')"
+                          NoteMaster.toggleViewer(true, 'pdfViewer');
+                        "
                       >
                         <table>
                           <tr>
@@ -962,8 +1047,14 @@
                                 hidden
                                 id="pdfFileInput"
                                 onchange="
-                                  pdfView.src = window.URL.createObjectURL(this.files[0]);
-                                  FileViewing.tasksOnceFileOpen('pdfView', 'pdfFileInput')"
+                                  pdfView.src = window.URL.createObjectURL(
+                                    this.files[0]
+                                  );
+                                  FileViewing.tasksOnceFileOpen(
+                                    'pdfView',
+                                    'pdfFileInput'
+                                  );
+                                "
                                 type="file"
                               />
                             </td>
@@ -976,7 +1067,8 @@
                         class="appSection"
                         onclick="
                           imageFileInput.click();
-                          NoteMaster.toggleViewer(true, 'imageViewer')"
+                          NoteMaster.toggleViewer(true, 'imageViewer');
+                        "
                       >
                         <table>
                           <tr>
@@ -993,8 +1085,14 @@
                                 hidden
                                 id="imageFileInput"
                                 onchange="
-                                  imageView.src = window.URL.createObjectURL(this.files[0]);
-                                  FileViewing.tasksOnceFileOpen('imageView', 'imageFileInput')"
+                                  imageView.src = window.URL.createObjectURL(
+                                    this.files[0]
+                                  );
+                                  FileViewing.tasksOnceFileOpen(
+                                    'imageView',
+                                    'imageFileInput'
+                                  );
+                                "
                                 type="file"
                               />
                             </td>
@@ -1009,7 +1107,8 @@
                         class="appSection"
                         onclick="
                           textFileInput.click();
-                          NoteMaster.toggleViewer(true, 'textViewer')"
+                          NoteMaster.toggleViewer(true, 'textViewer');
+                        "
                       >
                         <table>
                           <tr>
@@ -1028,7 +1127,11 @@
                                   FileViewing.readTextFile();
                                   textViewActions.hidden = false;
                                   textView.hidden = false;
-                                  FileViewing.tasksOnceFileOpen('textViewer', 'textFileInput')"
+                                  FileViewing.tasksOnceFileOpen(
+                                    'textViewer',
+                                    'textFileInput'
+                                  );
+                                "
                                 type="file"
                               />
                             </td>
@@ -1041,7 +1144,8 @@
                         class="appSection"
                         onclick="
                           videoFileInput.click();
-                          NoteMaster.toggleViewer(true, 'videoViewer')"
+                          NoteMaster.toggleViewer(true, 'videoViewer');
+                        "
                       >
                         <table>
                           <tr>
@@ -1058,9 +1162,15 @@
                                 hidden
                                 id="videoFileInput"
                                 onchange="
-                                  videoView.src = window.URL.createObjectURL(this.files[0]);
-                                  FileViewing.tasksOnceFileOpen('videoView', 'videoFileInput');
-                                  additionalVideoControls.hidden = false"
+                                  videoView.src = window.URL.createObjectURL(
+                                    this.files[0]
+                                  );
+                                  FileViewing.tasksOnceFileOpen(
+                                    'videoView',
+                                    'videoFileInput'
+                                  );
+                                  additionalVideoControls.hidden = false;
+                                "
                                 type="file"
                               />
                             </td>
@@ -1075,7 +1185,8 @@
                         class="appSection"
                         onclick="
                           wordFileInput.click();
-                          NoteMaster.toggleViewer(true, 'wordDocumentViewer')"
+                          NoteMaster.toggleViewer(true, 'wordDocumentViewer');
+                        "
                       >
                         <table>
                           <tr>
@@ -1093,7 +1204,11 @@
                                 id="wordFileInput"
                                 onchange="
                                   FileViewing.readWordDocument();
-                                  FileViewing.tasksOnceFileOpen('wordDocumentView', 'wordFileInput')"
+                                  FileViewing.tasksOnceFileOpen(
+                                    'wordDocumentView',
+                                    'wordFileInput'
+                                  );
+                                "
                                 type="file"
                               />
                             </td>
@@ -1106,7 +1221,8 @@
                         class="appSection"
                         onclick="
                           markdownFileInput.click();
-                          NoteMaster.toggleViewer(true, 'markdownFileViewer')"
+                          NoteMaster.toggleViewer(true, 'markdownFileViewer');
+                        "
                       >
                         <table>
                           <tr>
@@ -1123,7 +1239,11 @@
                                 id="markdownFileInput"
                                 onchange="
                                   FileViewing.readMarkdownFile();
-                                  FileViewing.tasksOnceFileOpen('markdownFileView', 'markdownFileInput')"
+                                  FileViewing.tasksOnceFileOpen(
+                                    'markdownFileView',
+                                    'markdownFileInput'
+                                  );
+                                "
                                 type="file"
                                 accept=".md"
                               />
@@ -1139,7 +1259,8 @@
                         class="appSection"
                         onclick="
                           codeFileInput.click();
-                          NoteMaster.toggleViewer(true, 'codeFileViewer')"
+                          NoteMaster.toggleViewer(true, 'codeFileViewer');
+                        "
                       >
                         <table>
                           <tr>
@@ -1181,7 +1302,13 @@
                     <td>
                       <button
                         class="appSection"
-                        onclick="NoteMaster.toggleDialog(true, 'linkToPDF', 'URLToPDFInput')"
+                        onclick="
+                          NoteMaster.toggleDialog(
+                            true,
+                            'linkToPDF',
+                            'URLToPDFInput'
+                          )
+                        "
                       >
                         <table>
                           <tr>
@@ -1207,7 +1334,13 @@
                     <td>
                       <button
                         class="appSection"
-                        onclick="NoteMaster.toggleDialog(true, 'linkToImage', 'URLToImageInput')"
+                        onclick="
+                          NoteMaster.toggleDialog(
+                            true,
+                            'linkToImage',
+                            'URLToImageInput'
+                          )
+                        "
                       >
                         <table>
                           <tr>
@@ -1237,7 +1370,13 @@
                     <td>
                       <button
                         class="appSection"
-                        onclick="NoteMaster.toggleDialog(true, 'insertCloudURLDialog', 'URLToCloudFile')"
+                        onclick="
+                          NoteMaster.toggleDialog(
+                            true,
+                            'insertCloudURLDialog',
+                            'URLToCloudFile'
+                          )
+                        "
                       >
                         <table>
                           <tr>
@@ -1263,7 +1402,8 @@
                           NoteMaster.toggleViewer(true, 'webpageViewer');
                           FileViewing.tasksOnceFileOpen('webpageView', null);
                           noFileSelected.hidden = true;
-                          webpageURLBar.focus()"
+                          webpageURLBar.focus();
+                        "
                       >
                         <table>
                           <tr>
@@ -1285,7 +1425,13 @@
                     <td>
                       <button
                         class="appSection"
-                        onclick="NoteMaster.toggleDialog(true, 'linkToOnlineDesign', 'URLToOnlineDesign')"
+                        onclick="
+                          NoteMaster.toggleDialog(
+                            true,
+                            'linkToOnlineDesign',
+                            'URLToOnlineDesign'
+                          )
+                        "
                       >
                         <table>
                           <tr>
@@ -1305,7 +1451,13 @@
                     <td>
                       <button
                         class="appSection"
-                        onclick="NoteMaster.toggleDialog(true, 'linkToTubeVideo', 'URLToTubeVideo')"
+                        onclick="
+                          NoteMaster.toggleDialog(
+                            true,
+                            'linkToTubeVideo',
+                            'URLToTubeVideo'
+                          )
+                        "
                       >
                         <table>
                           <tr>
@@ -1327,7 +1479,13 @@
                     <td>
                       <button
                         class="appSection"
-                        onclick="NoteMaster.toggleDialog(true, 'customEmbed', 'embeddedCode')"
+                        onclick="
+                          NoteMaster.toggleDialog(
+                            true,
+                            'customEmbed',
+                            'embeddedCode'
+                          )
+                        "
                       >
                         <table>
                           <tr>
@@ -1352,7 +1510,8 @@
               class="appSection"
               onclick="
                 anotherNoteFileInput.click();
-                NoteMaster.toggleViewer(true, 'anotherNoteViewer')"
+                NoteMaster.toggleViewer(true, 'anotherNoteViewer');
+              "
             >
               <table>
                 <tr>
@@ -1371,7 +1530,8 @@
                       id="anotherNoteFileInput"
                       onchange="
                         FileViewing.readHTMLNote();
-                        anotherNoteView.hidden = false"
+                        anotherNoteView.hidden = false;
+                      "
                       type="file"
                     />
                     <span class="helperText"
@@ -1391,7 +1551,8 @@
                     id="viewerStatusBarIndicator"
                     onmouseover="
                       this.hidden = true;
-                      viewerStatusBar.hidden = false"
+                      viewerStatusBar.hidden = false;
+                    "
                   >
                     <img
                       class="reducedIntensity menu"
@@ -1404,7 +1565,8 @@
                     onmouseover="this.hidden = false"
                     onmouseleave="
                       this.hidden = true;
-                      viewerStatusBarIndicator.hidden = false"
+                      viewerStatusBarIndicator.hidden = false;
+                    "
                     hidden
                     class="statusBar"
                     id="viewerStatusBar"
@@ -1416,8 +1578,13 @@
                           <button
                             class="warningBanner"
                             onclick="
-                              NoteMaster.toggleDialog(true,  'viewingHistory', null);
-                              NoteMaster.appendViewingHistory()"
+                              NoteMaster.toggleDialog(
+                                true,
+                                'viewingHistory',
+                                null
+                              );
+                              NoteMaster.appendViewingHistory();
+                            "
                             title="Show viewing history"
                           >
                             <img
@@ -1433,7 +1600,10 @@
                             id="fileName"
                             onclick="
                               navigator.clipboard.writeText(this.innerHTML);
-                              NoteMaster.displaySnackbar(EditorFunctions.copiedToClipboardString)"
+                              NoteMaster.displaySnackbar(
+                                EditorFunctions.copiedToClipboardString
+                              );
+                            "
                             title="Copy the file's name"
                             >---</span
                           >
@@ -1445,7 +1615,10 @@
                             id="fileSize"
                             onclick="
                               navigator.clipboard.writeText(this.innerHTML);
-                              NoteMaster.displaySnackbar(EditorFunctions.copiedToClipboardString)"
+                              NoteMaster.displaySnackbar(
+                                EditorFunctions.copiedToClipboardString
+                              );
+                            "
                             title="Copy the file's size"
                             >---</span
                           >
@@ -1457,7 +1630,8 @@
                             id="fileLastModified"
                             onclick="
                               navigator.clipboard.writeText(this.innerHTML);
-                              NoteMaster.displaySnackbar('Copied to clipboard')"
+                              NoteMaster.displaySnackbar('Copied to clipboard');
+                            "
                             title="Copy the file's last modified date"
                             >---</span
                           >
@@ -1479,7 +1653,9 @@
               </h2>
               <button
                 class="primaryButton"
-                onclick="NoteMaster.hideAndShow('viewersContainer', 'chooseViewer')"
+                onclick="
+                  NoteMaster.hideAndShow('viewersContainer', 'chooseViewer')
+                "
                 style="width: 100%"
               >
                 <img
@@ -1510,7 +1686,8 @@
                   class="navButton"
                   onclick="
                     textViewFontSize++;
-                    textView.style.fontSize = `${textViewFontSize}px`"
+                    textView.style.fontSize = `${textViewFontSize}px`;
+                  "
                   title="Increase font size"
                 >
                   <img
@@ -1522,7 +1699,8 @@
                   class="navButton"
                   onclick="
                     textViewFontSize--;
-                    textView.style.fontSize = `${textViewFontSize}px`"
+                    textView.style.fontSize = `${textViewFontSize}px`;
+                  "
                   title="Decrease font size"
                 >
                   <img
@@ -1534,7 +1712,8 @@
                   class="navButton"
                   onclick="
                     textView.style.fontSize = '14px';
-                    textViewFontSize = 14"
+                    textViewFontSize = 14;
+                  "
                   title="Reset font size"
                 >
                   <img
@@ -1550,7 +1729,7 @@
               <nav class="statusBar" hidden id="additionalVideoControls">
                 <div class="pretty p-default p-curve p-thick">
                   <input
-                    oninput="videoView.loop = !!this.checked;"
+                    oninput="videoView.loop = !!this.checked"
                     type="checkbox"
                   />
                   <div class="state p-primary p-primary-o">
@@ -1571,7 +1750,11 @@
                 <select
                   class="navSeparation"
                   id="programmingLanguageMode"
-                  onchange="codeFileViewCodeEditor.session.setMode(`ace/mode/${programmingLanguageMode.value}`);"
+                  onchange="
+                    codeFileViewCodeEditor.session.setMode(
+                      `ace/mode/${programmingLanguageMode.value}`
+                    )
+                  "
                 >
                   <option value="plain_text">None</option>
                   <optgroup label="A">
@@ -1691,7 +1874,8 @@
                   class="navButton"
                   onclick="
                     codeFileViewFontSize++;
-                    codeFileView.style.fontSize = `${codeFileViewFontSize}px`"
+                    codeFileView.style.fontSize = `${codeFileViewFontSize}px`;
+                  "
                   title="Increase font size"
                 >
                   <img
@@ -1715,7 +1899,8 @@
                   class="navButton"
                   onclick="
                     codeFileView.style.fontSize = '12px';
-                    codeFileViewFontSize = 12"
+                    codeFileViewFontSize = 12;
+                  "
                   title="Reset font size"
                 >
                   <img
@@ -1737,8 +1922,13 @@
                       <button
                         class="navButton"
                         onclick="
-                          if (lastViewedWebpages.length > 1) { webpageView.src = lastViewedWebpages[lastViewedWebpages.length - 2];
-                            webpageURLBar.value = lastViewedWebpages[lastViewedWebpages.length - 2] }"
+                          if (lastViewedWebpages.length > 1) {
+                            webpageView.src =
+                              lastViewedWebpages[lastViewedWebpages.length - 2];
+                            webpageURLBar.value =
+                              lastViewedWebpages[lastViewedWebpages.length - 2];
+                          }
+                        "
                         title="Back"
                       >
                         <img
@@ -1759,10 +1949,17 @@
                       <button
                         class="navButton"
                         onclick="
-                          if (!webpageURLBar.value.includes('https://') && !webpageURLBar.value.includes('http://')) { webpageURLBar.value = `https://${webpageURLBar.value}` } webpageView.removeAttribute('srcdoc');
+                          if (
+                            !webpageURLBar.value.includes('https://') &&
+                            !webpageURLBar.value.includes('http://')
+                          ) {
+                            webpageURLBar.value = `https://${webpageURLBar.value}`;
+                          }
+                          webpageView.removeAttribute('srcdoc');
                           webpageView.src = webpageURLBar.value;
                           lastViewedWebpages.push(webpageURLBar.value);
-                          NoteMaster.addHistoryEntry('webpageURLBar')"
+                          NoteMaster.addHistoryEntry('webpageURLBar');
+                        "
                         title="Search"
                       >
                         <img
@@ -1784,7 +1981,15 @@
             </div>
             <div hidden id="tubeVideoViewer">
               <iframe
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allow="
+                  accelerometer;
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                  web-share;
+                "
                 allowfullscreen
                 id="tubeVideoView"
                 referrerpolicy="strict-origin-when-cross-origin"
@@ -1951,7 +2156,8 @@
                 class="hyperlinkButton"
                 onclick="
                   NoteMaster.toggleDialog(true, 'viewingHistory', null);
-                  NoteMaster.appendViewingHistory()"
+                  NoteMaster.appendViewingHistory();
+                "
               >
                 <img
                   class="reducedIntensity menu"
@@ -2021,7 +2227,8 @@
                       class="hyperlinkButton"
                       onclick="
                         viewingSize.value = viewingSize.min;
-                        NoteMaster.adjustViewingAndEditorSizes()"
+                        NoteMaster.adjustViewingAndEditorSizes();
+                      "
                       >Min</a
                     >
                     or
@@ -2029,7 +2236,8 @@
                       class="hyperlinkButton"
                       onclick="
                         viewingSize.value = viewingSize.max;
-                        NoteMaster.adjustViewingAndEditorSizes()"
+                        NoteMaster.adjustViewingAndEditorSizes();
+                      "
                       >Max</a
                     >
                   </td>
@@ -2041,9 +2249,17 @@
                 min="32"
                 oninput="NoteMaster.adjustViewingAndEditorSizes()"
                 onkeydown="appSectionSizesContainer.style.opacity = '75%'"
-                onkeyup="setTimeout(function () { appSectionSizesContainer.style.opacity = '100%' }, 2000)"
+                onkeyup="
+                  setTimeout(function () {
+                    appSectionSizesContainer.style.opacity = '100%';
+                  }, 2000)
+                "
                 onmousedown="appSectionSizesContainer.style.opacity = '75%'"
-                onmouseup="setTimeout(function () { appSectionSizesContainer.style.opacity = '100%' }, 2000)"
+                onmouseup="
+                  setTimeout(function () {
+                    appSectionSizesContainer.style.opacity = '100%';
+                  }, 2000)
+                "
                 placeholder="50% (Default)"
                 style="width: 90%; margin-top: 5px"
                 type="number"
@@ -2059,7 +2275,8 @@
             viewingSize.value = 50;
             editorSize.value = 50;
             NoteMaster.applyPercentageSizes();
-            localStorage.setItem('viewingSizeValue', viewingSize.value)"
+            localStorage.setItem('viewingSizeValue', viewingSize.value);
+          "
           style="width: 25%; margin-left: 5px; margin-top: 5px"
         >
           <img
@@ -2107,8 +2324,13 @@
               <button
                 class="primaryButton"
                 onclick="
-                  if (FileViewing.checkURLInput('insertOnlineImageInput')) { NoteMaster.toggleDialog(false, 'insertOnlineImage', null);
-                    quill.clipboard.dangerouslyPasteHTML(`${quill.getSemanticHTML()}<img src='${insertOnlineImageInput.value}'>`) }"
+                  if (FileViewing.checkURLInput('insertOnlineImageInput')) {
+                    NoteMaster.toggleDialog(false, 'insertOnlineImage', null);
+                    quill.clipboard.dangerouslyPasteHTML(
+                      `${quill.getSemanticHTML()}<img src='${insertOnlineImageInput.value}'>`
+                    );
+                  }
+                "
               >
                 <img
                   class="primaryButton menu"
@@ -2139,7 +2361,8 @@
                 class="hyperlinkButton"
                 onclick="
                   insertTable.hidden = true;
-                  insertTableQuill.setContents()"
+                  insertTableQuill.setContents();
+                "
                 >Close</a
               >
             </td>
@@ -2157,7 +2380,14 @@
                 id="tableRows"
                 max="32"
                 min="1"
-                onchange="if (tableRows.value <= 9 && tableRows.value >= 1) { tableRows.value = `0${tableRows.value}` } if (tableRows.value > tableRows.max) { tableRows.value = tableRows.max }"
+                onchange="
+                  if (tableRows.value <= 9 && tableRows.value >= 1) {
+                    tableRows.value = `0${tableRows.value}`;
+                  }
+                  if (tableRows.value > tableRows.max) {
+                    tableRows.value = tableRows.max;
+                  }
+                "
                 placeholder="Rows"
                 style="width: 85%"
                 type="number"
@@ -2168,7 +2398,14 @@
                 id="tableColumns"
                 max="32"
                 min="1"
-                onchange="if (tableColumns.value <= 9 && tableColumns.value >= 1) { tableColumns.value = `0${tableColumns.value}` } if (tableColumns.value > tableColumns.max) { tableColumns.value = tableColumns.max }"
+                onchange="
+                  if (tableColumns.value <= 9 && tableColumns.value >= 1) {
+                    tableColumns.value = `0${tableColumns.value}`;
+                  }
+                  if (tableColumns.value > tableColumns.max) {
+                    tableColumns.value = tableColumns.max;
+                  }
+                "
                 placeholder="Columns"
                 style="width: 85%"
                 type="number"
@@ -2246,7 +2483,8 @@
                   class="hyperlinkButton"
                   onclick="
                     NoteMaster.toggleDialog(false, 'gettingStarted', null);
-                    localStorage.setItem('finishedGetStarted', true)"
+                    localStorage.setItem('finishedGetStarted', true);
+                  "
                   >Close</a
                 >
               </td>
@@ -2272,7 +2510,8 @@
                   onclick="
                     NoteMaster.toggleDialog(false, 'gettingStarted', null);
                     localStorage.setItem('finishedGetStarted', true);
-                    EditorFunctions.launchExample()"
+                    EditorFunctions.launchExample();
+                  "
                 >
                   Launch Example
                 </button>
@@ -2280,7 +2519,12 @@
               <td style="width: 33%">
                 <button
                   class="primaryButton"
-                  onclick="NoteMaster.hideAndShow('getStartedWithNoteMaster', 'createAndOpenNotes')"
+                  onclick="
+                    NoteMaster.hideAndShow(
+                      'getStartedWithNoteMaster',
+                      'createAndOpenNotes'
+                    )
+                  "
                 >
                   Continue
                 </button>
@@ -2301,7 +2545,12 @@
               <td style="width: 25%">
                 <button
                   class="primaryButton"
-                  onclick="NoteMaster.hideAndShow('createAndOpenNotes', 'editSideBySide')"
+                  onclick="
+                    NoteMaster.hideAndShow(
+                      'createAndOpenNotes',
+                      'editSideBySide'
+                    )
+                  "
                 >
                   Next
                 </button>
@@ -2323,7 +2572,9 @@
               <td style="width: 25%">
                 <button
                   class="primaryButton"
-                  onclick="NoteMaster.hideAndShow('editSideBySide', 'shareACopyOfNote')"
+                  onclick="
+                    NoteMaster.hideAndShow('editSideBySide', 'shareACopyOfNote')
+                  "
                 >
                   Next
                 </button>
@@ -2344,7 +2595,12 @@
               <td style="width: 25%">
                 <button
                   class="primaryButton"
-                  onclick="NoteMaster.hideAndShow('shareACopyOfNote', 'saveInAppOrDownload')"
+                  onclick="
+                    NoteMaster.hideAndShow(
+                      'shareACopyOfNote',
+                      'saveInAppOrDownload'
+                    )
+                  "
                 >
                   Next
                 </button>
@@ -2365,7 +2621,12 @@
               <td style="width: 25%">
                 <button
                   class="primaryButton"
-                  onclick="NoteMaster.hideAndShow('saveInAppOrDownload', 'adjustEditingAndViewingSpace')"
+                  onclick="
+                    NoteMaster.hideAndShow(
+                      'saveInAppOrDownload',
+                      'adjustEditingAndViewingSpace'
+                    )
+                  "
                 >
                   Next
                 </button>
@@ -2386,7 +2647,12 @@
               <td style="width: 25%">
                 <button
                   class="primaryButton"
-                  onclick="NoteMaster.hideAndShow('adjustEditingAndViewingSpace', 'keepTrackOfDocuments')"
+                  onclick="
+                    NoteMaster.hideAndShow(
+                      'adjustEditingAndViewingSpace',
+                      'keepTrackOfDocuments'
+                    )
+                  "
                 >
                   Next
                 </button>
@@ -2407,7 +2673,12 @@
               <td style="width: 25%">
                 <button
                   class="primaryButton"
-                  onclick="NoteMaster.hideAndShow('keepTrackOfDocuments', 'seeNoteMarkup')"
+                  onclick="
+                    NoteMaster.hideAndShow(
+                      'keepTrackOfDocuments',
+                      'seeNoteMarkup'
+                    )
+                  "
                 >
                   Next
                 </button>
@@ -2429,7 +2700,9 @@
               <td style="width: 25%">
                 <button
                   class="primaryButton"
-                  onclick="NoteMaster.hideAndShow('seeNoteMarkup', 'switchToDarkMode')"
+                  onclick="
+                    NoteMaster.hideAndShow('seeNoteMarkup', 'switchToDarkMode')
+                  "
                 >
                   Next
                 </button>
@@ -2462,7 +2735,8 @@
                   class="primaryButton"
                   onclick="
                     NoteMaster.toggleDialog(false, 'gettingStarted', null);
-                    localStorage.setItem('finishedGetStarted', true)"
+                    localStorage.setItem('finishedGetStarted', true);
+                  "
                 >
                   Finish
                 </button>
@@ -2947,7 +3221,10 @@
           class="primaryButton"
           onclick="
             document.querySelector('#copyHistoryEditor').hidden = false;
-            copyHistoryQuill.clipboard.dangerouslyPasteHTML(historyTableContainer.innerHTML)"
+            copyHistoryQuill.clipboard.dangerouslyPasteHTML(
+              historyTableContainer.innerHTML
+            );
+          "
           style="width: 25%"
         >
           <img
@@ -2976,7 +3253,9 @@
             <td>
               <a
                 class="hyperlinkButton"
-                onclick="NoteMaster.toggleDialog(false, 'writingInsights', null)"
+                onclick="
+                  NoteMaster.toggleDialog(false, 'writingInsights', null)
+                "
               >
                 Close
               </a>
@@ -3018,8 +3297,11 @@
         <select
           id="typingTarget"
           onchange="
-            if (this.value === 'custom') { this.hidden = true;
-              customTypingTarget.hidden = false }"
+            if (this.value === 'custom') {
+              this.hidden = true;
+              customTypingTarget.hidden = false;
+            }
+          "
         >
           <option value="1000">1,000</option>
           <option value="2000">2,000</option>
@@ -3102,11 +3384,14 @@
               <button
                 class="primaryButton"
                 onclick="
-                  if (FileViewing.checkURLInput('URLToPDFInput')) { NoteMaster.toggleDialog(false, 'linkToPDF', null);
+                  if (FileViewing.checkURLInput('URLToPDFInput')) {
+                    NoteMaster.toggleDialog(false, 'linkToPDF', null);
                     pdfView.src = URLToPDFInput.value;
                     NoteMaster.toggleViewer(true, 'pdfViewer');
                     FileViewing.tasksOnceFileOpen('pdfView', null);
-                    NoteMaster.addHistoryEntry('URLToPDFInput') }"
+                    NoteMaster.addHistoryEntry('URLToPDFInput');
+                  }
+                "
               >
                 Open
               </button>
@@ -3148,11 +3433,15 @@
               <button
                 class="primaryButton"
                 onclick="
-                  if (FileViewing.checkURLInput('URLToImageInput')) { NoteMaster.toggleDialog(false, 'linkToImage', null);
-                    imageView.src = document.querySelector('#URLToImageInput').value;
+                  if (FileViewing.checkURLInput('URLToImageInput')) {
+                    NoteMaster.toggleDialog(false, 'linkToImage', null);
+                    imageView.src =
+                      document.querySelector('#URLToImageInput').value;
                     NoteMaster.toggleViewer(true, 'imageViewer');
                     FileViewing.tasksOnceFileOpen('imageView', null);
-                    NoteMaster.addHistoryEntry('URLToImageInput') }"
+                    NoteMaster.addHistoryEntry('URLToImageInput');
+                  }
+                "
               >
                 Open
               </button>
@@ -3174,7 +3463,9 @@
             <td>
               <a
                 class="hyperlinkButton"
-                onclick="NoteMaster.toggleDialog(false, 'insertCloudURLDialog', null)"
+                onclick="
+                  NoteMaster.toggleDialog(false, 'insertCloudURLDialog', null)
+                "
               >
                 Close
               </a>
@@ -3248,7 +3539,9 @@
             <td>
               <a
                 class="hyperlinkButton"
-                onclick="NoteMaster.toggleDialog(false, 'linkToOnlineDesign', null)"
+                onclick="
+                  NoteMaster.toggleDialog(false, 'linkToOnlineDesign', null)
+                "
               >
                 Close
               </a>
@@ -3273,11 +3566,14 @@
               <button
                 class="primaryButton"
                 onclick="
-                  if (FileViewing.checkURLInput('URLToOnlineDesign')) { onlineDesignView.src = `${URLToOnlineDesign.value.replace('edit', 'view')}?embed`;
+                  if (FileViewing.checkURLInput('URLToOnlineDesign')) {
+                    onlineDesignView.src = `${URLToOnlineDesign.value.replace('edit', 'view')}?embed`;
                     NoteMaster.toggleDialog(false, 'linkToOnlineDesign', null);
-                    NoteMaster.toggleViewer(true,  'onlineDesignViewer');
+                    NoteMaster.toggleViewer(true, 'onlineDesignViewer');
                     FileViewing.tasksOnceFileOpen('onlineDesignView', null);
-                    NoteMaster.addHistoryEntry('URLToOnlineDesign') }"
+                    NoteMaster.addHistoryEntry('URLToOnlineDesign');
+                  }
+                "
               >
                 Open
               </button>
@@ -3298,7 +3594,9 @@
             <td>
               <a
                 class="hyperlinkButton"
-                onclick="NoteMaster.toggleDialog(false, 'linkToTubeVideo', null)"
+                onclick="
+                  NoteMaster.toggleDialog(false, 'linkToTubeVideo', null)
+                "
               >
                 Close
               </a>
@@ -3320,11 +3618,14 @@
               <button
                 class="primaryButton"
                 onclick="
-                  if (FileViewing.checkURLInput('URLToTubeVideo')) { tubeVideoView.src = `https://www.youtube.com/embed/${URLToTubeVideo.value.replaceAll('https://www.youtube.com/watch?v=', '').replaceAll('https://youtu.be/', '')}`;
+                  if (FileViewing.checkURLInput('URLToTubeVideo')) {
+                    tubeVideoView.src = `https://www.youtube.com/embed/${URLToTubeVideo.value.replaceAll('https://www.youtube.com/watch?v=', '').replaceAll('https://youtu.be/', '')}`;
                     NoteMaster.toggleDialog(false, 'linkToTubeVideo', null);
                     NoteMaster.toggleViewer(true, 'tubeVideoViewer');
                     FileViewing.tasksOnceFileOpen('tubeVideoView', null);
-                    NoteMaster.addHistoryEntry('URLToTubeVideo') }"
+                    NoteMaster.addHistoryEntry('URLToTubeVideo');
+                  }
+                "
               >
                 Open
               </button>
@@ -3392,7 +3693,9 @@
             <td>
               <a
                 class="hyperlinkButton"
-                onclick="NoteMaster.toggleDialog(false, 'shareCopyOfNote', null)"
+                onclick="
+                  NoteMaster.toggleDialog(false, 'shareCopyOfNote', null)
+                "
               >
                 Close
               </a>
@@ -3418,7 +3721,10 @@
                 class="primaryButton"
                 onclick="
                   navigator.clipboard.writeText(shareCopyLink.value);
-                  NoteMaster.displaySnackbar(EditorFunctions.copiedToClipboardString)"
+                  NoteMaster.displaySnackbar(
+                    EditorFunctions.copiedToClipboardString
+                  );
+                "
               >
                 <img
                   class="primaryButton menu"
@@ -3465,7 +3771,8 @@
           class="primaryButton"
           onclick="
             navigator.clipboard.writeText(noteHTMLCodeEditor.getValue());
-            NoteMaster.displaySnackbar(EditorFunctions.copiedToClipboardString)"
+            NoteMaster.displaySnackbar(EditorFunctions.copiedToClipboardString);
+          "
           style="width: 25%"
         >
           <img
